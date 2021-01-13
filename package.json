@@ -1,0 +1,9 @@
+{
+  "name": "yup-schema-faker",
+  "version": "0.1.0",
+  "description": "Fake data generator for yup",
+  "main": "index.js",
+  "repository": "git@github.com:iendeavor/yup-schema-faker.git",
+  "author": "Ernest <iendeavor.github.io@gmail.com>",
+  "license": "MIT"
+}
