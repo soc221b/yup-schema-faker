@@ -1,7 +1,6 @@
 import { AnySchema, ObjectSchema } from 'yup'
 import { ObjectShape } from 'yup/lib/object'
 import { FakeSchema } from '../type'
-import { typeToFaker } from '..'
 
 export const fakeObject: FakeSchema<ObjectSchema<ObjectShape>> = (schema, fake) => {
   const fields = schema.fields
@@ -9,5 +8,3 @@ export const fakeObject: FakeSchema<ObjectSchema<ObjectShape>> = (schema, fake) 
     return Object.assign(object, { [key]: fake(schema.fields[key] as AnySchema) })
   }, {})
 }
-
-typeToFaker.set('object', fakeObject)

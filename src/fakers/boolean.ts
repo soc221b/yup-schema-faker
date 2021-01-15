@@ -1,10 +1,7 @@
-import { random } from 'faker'
+import * as faker from 'faker'
 import { BooleanSchema } from 'yup'
 import { FakeSchema } from '../type'
-import { typeToFaker } from '..'
 
 export const fakeBoolean: FakeSchema<BooleanSchema> = (schema, fake) => {
-  return random.boolean()
+  return faker.random.boolean()
 }
-
-typeToFaker.set('boolean', fakeBoolean)

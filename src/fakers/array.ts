@@ -1,7 +1,6 @@
 import { AnySchema, ArraySchema } from 'yup'
 import { FakeSchema } from '../type'
-import { typeToFaker } from '..'
-import { random } from 'faker'
+import * as faker from 'faker'
 
 export const fakeArray: FakeSchema<ArraySchema<AnySchema>> = (schema, fake) => {
   let min: number = 0
@@ -27,12 +26,10 @@ export const fakeArray: FakeSchema<ArraySchema<AnySchema>> = (schema, fake) => {
 
   const innerSchema = schema.innerType
   if (innerSchema) {
-    return Array(random.number({ min, max }))
+    return Array(faker.random.number({ min, max }))
       .fill(null)
       .map(() => fake(schema.innerType!))
   } else {
-    return Array(random.number({ min, max })).fill(null)
+    return Array(faker.random.number({ min, max })).fill(null)
   }
 }
-
-typeToFaker.set('array', fakeArray)

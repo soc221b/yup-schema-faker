@@ -1,7 +1,6 @@
-import { random } from 'faker'
 import { NumberSchema } from 'yup'
 import { FakeSchema } from '../type'
-import { typeToFaker } from '..'
+import * as faker from 'faker'
 
 export const fakeNumber: FakeSchema<NumberSchema> = (schema, fake) => {
   let min: number = -Number.MAX_SAFE_INTEGER
@@ -57,7 +56,7 @@ export const fakeNumber: FakeSchema<NumberSchema> = (schema, fake) => {
     }
   }
 
-  let result = random.number({
+  let result = faker.random.number({
     min,
     max,
   })
@@ -70,5 +69,3 @@ export const fakeNumber: FakeSchema<NumberSchema> = (schema, fake) => {
 
   return result
 }
-
-typeToFaker.set('number', fakeNumber)
