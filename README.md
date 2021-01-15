@@ -46,18 +46,20 @@ https://codesandbox.io/s/github/iendeavor/yup-schema-faker/tree/main/site
   - ? mixed.transform((currentValue: any, originalValue: any) => any): Schema
 - ? string
   - ✓ string.required(message?: string | function): Schema
-  - ? string.length(limit: number | Ref, message?: string | function): Schema
-  - ? string.min(limit: number | Ref, message?: string | function): Schema
-  - ? string.max(limit: number | Ref, message?: string | function): Schema
-  - ? string.matches(regex: Regex, message?: string | function): Schema
+  - ✓ string.length(limit: number | Ref, message?: string | function): Schema
+  - ✓ string.min(limit: number | Ref, message?: string | function): Schema
+  - ✓ string.max(limit: number | Ref, message?: string | function): Schema
+  - ✓ string.matches(regex: Regex, message?: string | function): Schema
   - ? string.matches(regex: Regex, options: { message: string, excludeEmptyString: bool }): Schema
   - ✓ string.email(message?: string | function): Schema
   - ✓ string.url(message?: string | function): Schema
   - ✓ string.uuid(message?: string | function): Schema
   - ? string.ensure(): Schema
-  - ? string.trim(message?: string | function): Schema
-  - ? string.lowercase(message?: string | function): Schema
-  - ? string.uppercase(message?: string | function): Schema
+  - ✓ string.trim(message?: string | function): Schema
+  - ⚠ string.lowercase(message?: string | function): Schema
+    > only support for default message currently
+  - ⚠ string.uppercase(message?: string | function): Schema
+    > only support for default message currently
 - ? number
   - ✓ number.min(limit: number | Ref, message?: string | function): Schema
   - ✓ number.max(limit: number | Ref, message?: string | function): Schema
