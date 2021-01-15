@@ -1,15 +1,12 @@
 <template lang="pug">
-Header
+header
+  div Yup Schema Faker
 </template>
 
 <script>
 import { defineComponent } from 'vue'
-import Header from './Header.vue'
 
 export default defineComponent({
-  name: 'HelloWorld',
-  components: {
-    Header,
-  },
+  name: 'Header',
 })
 </script>
