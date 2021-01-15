@@ -3,11 +3,13 @@ import ts from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
+import commonjs from '@rollup/plugin-commonjs'
+import autoExternal from 'rollup-plugin-auto-external'
 
 const packageDir = path.resolve(__dirname)
 const packageResolve = p => path.resolve(packageDir, p)
 
-const defaultFormats = ['esm-bundler', 'esm-browser', 'cjs', 'global']
+const defaultFormats = ['esm-bundler', 'esm-browser', 'cjs']
 const inlineFormats = process.env.FORMATS && process.env.FORMATS.split(',')
 const finalFormats = inlineFormats || defaultFormats
 
@@ -30,10 +32,6 @@ const outputConfigs = {
     format: 'cjs',
     file: packageResolve(`dist/index.cjs.js`),
   },
-  global: {
-    format: 'cjs',
-    file: packageResolve(`dist/index.global.js`),
-  },
 }
 
 function createConfig({ format, mode, outputConfig }) {
@@ -42,12 +40,13 @@ function createConfig({ format, mode, outputConfig }) {
 
   const finalConfig = {
     input: packageResolve('src/index.ts'),
-    external: isBundler ? ['vue'] : [],
     output: {
       ...outputConfig,
       file: isDev ? outputConfig.file : outputConfig.file.replace(/\.js$/, '.prod.js'),
     },
     plugins: [
+      commonjs(),
+      autoExternal(),
       ts({
         checked: hasChecked === false,
       }),
@@ -75,12 +74,5 @@ const configs = finalFormats
     ),
   )
   .reduce((flattedConfigs, configs) => flattedConfigs.concat(...configs), [])
-
-function toPascalCase(string) {
-  return string
-    .split('-')
-    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-    .join('')
-}
 
 export default configs
