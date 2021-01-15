@@ -7,7 +7,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "vue": "^3.0.4"
+    "faker": "^5.1.0",
+    "vue": "^3.0.4",
+    "yup": "^0.32.8",
+    "yup-schema-faker": "^0.1.2"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.0.4",
