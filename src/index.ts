@@ -16,6 +16,12 @@ typeToFaker.set('string', fakeString)
 
 export const fake: Fake = schema => {
   const faker = typeToFaker.get(schema.type)
+
+  // fake optional
+  if (Math.random() > 0.8 && schema.describe().tests.some(test => test.name === 'required') === false) {
+    return undefined
+  }
+
   return faker(schema, fake)
 }
 
