@@ -1,6 +1,8 @@
 import { boolean } from 'yup'
 import { fake } from '../src'
 
-it('should fake data for boolean schema', () => {
-  expect(typeof fake(boolean())).toBe('boolean')
+it('should works with boolean', () => {
+  const schema = boolean().required()
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
 })
