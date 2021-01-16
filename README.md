@@ -4,7 +4,7 @@ Fake data generator for yup
 
 # Playground
 
-https://codesandbox.io/s/github/iendeavor/yup-schema-faker/tree/main/site
+https://g33ze.sse.codesandbox.io/
 
 # Supported yup API
 
@@ -34,8 +34,8 @@ https://codesandbox.io/s/github/iendeavor/yup-schema-faker/tree/main/site
   - ? mixed.default(value: any): Schema
   - ? mixed.getDefault(options?: object): Any
   - ? mixed.nullable(isNullable: boolean = true): Schema
-  - ✓ mixed.required(message?: string | function): Schema
-  - ✓ mixed.notRequired(): Schema Alias: optional()
+  - ✅ mixed.required(message?: string | function): Schema
+  - ✅ mixed.notRequired(): Schema Alias: optional()
   - ? mixed.defined(): Schema
   - ? mixed.typeError(message: string): Schema
   - ? mixed.oneOf(arrayOfValues: Array<any>, message?: string | function): Schema Alias: equals
@@ -45,24 +45,24 @@ https://codesandbox.io/s/github/iendeavor/yup-schema-faker/tree/main/site
   - ? mixed.test(options: object): Schema
   - ? mixed.transform((currentValue: any, originalValue: any) => any): Schema
 - ? string
-  - ✓ string.required(message?: string | function): Schema
-  - ✓ string.length(limit: number | Ref, message?: string | function): Schema
-  - ✓ string.min(limit: number | Ref, message?: string | function): Schema
-  - ✓ string.max(limit: number | Ref, message?: string | function): Schema
-  - ✓ string.matches(regex: Regex, message?: string | function): Schema
+  - ✅ string.required(message?: string | function): Schema
+  - ✅ string.length(limit: number | Ref, message?: string | function): Schema
+  - ✅ string.min(limit: number | Ref, message?: string | function): Schema
+  - ✅ string.max(limit: number | Ref, message?: string | function): Schema
+  - ✅ string.matches(regex: Regex, message?: string | function): Schema
   - ? string.matches(regex: Regex, options: { message: string, excludeEmptyString: bool }): Schema
-  - ✓ string.email(message?: string | function): Schema
-  - ✓ string.url(message?: string | function): Schema
-  - ✓ string.uuid(message?: string | function): Schema
+  - ✅ string.email(message?: string | function): Schema
+  - ✅ string.url(message?: string | function): Schema
+  - ✅ string.uuid(message?: string | function): Schema
   - ? string.ensure(): Schema
-  - ✓ string.trim(message?: string | function): Schema
+  - ✅ string.trim(message?: string | function): Schema
   - ⚠ string.lowercase(message?: string | function): Schema
     > only support for default message (locale:es) currently
   - ⚠ string.uppercase(message?: string | function): Schema
     > only support for default message (locale:es) currently
 - ? number
-  - ✓ number.min(limit: number | Ref, message?: string | function): Schema
-  - ✓ number.max(limit: number | Ref, message?: string | function): Schema
+  - ✅ number.min(limit: number | Ref, message?: string | function): Schema
+  - ✅ number.max(limit: number | Ref, message?: string | function): Schema
   - ⚠ number.lessThan(max: number | Ref, message?: string | function): Schema
     > offset by 0.01 currently
   - ⚠ number.moreThan(min: number | Ref, message?: string | function): Schema
@@ -71,27 +71,27 @@ https://codesandbox.io/s/github/iendeavor/yup-schema-faker/tree/main/site
     > offset by 0.01 currently
   - ⚠ number.negative(message?: string | function): Schema
     > offset by 0.01 currently
-  - ✓ number.integer(message?: string | function): Schema
+  - ✅ number.integer(message?: string | function): Schema
   - ? number.truncate(): Schema
   - ? number.round(type: 'floor' | 'ceil' | 'trunc' | 'round' = 'round'): Schema
-- ✓ boolean
-- ✓ date
-  - ✓ date.min(limit: Date | string | Ref, message?: string | function): Schema
-  - ✓ date.max(limit: Date | string | Ref, message?: string | function): Schema
+- ✅ boolean
+- ✅ date
+  - ✅ date.min(limit: Date | string | Ref, message?: string | function): Schema
+  - ✅ date.max(limit: Date | string | Ref, message?: string | function): Schema
 - ? array
-  - ✓ array.of(type: Schema): Schema
-  - ✓ array.length(length: number | Ref, message?: string | function): Schema
-  - ✓ array.min(limit: number | Ref, message?: string | function): Schema
-  - ✓ array.max(limit: number | Ref, message?: string | function): Schema
+  - ✅ array.of(type: Schema): Schema
+  - ✅ array.length(length: number | Ref, message?: string | function): Schema
+  - ✅ array.min(limit: number | Ref, message?: string | function): Schema
+  - ✅ array.max(limit: number | Ref, message?: string | function): Schema
   - ? array.ensure(): Schema
   - ? array.compact(rejector: (value) => boolean): Schema
 - ? object
   - ? Object schema defaults
-  - ✓ object.shape(fields: object, noSortEdges?: Array<[string, string]>): Schema
+  - ✅ object.shape(fields: object, noSortEdges?: Array<[string, string]>): Schema
   - ? object.pick(keys: string[]): Schema
   - ? object.omit(keys: string[]): Schema
   - ? object.getDefaultFromShape(): Record<string, unknown>
   - ? object.from(fromKey: string, toKey: string, alias: boolean = false): this
-  - ✓ object.noUnknown(onlyKnownKeys: boolean = true, message?: string | function): Schema
+  - ✅ object.noUnknown(onlyKnownKeys: boolean = true, message?: string | function): Schema
   - ? object.camelCase(): Schema
   - ? object.constantCase(): Schema

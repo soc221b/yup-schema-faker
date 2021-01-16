@@ -1,15 +1,13 @@
 <template lang="pug">
-Header
+div
+  slot
+br
 </template>
 
 <script>
 import { defineComponent } from 'vue'
-import Header from './Header.vue'
 
 export default defineComponent({
-  name: 'HelloWorld',
-  components: {
-    Header,
-  },
+  name: 'wrapper',
 })
 </script>
