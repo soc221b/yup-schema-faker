@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/iendeavor/yup-schema-faker/compare/v0.1.1...v0.1.3) (2021-01-16)
+
+
+### Features
+
+* export built-in fakers ([29841c8](https://github.com/iendeavor/yup-schema-faker/commit/29841c8ce412b5ad22b09172e0b827d8d01e3b78))
+* implement array methods ([2065d04](https://github.com/iendeavor/yup-schema-faker/commit/2065d0491ebdcd1cdde52c85aebe9baffb24ef0f))
+* implement boolean methods ([501e827](https://github.com/iendeavor/yup-schema-faker/commit/501e8272917f42be90e734ebbb39d03cfc5a818f))
+* implement date methods ([0c7e338](https://github.com/iendeavor/yup-schema-faker/commit/0c7e338b18405525dce1a62c361db5fd7a9dcdbb))
+* implement date methods ([af385a6](https://github.com/iendeavor/yup-schema-faker/commit/af385a635f4bdb95c322f3ec714ba37e675a3487))
+* implement mixed methods ([53087af](https://github.com/iendeavor/yup-schema-faker/commit/53087afd203b44e653d0b55b5900a79bc7ec4d9f))
+* implement number methods ([7e5672e](https://github.com/iendeavor/yup-schema-faker/commit/7e5672ea1cf9c008f5008858db65fe83c227e0e0))
+* implement object methods ([dc0b829](https://github.com/iendeavor/yup-schema-faker/commit/dc0b8294e3e0b3c01ffba43672521d3f83b0bdb2))
+* implement string methods ([3f075d8](https://github.com/iendeavor/yup-schema-faker/commit/3f075d8086b27002b24d1e414442174153c1acef))
+* implement string methods ([ba023f2](https://github.com/iendeavor/yup-schema-faker/commit/ba023f2ae40352c7a855c474579bed8eef1fc1c1))
+
 ### 0.1.2 (2021-01-15)
 
 
