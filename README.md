@@ -57,16 +57,20 @@ https://codesandbox.io/s/github/iendeavor/yup-schema-faker/tree/main/site
   - ? string.ensure(): Schema
   - ✓ string.trim(message?: string | function): Schema
   - ⚠ string.lowercase(message?: string | function): Schema
-    > only support for default message currently
+    > only support for default message (locale:es) currently
   - ⚠ string.uppercase(message?: string | function): Schema
-    > only support for default message currently
+    > only support for default message (locale:es) currently
 - ? number
   - ✓ number.min(limit: number | Ref, message?: string | function): Schema
   - ✓ number.max(limit: number | Ref, message?: string | function): Schema
   - ⚠ number.lessThan(max: number | Ref, message?: string | function): Schema
+    > offset by 0.01 currently
   - ⚠ number.moreThan(min: number | Ref, message?: string | function): Schema
+    > offset by 0.01 currently
   - ⚠ number.positive(message?: string | function): Schema
+    > offset by 0.01 currently
   - ⚠ number.negative(message?: string | function): Schema
+    > offset by 0.01 currently
   - ✓ number.integer(message?: string | function): Schema
   - ? number.truncate(): Schema
   - ? number.round(type: 'floor' | 'ceil' | 'trunc' | 'round' = 'round'): Schema
@@ -83,11 +87,11 @@ https://codesandbox.io/s/github/iendeavor/yup-schema-faker/tree/main/site
   - ? array.compact(rejector: (value) => boolean): Schema
 - ? object
   - ? Object schema defaults
-  - ? object.shape(fields: object, noSortEdges?: Array<[string, string]>): Schema
+  - ✓ object.shape(fields: object, noSortEdges?: Array<[string, string]>): Schema
   - ? object.pick(keys: string[]): Schema
   - ? object.omit(keys: string[]): Schema
   - ? object.getDefaultFromShape(): Record<string, unknown>
   - ? object.from(fromKey: string, toKey: string, alias: boolean = false): this
-  - ? object.noUnknown(onlyKnownKeys: boolean = true, message?: string | function): Schema
+  - ✓ object.noUnknown(onlyKnownKeys: boolean = true, message?: string | function): Schema
   - ? object.camelCase(): Schema
   - ? object.constantCase(): Schema
