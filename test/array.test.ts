@@ -1,20 +1,39 @@
 import { array } from 'yup'
+import { string } from 'yup/lib/locale'
 import { fake } from '../src'
 
-it('should fake data for array schema', () => {
-  expect(Array.isArray(fake(array()))).toBe(true)
+it('should works with array', () => {
+  const schema = array().required()
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
 })
 
-it('should have length between min and max', () => {
-  const schema = array().min(10).max(10)
-  expect(fake(schema).length).toBe(10)
-  expect(fake(schema).length).toBe(10)
-  expect(fake(schema).length).toBe(10)
+it('should works with min', () => {
+  const schema = array().required().min(42)
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
 })
 
-it('should have specific length', () => {
-  const schema = array().length(20)
-  expect(fake(schema).length).toBe(20)
-  expect(fake(schema).length).toBe(20)
-  expect(fake(schema).length).toBe(20)
+it('should works with max', () => {
+  const schema = array().required().max(42)
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
+it('should works with min and max', () => {
+  const schema = array().required().min(42).max(42)
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
+it('should works with length', () => {
+  const schema = array().required().length(42)
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
+it('should works with of', () => {
+  const schema = array().required().length(1).of(array().required())
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
 })
