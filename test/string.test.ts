@@ -45,6 +45,12 @@ it('should works with max', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
+it('should works with min, max', () => {
+  const schema = string().required().min(length).max(length)
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
 it('should works with length', () => {
   const schema = string().required().length(length)
   const actual = fake(schema)
