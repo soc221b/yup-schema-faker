@@ -8,6 +8,15 @@
   "main": "dist/index.cjs.prod.js",
   "module": "dist/index.esm-bundler.js",
   "types": "dist/src/index.d.ts",
+  "keywords": [
+    "yup",
+    "fake",
+    "stub",
+    "mock",
+    "test",
+    "json",
+    "schema"
+  ],
   "files": [
     "dist"
   ],
