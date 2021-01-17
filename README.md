@@ -6,6 +6,39 @@ Fake data generator for yup
 
 https://g33ze.sse.codesandbox.io/
 
+# Usage
+
+```typescript
+import * as yup from 'yup'
+import { fake } from 'yup-schema-faker'
+
+const schema = object()
+  .required()
+  .noUnknown()
+  .shape({
+    name: string().required().min(4).max(20),
+    age: number().required().min(18).max(100).positive().integer(),
+    email: string().email(),
+    website: string().url(),
+    createdOn: date().default(function () {
+      return new Date()
+    }),
+  })
+
+const fakeData = fake(schema)
+
+console.log(fakeData)
+/*
+  {
+    name: ' Assumenda eos volup',
+    age: 53,
+    email: 'Tatyana75@hotmail.com',
+    website: 'https://ike.info',
+    createdOn: '2003-12-22T20:52:08.501Z'
+  }
+*/
+```
+
 # Add `fake` Method to Schema
 
 **Step 1. Augment the yup module**
