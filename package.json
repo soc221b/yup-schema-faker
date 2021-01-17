@@ -1,6 +1,6 @@
 {
   "name": "yup-schema-faker",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Fake data generator for yup",
   "repository": "git@github.com:iendeavor/yup-schema-faker.git",
   "author": "Ernest <iendeavor.github.io@gmail.com>",
