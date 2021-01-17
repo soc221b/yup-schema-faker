@@ -71,10 +71,10 @@ booleanSchema.fake()
 
 # Supported yup API
 
-- ? yup
+- yup
   - ✅ yup.ref(path: string, options: { contextPrefix: string }): Ref
   - ✅ yup.lazy((value: any) => Schema): Lazy
-- ? mixed
+- mixed
   - ? mixed.concat(schema: Schema): Schema
   - ? mixed.cast(value: any, options = {}): any
   - ? mixed.strip(stripField: boolean = true): Schema
@@ -88,7 +88,7 @@ booleanSchema.fake()
   - ? mixed.notOneOf(arrayOfValues: Array<any>, message?: string | function)
   - ? mixed.when(keys: string | Array<string>, builder: object | (value, schema)=> Schema): Schema
   - ? mixed.transform((currentValue: any, originalValue: any) => any): Schema
-- ? string
+- string
   - ✅ string.required(message?: string | function): Schema
   - ✅ string.length(limit: number | Ref, message?: string | function): Schema
   - ✅ string.min(limit: number | Ref, message?: string | function): Schema
@@ -104,7 +104,7 @@ booleanSchema.fake()
     > only support for default message (locale:es) currently
   - ⚠ string.uppercase(message?: string | function): Schema
     > only support for default message (locale:es) currently
-- ? number
+- number
   - ✅ number.min(limit: number | Ref, message?: string | function): Schema
   - ✅ number.max(limit: number | Ref, message?: string | function): Schema
   - ⚠ number.lessThan(max: number | Ref, message?: string | function): Schema
@@ -118,18 +118,18 @@ booleanSchema.fake()
   - ✅ number.integer(message?: string | function): Schema
   - ? number.truncate(): Schema
   - ? number.round(type: 'floor' | 'ceil' | 'trunc' | 'round' = 'round'): Schema
-- ✅ boolean
-- ✅ date
+- boolean
+- date
   - ✅ date.min(limit: Date | string | Ref, message?: string | function): Schema
   - ✅ date.max(limit: Date | string | Ref, message?: string | function): Schema
-- ? array
+- array
   - ✅ array.of(type: Schema): Schema
   - ✅ array.length(length: number | Ref, message?: string | function): Schema
   - ✅ array.min(limit: number | Ref, message?: string | function): Schema
   - ✅ array.max(limit: number | Ref, message?: string | function): Schema
   - ? array.ensure(): Schema
   - ? array.compact(rejector: (value) => boolean): Schema
-- ? object
+- object
   - ? Object schema defaults
   - ✅ object.shape(fields: object, noSortEdges?: Array<[string, string]>): Schema
   - ? object.pick(keys: string[]): Schema
