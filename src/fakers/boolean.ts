@@ -1,7 +1,10 @@
-import * as faker from 'faker'
-import { BooleanSchema } from 'yup'
-import { FakeSchema } from '../type'
+import { random } from 'faker'
+import { MixedFaker } from './mixed'
 
-export const fakeBoolean: FakeSchema<BooleanSchema> = (schema, fake) => {
-  return faker.random.boolean()
+import type { BooleanSchema } from 'yup'
+
+export class BooleanFaker extends MixedFaker<BooleanSchema> {
+  doFake() {
+    return random.boolean()
+  }
 }

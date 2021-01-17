@@ -1,29 +1,26 @@
-import { fakeArray } from './fakers/array'
-import { fakeBoolean } from './fakers/boolean'
-import { fakeDate } from './fakers/date'
-import { fakeNumber } from './fakers/number'
-import { fakeObject } from './fakers/object'
-import { fakeString } from './fakers/string'
+import { ArrayFaker } from './fakers/array'
+import { BooleanFaker } from './fakers/boolean'
+import { DateFaker } from './fakers/date'
+import { MixedFaker } from './fakers/mixed'
+import { NumberFaker } from './fakers/number'
+import { ObjectFaker } from './fakers/object'
+import { StringFaker } from './fakers/string'
 import { Fake } from './type'
 
 export const typeToFaker = new Map<String, any>()
-typeToFaker.set('array', fakeArray)
-typeToFaker.set('boolean', fakeBoolean)
-typeToFaker.set('date', fakeDate)
-typeToFaker.set('number', fakeNumber)
-typeToFaker.set('object', fakeObject)
-typeToFaker.set('string', fakeString)
+typeToFaker.set('array', ArrayFaker)
+typeToFaker.set('boolean', BooleanFaker)
+typeToFaker.set('date', DateFaker)
+typeToFaker.set('number', NumberFaker)
+typeToFaker.set('object', ObjectFaker)
+typeToFaker.set('string', StringFaker)
+typeToFaker.set('mixed', MixedFaker)
 
-export const fake: Fake = schema => {
-  const faker = typeToFaker.get(schema.type)
-
-  // fake optional
-  if (Math.random() > 0.8 && schema.describe().tests.some(test => test.name === 'required') === false) {
-    return undefined
-  }
-
-  return faker(schema, fake)
+const rootFake: Fake = schema => {
+  const faker = new (typeToFaker.get(schema.type) as typeof MixedFaker)(schema, rootFake)
+  return faker.fake()
 }
+export const fake = rootFake
 
 export * from './type'
 export * from './fakers/array'

@@ -1,27 +1,30 @@
 import { random, lorem } from 'faker'
-import { AnySchema, ObjectSchema } from 'yup'
-import { ObjectShape } from 'yup/lib/object'
-import { FakeSchema } from '../type'
+import { MixedFaker } from './mixed'
 
-export const fakeObject: FakeSchema<ObjectSchema<ObjectShape>> = (schema, fake) => {
-  let result = {}
+import type { AnySchema, ObjectSchema } from 'yup'
+import type { ObjectShape } from 'yup/lib/object'
 
-  const fields = Object.keys(schema.fields)
-  result = fields.reduce((object, key) => {
-    return Object.assign(object, { [key]: fake(schema.fields[key] as AnySchema) })
-  }, result)
+export class ObjectFaker extends MixedFaker<ObjectSchema<ObjectShape>> {
+  doFake() {
+    let result = {}
 
-  const noUnknown = schema.describe().tests.some(test => test.name === 'noUnknown')
-  if (noUnknown === false) {
-    Array(random.number({ min: 10, max: 10 }))
-      .fill(null)
-      .map(() => lorem.word())
-      .filter(field => fields.includes(field) === false)
-      .slice(0, 5)
-      .reduce((object, key) => {
-        return Object.assign(object, { [key]: lorem.paragraph() })
-      }, result)
+    const fields = Object.keys(this.schema.fields)
+    result = fields.reduce((object, key) => {
+      return Object.assign(object, { [key]: this.rootFake(this.schema.fields[key] as AnySchema) })
+    }, result)
+
+    const noUnknown = this.schema.describe().tests.some(test => test.name === 'noUnknown')
+    if (noUnknown === false) {
+      Array(random.number({ min: 10, max: 10 }))
+        .fill(null)
+        .map(() => lorem.word())
+        .filter(field => fields.includes(field) === false)
+        .slice(0, 5)
+        .reduce((object, key) => {
+          return Object.assign(object, { [key]: lorem.paragraph() })
+        }, result)
+    }
+
+    return result
   }
-
-  return result
 }
