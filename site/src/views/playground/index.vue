@@ -5,7 +5,7 @@ Wrapper
   fake-button(@click="custom.fake")
   copy-button(:modelValue="custom.data")
   pre.my-1
-    code.js.block.rounded.border.bg-gray-300.text-gray-800.p-2.overflow-scroll(contenteditable @input="handleInput") {{ custom.code }}
+    code.js.block.rounded.border.bg-gray-300.text-gray-800.p-2.overflow-scroll(contenteditable @input="handleInput") {{ custom.code || 'Enter yup schema' }}
   Preview(:modelValue="custom.data")
 </template>
 
@@ -38,6 +38,7 @@ array().length(5).required().of(
 )
       `.trim(),
     })
+    custom.fake()
 
     const handleInput = e => {
       custom.code = e.target.innerText

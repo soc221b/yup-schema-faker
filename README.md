@@ -12,15 +12,16 @@ https://g33ze.sse.codesandbox.io/
 import * as yup from 'yup'
 import { fake } from 'yup-schema-faker'
 
-const schema = object()
+const schema = yup
+  .object()
   .required()
   .noUnknown()
   .shape({
-    name: string().required().min(4).max(20),
-    age: number().required().min(18).max(100).positive().integer(),
-    email: string().email(),
-    website: string().url(),
-    createdOn: date().default(function () {
+    name: yup.string().required().min(4).max(20),
+    age: yup.number().required().min(18).max(100).positive().integer(),
+    email: yup.string().email(),
+    website: yup.string().url(),
+    createdOn: yup.date().default(function () {
       return new Date()
     }),
   })
