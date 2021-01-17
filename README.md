@@ -111,6 +111,8 @@ booleanSchema.fake()
     > offset by 0.01 currently
   - ✅ number.integer(message?: string | function): Schema
 - boolean
+  - ✅ boolean.isTrue(message?: string | function): Schema
+  - ✅ boolean.isFalse(message?: string | function): Schema
 - date
   - ✅ date.min(limit: Date | string | Ref, message?: string | function): Schema
   - ✅ date.max(limit: Date | string | Ref, message?: string | function): Schema
