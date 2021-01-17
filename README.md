@@ -6,6 +6,36 @@ Fake data generator for yup
 
 https://g33ze.sse.codesandbox.io/
 
+# Add `fake` Method to Schema
+
+**Step 1. Augment the yup module**
+
+```typescript
+declare module 'yup' {
+  interface BaseSchema {
+    fake(): any
+  }
+}
+```
+
+**Step 2. Add the method**
+
+```typescript
+import { mixed } from 'yup'
+import { fake } from 'yup-schema-faker'
+
+addMethod(mixed, 'fake', function () {
+  return fake(this)
+})
+```
+
+**Step 3. Use it!**
+
+```typescript
+const booleanSchema = boolean().required()
+booleanSchema.fake()
+```
+
 # Supported yup API
 
 - ? yup
