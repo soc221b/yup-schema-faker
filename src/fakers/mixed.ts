@@ -6,9 +6,9 @@ import type { Fake } from '../type'
 
 export class MixedFaker<Schema extends AnySchema> {
   schema: Schema
-  rootFake: Fake
+  rootFake: Fake<AnySchema>
 
-  constructor(schema: Schema, fake: Fake) {
+  constructor(schema: Schema, fake: Fake<AnySchema>) {
     this.schema = schema
     this.rootFake = fake
   }
