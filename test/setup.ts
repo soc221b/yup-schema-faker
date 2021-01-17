@@ -1,6 +1,0 @@
-import '../src/fakers/boolean'
-import '../src/fakers/number'
-import '../src/fakers/string'
-import '../src/fakers/array'
-import '../src/fakers/object'
-import '../src/fakers/date'
