@@ -1,4 +1,4 @@
-import Condition from 'yup/lib/Condition'
+import { AnySchema } from 'yup'
 import Lazy from 'yup/lib/Lazy'
 import Reference from 'yup/lib/Reference'
 import { ArrayFaker } from './fakers/array'
@@ -19,7 +19,7 @@ typeToFaker.set('object', ObjectFaker)
 typeToFaker.set('string', StringFaker)
 typeToFaker.set('mixed', MixedFaker)
 
-const rootFake: Fake = (schema, parent) => {
+const rootFake = <Schema extends AnySchema>(schema: Schema, parent?: any): ReturnType<Fake<Schema>> => {
   if (schema instanceof Reference) {
     return schema.getValue(undefined, parent)
   }
