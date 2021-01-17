@@ -19,15 +19,15 @@ typeToFaker.set('object', ObjectFaker)
 typeToFaker.set('string', StringFaker)
 typeToFaker.set('mixed', MixedFaker)
 
-const rootFake: Fake = (schema, context) => {
+const rootFake: Fake = (schema, parent) => {
   if (schema instanceof Reference) {
-    return schema.getValue(undefined, context)
+    return schema.getValue(undefined, parent)
   }
   if (schema instanceof Lazy) {
     return rootFake(schema.resolve({}))
   }
   if ((schema as any).conditions.length) {
-    return rootFake(schema.resolve({ parent: context }))
+    return rootFake(schema.resolve({ parent }))
   }
 
   const faker = new (typeToFaker.get(schema.type) as typeof MixedFaker)(schema, rootFake)
