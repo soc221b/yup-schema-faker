@@ -81,7 +81,7 @@ booleanSchema.fake()
   - ✅ mixed.notRequired(): Schema Alias: optional()
   - ✅ mixed.defined(): Schema
   - ✅ mixed.oneOf(arrayOfValues: Array<any>, message?: string | function): Schema Alias: equals
-  - ? mixed.notOneOf(arrayOfValues: Array<any>, message?: string | function)
+  - ❓ mixed.notOneOf(arrayOfValues: Array<any>, message?: string | function)
   - ✅ mixed.when(keys: string | Array<string>, builder: object | (value, schema)=> Schema): Schema
 - string
   - ✅ string.required(message?: string | function): Schema
@@ -89,7 +89,7 @@ booleanSchema.fake()
   - ✅ string.min(limit: number | Ref, message?: string | function): Schema
   - ✅ string.max(limit: number | Ref, message?: string | function): Schema
   - ✅ string.matches(regex: Regex, message?: string | function): Schema
-  - ? string.matches(regex: Regex, options: { message: string, excludeEmptyString: bool }): Schema
+  - ❓ string.matches(regex: Regex, options: { message: string, excludeEmptyString: bool }): Schema
   - ✅ string.email(message?: string | function): Schema
   - ✅ string.url(message?: string | function): Schema
   - ✅ string.uuid(message?: string | function): Schema
