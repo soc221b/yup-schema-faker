@@ -1,31 +1,39 @@
 <template lang="pug">
+h1 Basic
+br
 Wrapper
-  button.text-blue-400.px-2.m-0.rounded.border.border-blue-400(@click="boolean.fake") Fake
+  fake-button(@click="boolean.fake")
+  copy-button(:modelValue="boolean.data")
   Code(:modelValue="boolean.code")
   Preview(:modelValue="boolean.data")
 
 Wrapper
-  button.text-blue-400.px-2.m-0.rounded.border.border-blue-400(@click="date.fake") Fake
+  fake-button(@click="date.fake")
+  copy-button(:modelValue="date.data")
   Code(:modelValue="date.code")
   Preview(:modelValue="date.data")
 
 Wrapper
-  button.text-blue-400.px-2.m-0.rounded.border.border-blue-400(@click="number.fake") Fake
+  fake-button(@click="number.fake")
+  copy-button(:modelValue="number.data")
   Code(:modelValue="number.code")
   Preview(:modelValue="number.data")
 
 Wrapper
-  button.text-blue-400.px-2.m-0.rounded.border.border-blue-400(@click="string.fake") Fake
+  fake-button(@click="string.fake")
+  copy-button(:modelValue="string.data")
   Code(:modelValue="string.code")
   Preview(:modelValue="string.data")
 
 Wrapper
-  button.text-blue-400.px-2.m-0.rounded.border.border-blue-400(@click="array.fake") Fake
+  fake-button(@click="array.fake")
+  copy-button(:modelValue="array.data")
   Code(:modelValue="array.code")
   Preview(:modelValue="array.data")
 
 Wrapper
-  button.text-blue-400.px-2.m-0.rounded.border.border-blue-400(@click="object.fake") Fake
+  fake-button(@click="object.fake")
+  copy-button(:modelValue="object.data")
   Code(:modelValue="object.code")
   Preview(:modelValue="object.data")
 </template>
@@ -88,9 +96,3 @@ ${modelValues.object.code
   },
 })
 </script>
-
-<style scoped>
-button {
-  outline: none !important;
-}
-</style>

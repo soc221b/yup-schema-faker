@@ -1,9 +1,6 @@
 <template lang="pug">
 header
   a(href="https://github.com/iendeavor/yup-schema-faker") Yup Schema Faker
-br
-hr
-br
 </template>
 
 <script>

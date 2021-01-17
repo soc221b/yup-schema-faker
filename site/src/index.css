@@ -5,3 +5,7 @@
 body {
   min-height: 3000px;
 }
+
+button {
+  outline: none !important;
+}
