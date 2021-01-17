@@ -83,7 +83,7 @@ booleanSchema.fake()
   - ? mixed.nullable(isNullable: boolean = true): Schema
   - ✅ mixed.required(message?: string | function): Schema
   - ✅ mixed.notRequired(): Schema Alias: optional()
-  - ? mixed.defined(): Schema
+  - ✅ mixed.defined(): Schema
   - ✅ mixed.oneOf(arrayOfValues: Array<any>, message?: string | function): Schema Alias: equals
   - ? mixed.notOneOf(arrayOfValues: Array<any>, message?: string | function)
   - ? mixed.when(keys: string | Array<string>, builder: object | (value, schema)=> Schema): Schema

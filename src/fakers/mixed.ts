@@ -14,8 +14,10 @@ export class MixedFaker<Schema extends AnySchema> {
   }
 
   fake() {
-    // fake optional
-    if (Math.random() > 0.8 && this.schema.tests.some(test => test.OPTIONS.name === 'required') === false) {
+    if (
+      Math.random() > 0.8 &&
+      this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!)) === false
+    ) {
       return this.fakeUndefined()
     }
 
