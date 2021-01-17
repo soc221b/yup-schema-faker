@@ -1,4 +1,5 @@
 import { warn } from '../util'
+import { random } from 'faker'
 
 import type { AnySchema } from 'yup'
 import type { Fake } from '../type'
@@ -16,6 +17,11 @@ export class MixedFaker<Schema extends AnySchema> {
     // fake optional
     if (Math.random() > 0.8 && this.schema.tests.some(test => test.OPTIONS.name === 'required') === false) {
       return this.fakeUndefined()
+    }
+
+    const oneOf = this.schema.describe().oneOf
+    if (oneOf.length) {
+      return oneOf[random.number({ min: 0, max: oneOf.length - 1 })]
     }
 
     return this.doFake()

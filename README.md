@@ -38,7 +38,7 @@ https://g33ze.sse.codesandbox.io/
   - ✅ mixed.notRequired(): Schema Alias: optional()
   - ? mixed.defined(): Schema
   - ? mixed.typeError(message: string): Schema
-  - ? mixed.oneOf(arrayOfValues: Array<any>, message?: string | function): Schema Alias: equals
+  - ✅ mixed.oneOf(arrayOfValues: Array<any>, message?: string | function): Schema Alias: equals
   - ? mixed.notOneOf(arrayOfValues: Array<any>, message?: string | function)
   - ? mixed.when(keys: string | Array<string>, builder: object | (value, schema)=> Schema): Schema
   - ? mixed.test(name: string, message: string | function, test: function): Schema
