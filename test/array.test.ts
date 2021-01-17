@@ -1,6 +1,18 @@
 import { array } from 'yup'
-import { string } from 'yup/lib/locale'
 import { fake } from '../src'
+
+const SAFE_COUNT = 99999
+it('should works with default', () => {
+  const defaultData: any[] = []
+  const defaultCb = jest.fn(() => defaultData)
+  const schema = array().default(defaultCb)
+  let count = 0
+  let actual
+  do {
+    actual = fake(schema)
+  } while (defaultCb.mock.calls.length === 0 && ++count < SAFE_COUNT)
+  expect(actual).toBe(defaultData)
+})
 
 it('should works with array', () => {
   const schema = array().required()

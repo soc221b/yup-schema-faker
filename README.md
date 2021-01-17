@@ -31,7 +31,7 @@ https://g33ze.sse.codesandbox.io/
   - ? mixed.strict(isStrict: boolean = false): Schema
   - ? mixed.strip(stripField: boolean = true): Schema
   - ? mixed.withMutation(builder: (current: Schema) => void): void
-  - ? mixed.default(value: any): Schema
+  - ✅ mixed.default(value: any): Schema
   - ? mixed.getDefault(options?: object): Any
   - ? mixed.nullable(isNullable: boolean = true): Schema
   - ✅ mixed.required(message?: string | function): Schema

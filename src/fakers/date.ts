@@ -7,6 +7,12 @@ const MIN = new Date(0).toISOString()
 const MAX = new Date((Math.pow(2, 31) - 1) * 1000).toISOString()
 
 export class DateFaker extends MixedFaker<DateSchema> {
+  fakeDefault() {
+    const defaultDate =
+      typeof this.schema.spec.default === 'function' ? this.schema.spec.default() : this.schema.spec.default
+    return defaultDate.toISOString()
+  }
+
   doFake() {
     let min = MIN
     let max = MAX

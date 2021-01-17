@@ -1,6 +1,19 @@
 import { date } from 'yup'
 import { fake } from '../src'
 
+const SAFE_COUNT = 99999
+it('should works with default', () => {
+  const defaultData = new Date()
+  const defaultCb = jest.fn(() => defaultData)
+  const schema = date().default(defaultCb)
+  let count = 0
+  let actual
+  do {
+    actual = fake(schema)
+  } while (defaultCb.mock.calls.length === 0 && ++count < SAFE_COUNT)
+  expect(actual).toBe(defaultData.toISOString())
+})
+
 it('should works with date', () => {
   const schema = date().required()
   const actual = fake(schema)

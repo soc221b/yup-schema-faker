@@ -22,7 +22,15 @@ export class MixedFaker<Schema extends AnySchema> {
   }
 
   fakeUndefined() {
+    if (this.schema.spec.default !== undefined) {
+      return this.fakeDefault()
+    }
+
     return undefined
+  }
+
+  fakeDefault() {
+    return typeof this.schema.spec.default === 'function' ? this.schema.spec.default() : this.schema.spec.default
   }
 
   doFake() {
