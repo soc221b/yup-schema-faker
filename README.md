@@ -80,7 +80,7 @@ booleanSchema.fake()
   - ? mixed.strip(stripField: boolean = true): Schema
   - ? mixed.withMutation(builder: (current: Schema) => void): void
   - ✅ mixed.default(value: any): Schema
-  - ? mixed.nullable(isNullable: boolean = true): Schema
+  - ✅ mixed.nullable(isNullable: boolean = true): Schema
   - ✅ mixed.required(message?: string | function): Schema
   - ✅ mixed.notRequired(): Schema Alias: optional()
   - ✅ mixed.defined(): Schema

@@ -21,6 +21,10 @@ export class MixedFaker<Schema extends AnySchema> {
       return this.fakeUndefined()
     }
 
+    if (Math.random() > 0.8 && this.schema.spec.nullable) {
+      return this.fakeNullable()
+    }
+
     const oneOf = this.schema.describe().oneOf
     if (oneOf.length) {
       return oneOf[random.number({ min: 0, max: oneOf.length - 1 })]
@@ -35,6 +39,10 @@ export class MixedFaker<Schema extends AnySchema> {
     }
 
     return undefined
+  }
+
+  fakeNullable() {
+    return null
   }
 
   fakeDefault() {
