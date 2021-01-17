@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/iendeavor/yup-schema-faker/compare/v0.2.0...v0.3.0) (2021-01-17)
+
+
+### Features
+
+* implement boolean methods ([1bdf4ce](https://github.com/iendeavor/yup-schema-faker/commit/1bdf4ced49e8438911cd7c67ab104303c4116c04))
+* implement lazy ([1e25103](https://github.com/iendeavor/yup-schema-faker/commit/1e25103204aaaac0d45c1bafcb4ce12304d1c60f))
+* implement mixed.defined ([abba2d0](https://github.com/iendeavor/yup-schema-faker/commit/abba2d0233f5226f5cc8e6eedd7136350d7185d9))
+* implement mixed.nullable ([a9094bc](https://github.com/iendeavor/yup-schema-faker/commit/a9094bc4eff129afcfe95b1402e03dca5f93af5c))
+* implement mixed.when ([3551544](https://github.com/iendeavor/yup-schema-faker/commit/3551544ea9907bd2c6687deab2a72860c6f74eb5))
+* implement ref ([90010a2](https://github.com/iendeavor/yup-schema-faker/commit/90010a21b518ee899961ea8088bf5851cf2da4b3))
+
+
+### Bug Fixes
+
+* should logs on non-production mode ([a1dda46](https://github.com/iendeavor/yup-schema-faker/commit/a1dda46765e358709f99da4b67c2da95d893ef5d))
+
 ## [0.2.0](https://github.com/iendeavor/yup-schema-faker/compare/v0.1.3...v0.2.0) (2021-01-17)
 
 
