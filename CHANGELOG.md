@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/iendeavor/yup-schema-faker/compare/v0.1.3...v0.2.0) (2021-01-17)
+
+
+### Features
+
+* implement mixed.default ([6e1fdad](https://github.com/iendeavor/yup-schema-faker/commit/6e1fdad5c94326d578d6d41718bbc38aef8858b1))
+* implement mixed.oneOf ([9307aa4](https://github.com/iendeavor/yup-schema-faker/commit/9307aa4d60dd5dd2ef6f58862b8bf9538ffb010f))
+
 ### [0.1.3](https://github.com/iendeavor/yup-schema-faker/compare/v0.1.1...v0.1.3) (2021-01-16)
 
 
