@@ -115,6 +115,7 @@ booleanSchema.fake()
   - ✅ boolean.isTrue(message?: string | function): Schema
   - ✅ boolean.isFalse(message?: string | function): Schema
 - date
+  > returned data for date is casted to ISO 8601 string
   - ✅ date.min(limit: Date | string | Ref, message?: string | function): Schema
   - ✅ date.max(limit: Date | string | Ref, message?: string | function): Schema
 - array
