@@ -1,3 +1,4 @@
+import Lazy from 'yup/lib/Lazy'
 import Reference from 'yup/lib/Reference'
 import { ArrayFaker } from './fakers/array'
 import { BooleanFaker } from './fakers/boolean'
@@ -20,6 +21,9 @@ typeToFaker.set('mixed', MixedFaker)
 const rootFake: Fake = (schema, context) => {
   if (schema instanceof Reference) {
     return schema.getValue(undefined, context)
+  }
+  if (schema instanceof Lazy) {
+    return rootFake(schema.resolve({}))
   }
 
   const faker = new (typeToFaker.get(schema.type) as typeof MixedFaker)(schema, rootFake)
