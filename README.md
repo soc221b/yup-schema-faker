@@ -72,7 +72,7 @@ booleanSchema.fake()
 # Supported yup API
 
 - ? yup
-  - ? yup.ref(path: string, options: { contextPrefix: string }): Ref
+  - ✅ yup.ref(path: string, options: { contextPrefix: string }): Ref
   - ? yup.lazy((value: any) => Schema): Lazy
 - ? mixed
   - ? mixed.concat(schema: Schema): Schema

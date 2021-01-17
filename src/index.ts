@@ -1,3 +1,4 @@
+import Reference from 'yup/lib/Reference'
 import { ArrayFaker } from './fakers/array'
 import { BooleanFaker } from './fakers/boolean'
 import { DateFaker } from './fakers/date'
@@ -16,7 +17,11 @@ typeToFaker.set('object', ObjectFaker)
 typeToFaker.set('string', StringFaker)
 typeToFaker.set('mixed', MixedFaker)
 
-const rootFake: Fake = schema => {
+const rootFake: Fake = (schema, context) => {
+  if (schema instanceof Reference) {
+    return schema.getValue(undefined, context)
+  }
+
   const faker = new (typeToFaker.get(schema.type) as typeof MixedFaker)(schema, rootFake)
   return faker.fake()
 }
