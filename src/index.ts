@@ -1,3 +1,4 @@
+import Condition from 'yup/lib/Condition'
 import Lazy from 'yup/lib/Lazy'
 import Reference from 'yup/lib/Reference'
 import { ArrayFaker } from './fakers/array'
@@ -24,6 +25,9 @@ const rootFake: Fake = (schema, context) => {
   }
   if (schema instanceof Lazy) {
     return rootFake(schema.resolve({}))
+  }
+  if ((schema as any).conditions.length) {
+    return rootFake(schema.resolve({ parent: context }))
   }
 
   const faker = new (typeToFaker.get(schema.type) as typeof MixedFaker)(schema, rootFake)
