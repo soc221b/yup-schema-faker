@@ -7,9 +7,9 @@
 
 Fake data generator for yup
 
-# Playground
+# Demo and Playground
 
-https://g33ze.sse.codesandbox.io/
+https://iendeavor.github.io/yup-schema-faker/
 
 # Usage
 
