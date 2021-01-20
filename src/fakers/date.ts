@@ -10,7 +10,7 @@ export class DateFaker extends MixedFaker<DateSchema> {
   fakeDefault() {
     const defaultDate =
       typeof this.schema.spec.default === 'function' ? this.schema.spec.default() : this.schema.spec.default
-    return defaultDate.toISOString()
+    return defaultDate
   }
 
   doFake() {
@@ -23,6 +23,6 @@ export class DateFaker extends MixedFaker<DateSchema> {
         max = test.params!.max as string
       }
     }
-    return date.between(min, max).toISOString()
+    return date.between(min, max)
   }
 }
