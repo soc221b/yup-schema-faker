@@ -32,7 +32,6 @@ yup.array().length(5).required().of(
       age: yup.number().required().min(18).max(100).positive().integer(),
       email: yup.string().nullable().email(),
       website: yup.string().required().url(),
-      createdOn: yup.date().default(() => new Date()),
     })
 )
     `.trim()

@@ -11,7 +11,7 @@ Wrapper
   fake-button(@click="date.fake")
   copy-button(:modelValue="date.data")
   Code(:modelValue="date.code")
-  Preview(:modelValue="date.data")
+  Preview(:modelValue="date.data === undefined ? undefind : '[object Date]'")
 
 Wrapper
   fake-button(@click="number.fake")
@@ -40,7 +40,7 @@ Wrapper
 
 <script>
 import { fake } from 'yup-schema-faker'
-import { defineComponent, onMounted, ref, reactive, toRefs } from 'vue'
+import { defineComponent, onMounted, ref, computed, reactive, toRefs } from 'vue'
 import * as yup from 'yup'
 
 export default defineComponent({
@@ -51,32 +51,29 @@ export default defineComponent({
       types.reduce((accu, type) => {
         return Object.assign(accu, {
           [type]: {
-            schema: yup[type](),
+            schema: computed(() => eval(modelValues[type].code)),
             code: `yup.${type}()`,
             data: undefined,
-            fake: () => {
-              modelValues[type].data = fake(modelValues[type].schema)
-            },
+            fake: computed(() => {
+              return () => {
+                modelValues[type].data = fake(modelValues[type].schema)
+                if (type === 'date') {
+                  console.log(modelValues[type].data)
+                }
+              }
+            }),
           },
         })
       }, {}),
     )
 
     const basicTypes = ['boolean', 'date', 'number', 'string']
-    modelValues.object.schema = yup.object().shape(
-      basicTypes.reduce((shape, type) => {
-        return Object.assign(shape, {
-          [type]: modelValues[type].schema,
-        })
-      }, {}),
-    )
     modelValues.object.code = `
 yup.object().shape({
 ${basicTypes.map(type => '  ' + type + ': ' + modelValues[type].code).join(',\n')}
 })
     `.trim()
 
-    modelValues.array.schema = yup.array().min(1).max(5).of(modelValues.object.schema)
     modelValues.array.code = `
 yup.array().min(1).max(5).of(
 ${modelValues.object.code
