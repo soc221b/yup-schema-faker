@@ -5,6 +5,7 @@ import nodeResolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import commonjs from '@rollup/plugin-commonjs'
 import autoExternal from 'rollup-plugin-auto-external'
+import json from '@rollup/plugin-json'
 
 const packageDir = path.resolve(__dirname)
 const packageResolve = p => path.resolve(packageDir, p)
@@ -45,6 +46,7 @@ function createConfig({ format, mode, outputConfig }) {
       file: isDev ? outputConfig.file : outputConfig.file.replace(/\.js$/, '.prod.js'),
     },
     plugins: [
+      json(),
       commonjs(),
       autoExternal(),
       ts({
