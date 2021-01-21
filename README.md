@@ -95,7 +95,8 @@ booleanSchema.fake()
   - ✅ string.min(limit: number | Ref, message?: string | function): Schema
   - ✅ string.max(limit: number | Ref, message?: string | function): Schema
   - ✅ string.matches(regex: Regex, message?: string | function): Schema
-  - ❓ string.matches(regex: Regex, options: { message: string, excludeEmptyString: bool }): Schema
+  - ❌ string.matches(regex: Regex, options: { message: string, excludeEmptyString: bool }): Schema
+    > this feature cannot be detectived, use another schema to achieve this behavior
   - ✅ string.email(message?: string | function): Schema
   - ✅ string.url(message?: string | function): Schema
   - ✅ string.uuid(message?: string | function): Schema
