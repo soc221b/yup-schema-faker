@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/iendeavor/yup-schema-faker/compare/v0.5.3...v1.0.0) (2021-01-21)
+
+
+### Features
+
+* implement notOneOf ([4433db5](https://github.com/iendeavor/yup-schema-faker/commit/4433db598d117cfeef69e751b5f79e16951f2491))
+
 ### [0.5.3](https://github.com/iendeavor/yup-schema-faker/compare/v0.5.2...v0.5.3) (2021-01-20)
 
 ### [0.5.2](https://github.com/iendeavor/yup-schema-faker/compare/v0.5.1...v0.5.2) (2021-01-20)
