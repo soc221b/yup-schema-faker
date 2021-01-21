@@ -4,6 +4,7 @@ import { random } from 'faker'
 import type { AnySchema } from 'yup'
 import type { Fake } from '../type'
 
+const SAFE_COUNT = 99999
 export class MixedFaker<Schema extends AnySchema> {
   schema: Schema
   rootFake: Fake<AnySchema>
@@ -28,6 +29,16 @@ export class MixedFaker<Schema extends AnySchema> {
     const oneOf = this.schema.describe().oneOf
     if (oneOf.length) {
       return oneOf[random.number({ min: 0, max: oneOf.length - 1 })]
+    }
+
+    const notOneOf = this.schema.describe().notOneOf
+    if (notOneOf.length) {
+      let safeCount = 0
+      let data
+      do {
+        data = this.doFake()
+      } while (notOneOf.includes(data) && ++safeCount < SAFE_COUNT)
+      return data
     }
 
     return this.doFake()

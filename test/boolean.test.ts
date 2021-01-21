@@ -14,6 +14,12 @@ it('should works with default', () => {
   expect(actual).toBe(defaultData)
 })
 
+it('should works with notOneOf', () => {
+  const schema = boolean().required().notOneOf([false])
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
 it('should works with boolean', () => {
   const schema = boolean().required()
   const actual = fake(schema)
