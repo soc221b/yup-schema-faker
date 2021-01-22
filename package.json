@@ -25,7 +25,6 @@
   },
   "scripts": {
     "build": "rimraf dist && rollup -c",
-    "docs": "sh scripts/docs.sh",
     "release": "standard-version && yarn build",
     "test": "yarn tsc --noEmit && jest",
     "lint": "prettier --check ."

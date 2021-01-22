@@ -1,0 +1,36 @@
+name: DOCS
+
+on: [push]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Build docs
+        run: |
+          cd site
+          yarn install
+          yarn upgrade yup-schema-faker
+          yarn build
+          sed -i 's/assets/yup-schema-faker\/assets/' ./dist/index.html
+          cd ..
+          mv site/dist docs
+          git config --global user.email actions@users.noreply.github.com
+          git config --global user.name "Action"
+          git add docs --force
+          git commit -m"docs: update"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'docs'
+          force: true
