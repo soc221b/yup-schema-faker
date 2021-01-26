@@ -1,4 +1,4 @@
-# yup-schema-validator
+# yup-schema-faker
 
 [![npm](https://img.shields.io/npm/v/yup-schema-faker)](https://www.npmjs.com/package/yup-schema-faker)
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/iendeavor/yup-schema-faker/CI/main)](https://github.com/iendeavor/yup-schema-faker/actions?query=workflow%3ACI+branch%3Amain+)
