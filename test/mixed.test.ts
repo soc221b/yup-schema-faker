@@ -1,6 +1,12 @@
 import { mixed, object, boolean } from 'yup'
 import { fake } from '../src'
 
+it('should works with required', () => {
+  const schema = mixed().required()
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
 it('should works with oneOf', () => {
   const data = {}
   const schema = mixed().required().oneOf([data])

@@ -1,8 +1,16 @@
-import { warn } from '../util'
 import { random } from 'faker'
+import { boolean, number, string, date, object, array } from 'yup'
 
 import type { AnySchema } from 'yup'
 import type { Fake } from '../type'
+
+const booleanSchema = boolean()
+const numberSchema = number()
+const stringSchema = string()
+const dateSchema = date()
+const objectSchema = object().shape({ booleanSchema, numberSchema, stringSchema, dateSchema })
+const arraySchema = array().of(objectSchema)
+const schemas = [booleanSchema, numberSchema, stringSchema, dateSchema, objectSchema, arraySchema]
 
 const SAFE_COUNT = 99999
 export class MixedFaker<Schema extends AnySchema> {
@@ -61,6 +69,16 @@ export class MixedFaker<Schema extends AnySchema> {
   }
 
   doFake() {
-    warn('not implemented')
+    let schema = schemas[Math.floor(Math.random() * schemas.length)]
+
+    if (this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!))) {
+      schema = schema.required()
+    }
+
+    if (this.schema.spec.nullable) {
+      schema = schema.nullable()
+    }
+
+    return this.rootFake(schema)
   }
 }
