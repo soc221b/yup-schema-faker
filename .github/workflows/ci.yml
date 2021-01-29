@@ -46,4 +46,9 @@ jobs:
 
       - run: yarn install
 
-      - run: yarn test
+      - run: yarn test --coverage
+
+      - uses: codecov/codecov-action@v1
+        with:
+          files: ./coverage/clover.xml
+          fail_ci_if_error: true
