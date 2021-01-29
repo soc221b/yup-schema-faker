@@ -1,9 +1,9 @@
-import { addMethod, mixed, boolean, number, date, string, array, object } from 'yup'
-import { fake } from '../src'
+import { addMethod, mixed, boolean, number, date, string, array, object, AnySchema } from 'yup'
+import { fake, Fake } from '../src'
 
 declare module 'yup' {
   interface BaseSchema {
-    fake(): any
+    fake<Schema extends AnySchema>(this: Schema): ReturnType<Fake<Schema>>
   }
 }
 

@@ -50,9 +50,12 @@ console.log(fakeData)
 **Step 1. Augment the yup module**
 
 ```typescript
+import { AnySchema } from 'yup'
+import { Fake } from 'yup-schema-faker'
+
 declare module 'yup' {
   interface BaseSchema {
-    fake(): any
+    fake<Schema extends AnySchema>(this: Schema): ReturnType<Fake<Schema>>
   }
 }
 ```
@@ -60,7 +63,7 @@ declare module 'yup' {
 **Step 2. Add the method**
 
 ```typescript
-import { mixed } from 'yup'
+import { addMethod, mixed } from 'yup'
 import { fake } from 'yup-schema-faker'
 
 addMethod(mixed, 'fake', function () {
@@ -71,8 +74,10 @@ addMethod(mixed, 'fake', function () {
 **Step 3. Use it!**
 
 ```typescript
+import { boolean } from 'yup'
+
 const booleanSchema = boolean().required()
-booleanSchema.fake()
+const data = booleanSchema.fake() // boolean
 ```
 
 # Supported yup API
