@@ -7,48 +7,61 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Use Node.js 10
+      - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: 10
 
-      - run: yarn install
+      - name: Install
+        run: yarn install
 
-      - run: yarn lint
+      - name: Lint
+        run: yarn lint
 
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Use Node.js 10
+      - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: 10
 
-      - run: yarn install
+      - name: Install
+        run: yarn install
 
-      - run: yarn build
+      - name: Build
+        run: yarn build
 
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Use Node.js 10
+      - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: 10
 
-      - run: yarn install
+      - name: Log env
+        run: yarn env
 
-      - run: yarn test --coverage
+      - name: Install
+        run: yarn install
 
-      - uses: codecov/codecov-action@v1
+      - name: Test
+        run: yarn test --no-cache
+
+      - name: Coverage
+        uses: codecov/codecov-action@v1
         with:
-          files: ./coverage/clover.xml
+          directory: ./coverage/
           fail_ci_if_error: true

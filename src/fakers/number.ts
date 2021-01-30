@@ -8,7 +8,6 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
     let min: number = -Number.MAX_SAFE_INTEGER
     let max: number = Number.MAX_SAFE_INTEGER
     let integer: boolean | undefined = undefined
-
     for (const test of this.schema.tests) {
       switch (test.OPTIONS.name) {
         case 'min':
