@@ -10,7 +10,7 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<ObjectShape>> {
 
     const fields = Object.keys(this.schema.fields)
     result = fields.reduce((object, key) => {
-      return Object.assign(object, { [key]: this.rootFake(this.schema.fields[key] as AnySchema, result) })
+      return Object.assign(object, { [key]: ObjectFaker.rootFake(this.schema.fields[key] as AnySchema, result) })
     }, result)
 
     const noUnknown = this.schema.describe().tests.some(test => test.name === 'noUnknown')

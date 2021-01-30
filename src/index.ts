@@ -10,6 +10,8 @@ import { ObjectFaker } from './fakers/object'
 import { StringFaker } from './fakers/string'
 import { Fake } from './type'
 
+MixedFaker.rootFake = rootFake
+
 export const typeToFaker = new Map<String, any>()
 typeToFaker.set('array', ArrayFaker)
 typeToFaker.set('boolean', BooleanFaker)
@@ -19,7 +21,7 @@ typeToFaker.set('object', ObjectFaker)
 typeToFaker.set('string', StringFaker)
 typeToFaker.set('mixed', MixedFaker)
 
-const rootFake = <Schema extends AnySchema>(schema: Schema, parent?: any): ReturnType<Fake<Schema>> => {
+function rootFake<Schema extends AnySchema>(schema: Schema, parent?: any): ReturnType<Fake<Schema>> {
   if (schema instanceof Reference) {
     return schema.getValue(undefined, parent)
   }
@@ -30,7 +32,7 @@ const rootFake = <Schema extends AnySchema>(schema: Schema, parent?: any): Retur
     return rootFake(schema.resolve({ parent }))
   }
 
-  const faker = new (typeToFaker.get(schema.type) as typeof MixedFaker)(schema, rootFake)
+  const faker = new (typeToFaker.get(schema.type) as typeof MixedFaker)(schema)
   return faker.fake()
 }
 export const fake = rootFake

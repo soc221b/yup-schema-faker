@@ -14,12 +14,12 @@ const schemas = [booleanSchema, numberSchema, stringSchema, dateSchema, objectSc
 
 const SAFE_COUNT = 99999
 export class MixedFaker<Schema extends AnySchema> {
-  schema: Schema
-  rootFake: Fake<AnySchema>
+  static rootFake: Fake<AnySchema>
 
-  constructor(schema: Schema, fake: Fake<AnySchema>) {
+  schema: Schema
+
+  constructor(schema: Schema) {
     this.schema = schema
-    this.rootFake = fake
   }
 
   fake() {
@@ -79,6 +79,6 @@ export class MixedFaker<Schema extends AnySchema> {
       schema = schema.nullable()
     }
 
-    return this.rootFake(schema)
+    return MixedFaker.rootFake(schema)
   }
 }

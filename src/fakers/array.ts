@@ -30,7 +30,7 @@ export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
     if (innerSchema) {
       return Array(random.number({ min, max }))
         .fill(null)
-        .map(() => this.rootFake(this.schema.innerType!))
+        .map(() => ArrayFaker.rootFake(this.schema.innerType!))
     } else {
       return Array(random.number({ min, max })).fill(null)
     }
