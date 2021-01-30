@@ -10,13 +10,13 @@
     "build": "vite build"
   },
   "dependencies": {
-    "faker": "^5.1.0",
-    "object-visualizer": "^3.1.1",
-    "randexp": "^0.5.3",
-    "vite": "^2.0.0-beta.12",
-    "vue": "^3.0.5",
-    "yup": "^0.32.8",
-    "yup-schema-faker": "^1.0.0"
+    "faker": "latest",
+    "object-visualizer": "latest",
+    "randexp": "latest",
+    "vite": "next",
+    "vue": "next",
+    "yup": "latest",
+    "yup-schema-faker": "latest"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.0.4",
