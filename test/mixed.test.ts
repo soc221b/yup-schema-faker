@@ -1,10 +1,33 @@
 import { mixed, object, boolean } from 'yup'
 import { fake } from '../src'
 
+const SAFE_COUNT = 99999
+
+it('should works without required', () => {
+  const schema = mixed()
+  let count = 0
+  let actual
+  do {
+    actual = fake(schema)
+  } while (actual !== undefined && ++count < SAFE_COUNT)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
 it('should works with required', () => {
   const schema = mixed().required()
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
+})
+
+it('should works with nullable', async () => {
+  const schema = mixed().required().nullable()
+  let count = 0
+  let actual
+  do {
+    actual = fake(schema)
+  } while (actual !== null && ++count < SAFE_COUNT)
+  // https://github.com/jquense/yup/issues/1242
+  expect(actual).toBe(null)
 })
 
 it('should works with oneOf', () => {

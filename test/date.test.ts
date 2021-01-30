@@ -23,21 +23,21 @@ it('should works with date', () => {
 
 it('should works with min', () => {
   const now = new Date().toISOString()
-  const schema = date().min(now)
+  const schema = date().required().min(now)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with max', () => {
   const now = new Date().toISOString()
-  const schema = date().max(now)
+  const schema = date().required().max(now)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with min, max', () => {
   const now = new Date().toISOString()
-  const schema = date().min(now).max(now)
+  const schema = date().required().min(now).max(now)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
