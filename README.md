@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/yup-schema-faker)](https://www.npmjs.com/package/yup-schema-faker)
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/iendeavor/yup-schema-faker/CI/main)](https://github.com/iendeavor/yup-schema-faker/actions?query=workflow%3ACI+branch%3Amain+)
-[![codecov](https://codecov.io/gh/iendeavor/yup-schema-faker/branch/develop/graph/badge.svg?token=OP3HU6QW90)](https://codecov.io/gh/iendeavor/yup-schema-faker)
+![Codecov branch](https://img.shields.io/codecov/c/github/iendeavor/yup-schema-faker/develop)
 ![npm downloads](https://img.shields.io/npm/dm/yup-schema-faker)
 ![last commit](https://img.shields.io/github/last-commit/iendeavor/yup-schema-faker/main)
 
