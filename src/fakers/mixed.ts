@@ -76,6 +76,7 @@ export class MixedFaker<Schema extends AnySchema> {
     }
 
     if (this.schema.spec.nullable) {
+      /* istanbul ignore next */
       schema = schema.nullable()
     }
 
