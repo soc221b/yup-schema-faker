@@ -107,6 +107,7 @@ const data = booleanSchema.fake() // boolean
   - ✅ string.url(message?: string | function): Schema
   - ✅ string.uuid(message?: string | function): Schema
   - ✅ string.trim(message?: string | function): Schema
+    > generate trimmed string iff in strict mode
   - ✅ string.lowercase(message?: string | function): Schema
     > generate lowercase string iff in strict mode
   - ✅ string.uppercase(message?: string | function): Schema

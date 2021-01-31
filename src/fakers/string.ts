@@ -41,7 +41,7 @@ export class StringFaker extends MixedFaker<StringSchema> {
     }
     let result = (random.boolean() ? ' ' : '') + lorem.sentence(max ?? min) + (random.boolean() ? ' ' : '')
 
-    const shouldTrim = description.tests.some(test => test.name === 'trim')
+    const shouldTrim = this.schema.spec.strict && description.tests.some(test => test.name === 'trim')
     if (shouldTrim) {
       const trimmedStart = result.trimStart()
       const trimmedEnd = result.trimEnd()

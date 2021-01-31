@@ -123,7 +123,7 @@ it('should works with matches', () => {
 })
 
 it('should works with trim', () => {
-  const schema = string().defined().trim()
+  const schema = string().defined().strict().trim()
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
