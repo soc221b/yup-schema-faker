@@ -30,7 +30,11 @@ export class MixedFaker<Schema extends AnySchema> {
       return this.fakeUndefined()
     }
 
-    if (Math.random() > 0.8 && this.schema.spec.nullable) {
+    if (
+      Math.random() > 0.8 &&
+      this.schema.spec.nullable &&
+      this.schema.tests.some(test => test.OPTIONS.name === 'required') === false
+    ) {
       return this.fakeNullable()
     }
 

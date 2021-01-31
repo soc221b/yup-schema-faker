@@ -15,19 +15,19 @@ it('should works with default', () => {
 })
 
 it('should works with object', () => {
-  const schema = object().required()
+  const schema = object().defined()
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with shape', () => {
-  const schema = object().required().shape({ key: object().required() })
+  const schema = object().defined().shape({ key: object().defined() })
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with noUnknown', () => {
-  const schema = object().required().shape({ key: object().required() }).noUnknown()
+  const schema = object().defined().shape({ key: object().defined() }).noUnknown()
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })

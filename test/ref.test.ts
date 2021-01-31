@@ -3,11 +3,11 @@ import { fake } from '../src'
 
 it('should works with ref', () => {
   const schema = object()
-    .required()
+    .defined()
     .noUnknown()
     .shape({
-      nested: object().required().shape({
-        key: object().required(),
+      nested: object().defined().shape({
+        key: object().defined(),
       }),
       ref: ref('nested'),
     })

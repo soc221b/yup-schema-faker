@@ -3,11 +3,11 @@ import { fake } from '../src'
 
 it('should works with lazy', () => {
   const schema: any = object()
-    .required()
+    .defined()
     .noUnknown()
     .shape({
-      nested: object().required().noUnknown().shape({
-        key: object().required().noUnknown(),
+      nested: object().defined().noUnknown().shape({
+        key: object().defined().noUnknown(),
       }),
       lazyKey: lazy(() => schema.fields.nested),
     })

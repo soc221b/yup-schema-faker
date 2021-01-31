@@ -12,19 +12,19 @@ addMethod(mixed, 'fake', function () {
 })
 
 it('should add fake method to yup', () => {
-  const booleanSchema = boolean().required()
+  const booleanSchema = boolean().defined()
   expect(booleanSchema.isValidSync(booleanSchema.fake())).toBe(true)
 
-  const numberSchema = number().required()
+  const numberSchema = number().defined()
   expect(numberSchema.isValidSync(numberSchema.fake())).toBe(true)
 
-  const stringSchema = string().required()
+  const stringSchema = string().defined()
   expect(stringSchema.isValidSync(stringSchema.fake())).toBe(true)
 
-  const dateSchema = date().required()
+  const dateSchema = date().defined()
   expect(dateSchema.isValidSync(dateSchema.fake())).toBe(true)
 
-  const objectSchema = object().required().shape({
+  const objectSchema = object().defined().shape({
     booleanSchema,
     numberSchema,
     stringSchema,
@@ -32,6 +32,6 @@ it('should add fake method to yup', () => {
   })
   expect(objectSchema.isValidSync(objectSchema.fake())).toBe(true)
 
-  const arraySchema = array().required().of(objectSchema)
+  const arraySchema = array().defined().of(objectSchema)
   expect(arraySchema.isValidSync(arraySchema.fake())).toBe(true)
 })

@@ -15,37 +15,37 @@ it('should works with default', () => {
 })
 
 it('should works with array', () => {
-  const schema = array().required()
+  const schema = array().defined()
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with min', () => {
-  const schema = array().required().min(42)
+  const schema = array().defined().min(42)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with max', () => {
-  const schema = array().required().max(42)
+  const schema = array().defined().max(42)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with min and max', () => {
-  const schema = array().required().min(42).max(42)
+  const schema = array().defined().min(42).max(42)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with length', () => {
-  const schema = array().required().length(42)
+  const schema = array().defined().length(42)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with of', () => {
-  const schema = array().required().length(1).of(array().required())
+  const schema = array().defined().length(1).of(array().defined())
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })

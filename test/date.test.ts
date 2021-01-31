@@ -16,28 +16,28 @@ it('should works with default', () => {
 })
 
 it('should works with date', () => {
-  const schema = date().required()
+  const schema = date().defined()
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with min', () => {
   const now = new Date().toISOString()
-  const schema = date().required().min(now)
+  const schema = date().defined().min(now)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with max', () => {
   const now = new Date().toISOString()
-  const schema = date().required().max(now)
+  const schema = date().defined().max(now)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with min, max', () => {
   const now = new Date().toISOString()
-  const schema = date().required().min(now).max(now)
+  const schema = date().defined().min(now).max(now)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
