@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/iendeavor/yup-schema-faker/compare/v1.1.1...v1.1.2) (2021-01-31)
+
+
+### Bug Fixes
+
+* empty string for string.required is considered as invalid value ([039c1a1](https://github.com/iendeavor/yup-schema-faker/commit/039c1a1c8762a16badf06d45613654fabf1459ff))
+
 ### [1.1.1](https://github.com/iendeavor/yup-schema-faker/compare/v1.1.0...v1.1.1) (2021-01-31)
 
 
