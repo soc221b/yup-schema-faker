@@ -15,6 +15,10 @@ export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
         case 'max':
           max = test.params!.max as number
           break
+      }
+    }
+    for (const test of this.schema.describe().tests) {
+      switch (test.name) {
         case 'length':
           min = test.params!.length as number
           max = test.params!.length as number

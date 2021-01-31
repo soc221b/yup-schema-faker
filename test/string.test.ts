@@ -93,6 +93,16 @@ it('should works with length', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
+it('should works with min, max, and length', () => {
+  const schema = string()
+    .defined()
+    .min(length / 2)
+    .length(length)
+    .max(length * 2)
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
 it('should works with lowercase', () => {
   const schema = string().defined().lowercase()
   const actual = fake(schema)

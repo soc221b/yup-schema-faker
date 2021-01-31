@@ -44,6 +44,17 @@ it('should works with length', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
+it('should works with min, max, and length', () => {
+  const length = 42
+  const schema = array()
+    .defined()
+    .min(length / 2)
+    .length(length)
+    .max(length * 2)
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
 it('should works with of', () => {
   const schema = array().defined().length(1).of(array().defined())
   const actual = fake(schema)

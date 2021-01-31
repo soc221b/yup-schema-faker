@@ -21,14 +21,17 @@ export class StringFaker extends MixedFaker<StringSchema> {
       return randexp(regexTest.params!.regex as RegExp)
     }
 
-    const min =
-      (description.tests.find(test => test.name === 'min')?.params?.min as number) ??
-      (description.tests.find(test => test.name === 'length')?.params?.length as number) ??
-      undefined
-    const max =
-      (description.tests.find(test => test.name === 'max')?.params?.max as number) ??
-      (description.tests.find(test => test.name === 'length')?.params?.length as number) ??
-      undefined
+    let min: number | undefined = undefined
+    if (typeof description.tests.find(test => test.name === 'min')?.params?.min === 'number')
+      min = description.tests.find(test => test.name === 'min')?.params?.min as number
+    if (typeof description.tests.find(test => test.name === 'length')?.params?.length === 'number')
+      min = description.tests.find(test => test.name === 'length')?.params?.length as number
+    let max: number | undefined = undefined
+    if (typeof description.tests.find(test => test.name === 'max')?.params?.max === 'number')
+      max = description.tests.find(test => test.name === 'max')?.params?.max as number
+    if (typeof description.tests.find(test => test.name === 'length')?.params?.length === 'number')
+      max = description.tests.find(test => test.name === 'length')?.params?.length as number
+
     if (
       min === undefined &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false &&
