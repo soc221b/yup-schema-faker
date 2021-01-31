@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/iendeavor/yup-schema-faker/compare/v1.1.2...v1.1.3) (2021-01-31)
+
+
+### Bug Fixes
+
+* min, max, and length may be used together ([1265f24](https://github.com/iendeavor/yup-schema-faker/commit/1265f24c4be0e8a10d4020ce8c4da742cb137bee))
+* reference should be evaluated in the proper order ([16127ec](https://github.com/iendeavor/yup-schema-faker/commit/16127ecd26755b7412d94d4e8a2bd8fdaef03a09))
+
 ### [1.1.2](https://github.com/iendeavor/yup-schema-faker/compare/v1.1.1...v1.1.2) (2021-01-31)
 
 
