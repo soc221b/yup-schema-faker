@@ -59,13 +59,13 @@ export class StringFaker extends MixedFaker<StringSchema> {
     }
 
     const lowercase =
-      ((this.schema.tests.find(test => test.OPTIONS.name === 'string_case')?.OPTIONS.message as string)?.indexOf(
-        'lower',
-      ) ?? -1) !== -1
+      this.schema.spec.strict &&
+      this.schema.tests.some(test => test.OPTIONS.name === 'string_case') &&
+      this.schema.isValidSync(result.toLowerCase())
     const uppercase =
-      ((this.schema.tests.find(test => test.OPTIONS.name === 'string_case')?.OPTIONS.message as string)?.indexOf(
-        'upper',
-      ) ?? -1) !== -1
+      this.schema.spec.strict &&
+      this.schema.tests.some(test => test.OPTIONS.name === 'string_case') &&
+      this.schema.isValidSync(result.toUpperCase())
     result = lowercase ? result.toLowerCase() : uppercase ? result.toUpperCase() : result
 
     return result

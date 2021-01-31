@@ -107,10 +107,10 @@ const data = booleanSchema.fake() // boolean
   - ✅ string.url(message?: string | function): Schema
   - ✅ string.uuid(message?: string | function): Schema
   - ✅ string.trim(message?: string | function): Schema
-  - ⚠ string.lowercase(message?: string | function): Schema
-    > only support for default message (locale:es) currently
-  - ⚠ string.uppercase(message?: string | function): Schema
-    > only support for default message (locale:es) currently
+  - ✅ string.lowercase(message?: string | function): Schema
+    > generate lowercase string iff in strict mode
+  - ✅ string.uppercase(message?: string | function): Schema
+    > generate uppercase string iff in strict mode
 - number
   - ✅ number.min(limit: number | Ref, message?: string | function): Schema
   - ✅ number.max(limit: number | Ref, message?: string | function): Schema
