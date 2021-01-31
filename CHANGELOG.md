@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/iendeavor/yup-schema-faker/compare/v1.1.3...v1.1.4) (2021-01-31)
+
+
+### Bug Fixes
+
+* generate known fields if strict ([2448f1b](https://github.com/iendeavor/yup-schema-faker/commit/2448f1b108f1b86f7a23e3303141564ef3589138))
+* transform case if strict ([9a8ebb5](https://github.com/iendeavor/yup-schema-faker/commit/9a8ebb526d53eb5ebf6376324eb1dc44698e0092))
+* trim if strict ([8621df2](https://github.com/iendeavor/yup-schema-faker/commit/8621df211da18bdfd2de744a9bdf22dea54d5c64))
+* wrong number on edge case ([9143609](https://github.com/iendeavor/yup-schema-faker/commit/9143609129d7b47a97cccb0953a1e577bd0552ad))
+
 ### [1.1.3](https://github.com/iendeavor/yup-schema-faker/compare/v1.1.2...v1.1.3) (2021-01-31)
 
 
