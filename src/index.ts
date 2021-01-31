@@ -1,6 +1,4 @@
 import { AnySchema } from 'yup'
-import Lazy from 'yup/lib/Lazy'
-import Reference from 'yup/lib/Reference'
 import { ArrayFaker } from './fakers/array'
 import { BooleanFaker } from './fakers/boolean'
 import { DateFaker } from './fakers/date'
@@ -9,6 +7,7 @@ import { NumberFaker } from './fakers/number'
 import { ObjectFaker } from './fakers/object'
 import { StringFaker } from './fakers/string'
 import { Fake } from './type'
+import { isLazy, isReference } from './util'
 
 MixedFaker.rootFake = rootFake
 
@@ -22,10 +21,10 @@ typeToFaker.set('string', StringFaker)
 typeToFaker.set('mixed', MixedFaker)
 
 function rootFake<Schema extends AnySchema>(schema: Schema, parent?: any): ReturnType<Fake<Schema>> {
-  if (schema instanceof Reference) {
-    return schema.getValue(undefined, parent)
+  if (isReference(schema)) {
+    return (schema as any).getValue(undefined, parent)
   }
-  if (schema instanceof Lazy) {
+  if (isLazy(schema)) {
     return rootFake(schema.resolve({}))
   }
   if ((schema as any).conditions.length) {
