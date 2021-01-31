@@ -1,17 +1,13 @@
-import { lazy, object } from 'yup'
+import { lazy, object, number } from 'yup'
 import { fake } from '../src'
 
 it('should works with lazy', () => {
   const schema: any = object()
-    .defined()
     .noUnknown()
     .shape({
-      nested: object().defined().noUnknown().shape({
-        key: object().defined().noUnknown(),
-      }),
-      lazyKey: lazy(() => schema.fields.nested),
+      id: number(),
+      child: lazy(() => schema.default(undefined)),
     })
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
-  expect(actual.lazyKey).toEqual(actual.nested)
 })
