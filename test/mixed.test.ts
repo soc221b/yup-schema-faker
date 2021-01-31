@@ -42,7 +42,7 @@ it('should works with nullable', async () => {
   do {
     actual = fake(schema)
   } while (actual !== null && ++count < SAFE_COUNT)
-  // https://github.com/jquense/yup/issues/1242
+  expect(schema.isValidSync(actual)).toBe(true)
   expect(actual).toBe(null)
 })
 
