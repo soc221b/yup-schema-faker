@@ -114,14 +114,10 @@ const data = booleanSchema.fake() // boolean
 - number
   - ✅ number.min(limit: number | Ref, message?: string | function): Schema
   - ✅ number.max(limit: number | Ref, message?: string | function): Schema
-  - ⚠ number.lessThan(max: number | Ref, message?: string | function): Schema
-    > offset by 0.01 currently
-  - ⚠ number.moreThan(min: number | Ref, message?: string | function): Schema
-    > offset by 0.01 currently
-  - ⚠ number.positive(message?: string | function): Schema
-    > offset by 0.01 currently
-  - ⚠ number.negative(message?: string | function): Schema
-    > offset by 0.01 currently
+  - ✅ number.lessThan(max: number | Ref, message?: string | function): Schema
+  - ✅ number.moreThan(min: number | Ref, message?: string | function): Schema
+  - ✅ number.positive(message?: string | function): Schema
+  - ✅ number.negative(message?: string | function): Schema
   - ✅ number.integer(message?: string | function): Schema
 - boolean
   - ✅ boolean.isTrue(message?: string | function): Schema
