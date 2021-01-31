@@ -64,6 +64,18 @@ it('should works with oneOf', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
+it('should works with both oneOf and notOneOf', () => {
+  const schema = mixed().defined().oneOf(['jimmy', 42]).notOneOf([42])
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+  expect(actual).toBe('jimmy')
+
+  const schema2 = mixed().defined().notOneOf([42]).oneOf([42])
+  const actual2 = fake(schema2)
+  expect(schema2.isValidSync(actual2)).toBe(true)
+  expect(actual2).toBe(42)
+})
+
 it('should works with when', () => {
   const schema = object()
     .defined()
