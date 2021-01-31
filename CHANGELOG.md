@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.5](https://github.com/iendeavor/yup-schema-faker/compare/v1.1.4...v1.1.5) (2021-01-31)
+
+
+### Bug Fixes
+
+* external class identity issue ([537e330](https://github.com/iendeavor/yup-schema-faker/commit/537e330e75f5041983925f7af69b18b7e2dbc311))
+
 ### [1.1.4](https://github.com/iendeavor/yup-schema-faker/compare/v1.1.3...v1.1.4) (2021-01-31)
 
 
