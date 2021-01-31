@@ -1,3 +1,4 @@
+import { mixed } from 'yup'
 import { random } from 'faker'
 import { MixedFaker } from './mixed'
 
@@ -36,7 +37,9 @@ export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
         .fill(null)
         .map(() => ArrayFaker.rootFake(this.schema.innerType!))
     } else {
-      return Array(random.number({ min, max })).fill(null)
+      return Array(random.number({ min, max }))
+        .fill(null)
+        .map(() => ArrayFaker.rootFake(mixed()))
     }
   }
 }

@@ -1,5 +1,5 @@
 import { random } from 'faker'
-import { boolean, number, string, date, object, array } from 'yup'
+import { boolean, number, string, date } from 'yup'
 
 import type { AnySchema } from 'yup'
 import type { Fake } from '../type'
@@ -8,9 +8,7 @@ const booleanSchema = boolean()
 const numberSchema = number()
 const stringSchema = string()
 const dateSchema = date()
-const objectSchema = object().shape({ booleanSchema, numberSchema, stringSchema, dateSchema })
-const arraySchema = array().of(objectSchema)
-const schemas = [booleanSchema, numberSchema, stringSchema, dateSchema, objectSchema, arraySchema]
+const schemas: AnySchema[] = [booleanSchema, numberSchema, stringSchema, dateSchema]
 
 const SAFE_COUNT = 99999
 export class MixedFaker<Schema extends AnySchema> {

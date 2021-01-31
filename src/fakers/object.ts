@@ -1,3 +1,4 @@
+import { mixed } from 'yup'
 import { random, lorem } from 'faker'
 import { MixedFaker } from './mixed'
 
@@ -21,7 +22,7 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<ObjectShape>> {
         .filter(field => fields.includes(field) === false)
         .slice(0, 5)
         .reduce((object, key) => {
-          return Object.assign(object, { [key]: lorem.paragraph() })
+          return Object.assign(object, { [key]: ObjectFaker.rootFake(mixed()) })
         }, result)
     }
 
