@@ -1,7 +1,7 @@
 import { boolean } from 'yup'
 import { fake } from '../src'
+import { SAFE_COUNT } from './constant'
 
-const SAFE_COUNT = 99999
 it('should works with default', () => {
   const defaultData = Math.random() > 0.5
   const defaultCb = jest.fn(() => defaultData)

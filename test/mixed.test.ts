@@ -1,7 +1,6 @@
 import { mixed, object, boolean } from 'yup'
 import { fake } from '../src'
-
-const SAFE_COUNT = 99999
+import { SAFE_COUNT } from './constant'
 
 it('should works without required', () => {
   const schema = mixed()

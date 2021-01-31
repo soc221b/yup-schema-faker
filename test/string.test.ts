@@ -1,7 +1,7 @@
 import { string } from 'yup'
 import { fake } from '../src'
+import { SAFE_COUNT } from './constant'
 
-const SAFE_COUNT = 99999
 it('should works with default', () => {
   const defaultData = Math.random().toString(36)
   const defaultCb = jest.fn(() => defaultData)
