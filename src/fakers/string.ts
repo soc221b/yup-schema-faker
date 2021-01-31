@@ -29,6 +29,13 @@ export class StringFaker extends MixedFaker<StringSchema> {
       (description.tests.find(test => test.name === 'max')?.params?.max as number) ??
       (description.tests.find(test => test.name === 'length')?.params?.length as number) ??
       undefined
+    if (
+      min === undefined &&
+      this.schema.tests.some(test => test.OPTIONS.name === 'required') === false &&
+      Math.random() > 0.8
+    ) {
+      return ''
+    }
     let result = (random.boolean() ? ' ' : '') + lorem.sentence(max ?? min) + (random.boolean() ? ' ' : '')
 
     const shouldTrim = description.tests.some(test => test.name === 'trim')

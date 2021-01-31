@@ -21,6 +21,17 @@ it('should fake data for string schema', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
+it('should works with required', () => {
+  const schema = string().required().max(1)
+  let count = 0
+  let actual: string = 's'
+  do {
+    actual = fake(schema) as string
+  } while (actual.length !== 0 && ++count < SAFE_COUNT)
+  expect(schema.isValidSync(actual)).toBe(true)
+  expect(actual.length).toBe(1)
+})
+
 it('should works with email', () => {
   const emailRe = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
   const schema = string().defined().email()
@@ -61,6 +72,18 @@ it('should works with max', () => {
 it('should works with min, max', () => {
   const schema = string().defined().min(length).max(length)
   const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
+it('can be empty string', () => {
+  const schema = string().max(1)
+  let count = 0
+  let actual: string = 's'
+  do {
+    actual = fake(schema) as string
+  } while ((typeof actual !== 'string' || actual.length !== 0) && ++count < SAFE_COUNT)
+  expect(typeof actual === 'string').toBe(true)
+  expect(actual.length).toBe(0)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
