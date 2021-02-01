@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/iendeavor/yup-schema-faker/compare/v1.2.0...v1.3.0) (2021-02-01)
+
+
+### Features
+
+* support seed for string.matches ([d9f3c50](https://github.com/iendeavor/yup-schema-faker/commit/d9f3c50e34c05f3d2d24323deb5ae20c062ef968))
+
 ## [1.2.0](https://github.com/iendeavor/yup-schema-faker/compare/v1.1.5...v1.2.0) (2021-02-01)
 
 
