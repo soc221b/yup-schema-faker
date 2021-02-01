@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Waiting for publishing
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '15m'
+
       - name: Checkout
         uses: actions/checkout@v2
 
