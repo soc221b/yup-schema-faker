@@ -14,8 +14,7 @@ const schemas = [
   yup.string().uuid(),
   yup.string().email(),
   yup.string().url(),
-  // TODO
-  // yup.string().matches(/\d{10}/),
+  yup.string().matches(/\d{10}/),
 
   yup.object().shape({
     key: yup.string(),

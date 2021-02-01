@@ -48,8 +48,6 @@ console.log(fakeData)
 
 # Setting a randomness seed
 
-> ⚠ WARNING: string.matches not support randomness seed now.
-
 If you want to produce consistent results, you can set your own seed with integer:
 
 ```javascript
