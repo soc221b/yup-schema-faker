@@ -25,6 +25,7 @@ function rootFake<Schema extends AnySchema>(schema: Schema, parent?: any): Retur
     return (schema as any).getValue(undefined, parent)
   }
   if (isLazy(schema)) {
+    if (Math.random() > 0.1) return undefined as any
     return rootFake(schema.resolve({}))
   }
   if ((schema as any).conditions.length) {
