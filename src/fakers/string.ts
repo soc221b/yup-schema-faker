@@ -35,7 +35,7 @@ export class StringFaker extends MixedFaker<StringSchema> {
     if (
       min === undefined &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false &&
-      Math.random() > 0.8
+      random.float({ min: 0, max: 1 }) > 0.8
     ) {
       return ''
     }

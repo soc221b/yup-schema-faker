@@ -46,6 +46,25 @@ console.log(fakeData)
 */
 ```
 
+# Setting a randomness seed
+
+> ⚠ WARNING: string.matches not support randomness seed now.
+
+If you want to produce consistent results, you can set your own seed with integer:
+
+```javascript
+import { seed, fake } from 'yup-schema-faker'
+import { string } from 'yup'
+
+seed(123)
+const firstRandom = fake(string())
+
+seed(123)
+const secondRandom = fake(string())
+
+console.log(firstRandom === secondRandom) // true
+```
+
 # Add `fake` Method to Schema
 
 **Step 1. Augment the yup module**

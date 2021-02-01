@@ -1,3 +1,4 @@
+import { random } from 'faker'
 import { AnySchema } from 'yup'
 import { ArrayFaker } from './fakers/array'
 import { BooleanFaker } from './fakers/boolean'
@@ -25,7 +26,7 @@ function rootFake<Schema extends AnySchema>(schema: Schema, parent?: any): Retur
     return (schema as any).getValue(undefined, parent)
   }
   if (isLazy(schema)) {
-    if (Math.random() > 0.1) return undefined as any
+    if (random.float({ min: 0, max: 1 }) > 0.1) return undefined as any
     return rootFake(schema.resolve({}))
   }
   if ((schema as any).conditions.length) {
@@ -45,3 +46,4 @@ export * from './fakers/number'
 export * from './fakers/object'
 export * from './fakers/string'
 export * from './version'
+export * from './config'

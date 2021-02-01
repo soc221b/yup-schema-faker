@@ -22,14 +22,14 @@ export class MixedFaker<Schema extends AnySchema> {
 
   fake() {
     if (
-      Math.random() > 0.8 &&
+      random.float({ min: 0, max: 1 }) > 0.8 &&
       this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!)) === false
     ) {
       return this.fakeUndefined()
     }
 
     if (
-      Math.random() > 0.8 &&
+      random.float({ min: 0, max: 1 }) > 0.8 &&
       this.schema.spec.nullable &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false
     ) {
@@ -71,7 +71,7 @@ export class MixedFaker<Schema extends AnySchema> {
   }
 
   doFake() {
-    let schema = schemas[Math.floor(Math.random() * schemas.length)]
+    let schema = schemas[random.number({ min: 0, max: schemas.length - 1 })]
 
     if (this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!))) {
       schema = schema.required()
