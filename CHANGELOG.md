@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.6](https://github.com/iendeavor/yup-schema-faker/compare/v1.1.5...v1.1.6) (2021-02-01)
+
+
+### Bug Fixes
+
+* prevent stack overflow ([a861481](https://github.com/iendeavor/yup-schema-faker/commit/a86148177fd2cce47b321367164f48a53531b4b7))
+
 ### [1.1.5](https://github.com/iendeavor/yup-schema-faker/compare/v1.1.4...v1.1.5) (2021-01-31)
 
 
