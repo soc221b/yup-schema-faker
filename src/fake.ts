@@ -37,6 +37,6 @@ export function rootFake<Schema extends AnySchema>(schema: Schema, options: Opti
   return faker.fake(options)
 }
 
-export function fake<Schema extends AnySchema>(schema: Schema, options?: Options) {
+export function fake<Schema extends AnySchema>(schema: Schema, options?: Pick<Options, 'context'>) {
   return rootFake(schema, options)
 }
