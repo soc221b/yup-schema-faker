@@ -2,7 +2,7 @@ import { random } from 'faker'
 import { boolean, number, string, date } from 'yup'
 
 import type { AnySchema } from 'yup'
-import type { Fake } from '../type'
+import type { Fake, Options } from '../type'
 
 const booleanSchema = boolean()
 const numberSchema = number()
@@ -20,7 +20,7 @@ export class MixedFaker<Schema extends AnySchema> {
     this.schema = schema
   }
 
-  fake() {
+  fake(options?: Options) {
     if (
       random.float({ min: 0, max: 1 }) > 0.8 &&
       this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!)) === false
@@ -46,12 +46,12 @@ export class MixedFaker<Schema extends AnySchema> {
       let safeCount = 0
       let data
       do {
-        data = this.doFake()
+        data = this.doFake(options)
       } while (notOneOf.includes(data) && ++safeCount < SAFE_COUNT)
       return data
     }
 
-    return this.doFake()
+    return this.doFake(options)
   }
 
   fakeUndefined() {
@@ -70,7 +70,7 @@ export class MixedFaker<Schema extends AnySchema> {
     return typeof this.schema.spec.default === 'function' ? this.schema.spec.default() : this.schema.spec.default
   }
 
-  doFake() {
+  doFake(options?: Options) {
     let schema = schemas[random.number({ min: 0, max: schemas.length - 1 })]
 
     if (this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!))) {
@@ -82,6 +82,6 @@ export class MixedFaker<Schema extends AnySchema> {
       schema = schema.nullable()
     }
 
-    return MixedFaker.rootFake(schema)
+    return MixedFaker.rootFake(schema, options)
   }
 }

@@ -91,3 +91,41 @@ it('should works with when', () => {
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
+
+it('should works with when (with context)', () => {
+  const schema = object()
+    .defined()
+    .noUnknown()
+    .shape({
+      when: mixed().when('$isTrue', {
+        is: (value: boolean) => value,
+        then: boolean().defined().isTrue(),
+        otherwise: boolean().defined().isFalse(),
+      }),
+    })
+  const context = {
+    isTrue: Math.random() > 0.5,
+  }
+  const actual = fake(schema, { context })
+  expect(schema.isValidSync(actual, { context })).toBe(true)
+})
+
+it('should works with when (with multiple dependencies)', () => {
+  const schema = object()
+    .defined()
+    .strict()
+    .noUnknown()
+    .shape({
+      sibling: boolean().defined(),
+      count: boolean().when(['$sibling', '$context'], {
+        is: (sibling: boolean, context: boolean) => sibling && context,
+        then: boolean().defined().isTrue(),
+        otherwise: boolean().defined().isFalse(),
+      }),
+    })
+  const context = {
+    context: boolean().defined(),
+  }
+  const actual = fake(schema, { context })
+  expect(schema.isValidSync(actual, { context })).toBe(true)
+})

@@ -3,9 +3,10 @@ import { random } from 'faker'
 import { MixedFaker } from './mixed'
 
 import type { AnySchema, ArraySchema } from 'yup'
+import type { Options } from '../type'
 
 export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
-  doFake() {
+  doFake(options?: Options) {
     let min: number = 0
     let max: number | undefined = undefined
     for (const test of this.schema.describe().tests) {
@@ -35,11 +36,11 @@ export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
     if (innerSchema) {
       return Array(random.number({ min, max }))
         .fill(null)
-        .map(() => ArrayFaker.rootFake(this.schema.innerType!))
+        .map(() => ArrayFaker.rootFake(this.schema.innerType!, options))
     } else {
       return Array(random.number({ min, max }))
         .fill(null)
-        .map(() => ArrayFaker.rootFake(mixed()))
+        .map(() => ArrayFaker.rootFake(mixed(), options))
     }
   }
 }
