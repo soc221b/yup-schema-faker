@@ -23,7 +23,7 @@ typeToFaker.set('mixed', MixedFaker)
 
 export function rootFake<Schema extends AnySchema>(schema: Schema, options: Options = {}): ReturnType<Fake<Schema>> {
   if (isReference(schema)) {
-    return (schema as any).getValue(undefined, options?.parent)
+    return (schema as any).getValue(undefined, options?.parent, options.context)
   }
   if (isLazy(schema)) {
     if (random.float({ min: 0, max: 1 }) > 0.1) return undefined as any
