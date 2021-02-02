@@ -51,9 +51,6 @@ export class StringFaker extends MixedFaker<StringSchema> {
         random.alpha({ count: result.length - trimmedEnd.length })
     }
 
-    if (min !== undefined && result.length < min) {
-      result = (result + random.alpha({ count: min })).slice(0, min)
-    }
     if (max !== undefined && max < result.length) {
       result = (result + random.alpha({ count: max })).slice(0, max)
     }
