@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/iendeavor/yup-schema-faker/compare/v1.3.0...v1.3.1) (2021-02-02)
+
+
+### Bug Fixes
+
+* mixed.when should works with context ([2946420](https://github.com/iendeavor/yup-schema-faker/commit/2946420af26b0d3bca8674eb71ebcc61abe460b3))
+* ref should works with context ([1b9711f](https://github.com/iendeavor/yup-schema-faker/commit/1b9711fe3179c32ebb58d7a4cfde32548a0daedb))
+
 ## [1.3.0](https://github.com/iendeavor/yup-schema-faker/compare/v1.2.0...v1.3.0) (2021-02-01)
 
 
