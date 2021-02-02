@@ -46,6 +46,22 @@ console.log(fakeData)
 */
 ```
 
+# API
+
+```typescript
+import { fake } from 'yup-schema-faker'
+
+import type { AnySchema } from 'yup'
+import type { Fake } from 'yup-schema-faker'
+
+interface Options {
+  // see: https://github.com/jquense/yup#mixedwhenkeys-string--arraystring-builder-object--value-schema-schema-schema
+  context?: object
+}
+
+function fake<Schema etends AnySchema>(schema: Schema, options?: Options): ReturnType<Schema['cast']>;
+```
+
 # Setting a randomness seed
 
 If you want to produce consistent results, you can set your own seed with integer:
