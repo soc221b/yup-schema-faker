@@ -8,15 +8,11 @@ const MAX = new Date((Math.pow(2, 31) - 1) * 1000).toISOString()
 
 export class DateFaker extends MixedFaker<DateSchema> {
   doFake() {
-    let min = MIN
-    let max = MAX
-    for (const test of this.schema.describe().tests) {
-      if (test.name === 'min') {
-        min = test.params!.min as string
-      } else if (test.name === 'max') {
-        max = test.params!.max as string
-      }
-    }
+    const min =
+      (this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.min as Date | undefined) ?? MIN
+    const max =
+      (this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.max as Date | undefined) ?? MAX
+
     return date.between(min, max)
   }
 }

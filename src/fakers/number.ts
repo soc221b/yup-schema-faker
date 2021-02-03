@@ -5,62 +5,34 @@ import type { NumberSchema } from 'yup'
 
 export class NumberFaker extends MixedFaker<NumberSchema> {
   doFake() {
-    let min: number = Number.MIN_SAFE_INTEGER
-    let max: number = Number.MAX_SAFE_INTEGER
-    let integer: boolean | undefined = undefined
-    for (const test of this.schema.tests) {
-      switch (test.OPTIONS.name) {
-        case 'min':
-          if (typeof test.OPTIONS.params!.min === 'number') {
-            min = Math.max(min, test.OPTIONS.params!.min)
-          }
-          if (typeof test.OPTIONS.params!.more === 'number') {
-            if (Number.isFinite(test.OPTIONS.params!.more) && Number.MIN_SAFE_INTEGER <= test.OPTIONS.params!.more) {
-              const precision = findMinimumOffsetPrecision(test.OPTIONS.params!.more)
-              min = Math.max(min, test.OPTIONS.params!.more + precision)
-            }
-          }
-          break
-        case 'max':
-          if (typeof test.OPTIONS.params!.max === 'number') {
-            max = Math.min(max, test.OPTIONS.params!.max)
-          }
-          if (typeof test.OPTIONS.params!.less === 'number') {
-            if (Number.isFinite(test.OPTIONS.params!.less) && test.OPTIONS.params!.less <= Number.MAX_SAFE_INTEGER) {
-              const precision = findMinimumOffsetPrecision(test.OPTIONS.params!.less)
-              max = Math.min(max, test.OPTIONS.params!.less - precision)
-            }
-          }
-          break
-        case 'integer':
-          integer = true
-          break
-        default:
-          break
-      }
+    let min =
+      (this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.min as number | undefined) ??
+      Number.MIN_SAFE_INTEGER
+    let max =
+      (this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.max as number | undefined) ??
+      Number.MAX_SAFE_INTEGER
+
+    const more = this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.more as number | undefined
+    if (more !== undefined && Number.isFinite(more) && Number.MIN_SAFE_INTEGER <= more) {
+      const precision = findMinimumOffsetPrecision(more)
+      min = Math.max(min, more + precision)
+    }
+    const less = this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.less as number | undefined
+    if (less !== undefined && Number.isFinite(less) && less <= Number.MAX_SAFE_INTEGER) {
+      const precision = findMinimumOffsetPrecision(less)
+      max = Math.min(max, less - precision)
     }
 
-    if (integer) {
-      min = Math.ceil(min)
-      max = Math.floor(max)
-    }
-
-    let result
-
-    if (integer) {
-      result = random.number({
-        min,
-        max,
-      })
-    } else {
-      result = random.float({
-        min,
-        max,
-        precision: 1 / 1e16,
-      })
-    }
-
-    return result
+    return this.schema.tests.find(test => test.OPTIONS.name === 'integer')
+      ? random.number({
+          min: Math.ceil(min),
+          max: Math.floor(max),
+        })
+      : random.float({
+          min,
+          max,
+          precision: 1 / 1e16,
+        })
   }
 }
 

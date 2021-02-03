@@ -10,25 +10,24 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
   doFake(options?: Options) {
     const fields = Object.keys(this.schema.fields)
     let result = {}
-    result = fields
-      .filter(key => isReference(this.schema.fields[key]) === false)
-      .reduce((object, key) => {
-        return Object.assign(object, {
-          [key]: ObjectFaker.rootFake(this.schema.fields[key] as AnySchema, { ...options, parent: result }),
-        })
-      }, result)
-    result = Object.assign(
-      result,
-      fields
+    result = {
+      ...fields
+        .filter(key => isReference(this.schema.fields[key]) === false)
+        .reduce((object, key) => {
+          return Object.assign(object, {
+            [key]: ObjectFaker.rootFake(this.schema.fields[key] as AnySchema, { ...options, parent: result }),
+          })
+        }, result),
+      ...fields
         .filter(key => isReference(this.schema.fields[key]))
         .reduce((object, key) => {
           return Object.assign(object, {
             [key]: ObjectFaker.rootFake(this.schema.fields[key] as AnySchema, { ...options, parent: result }),
           })
         }, result),
-    )
+    }
 
-    const noUnknown = this.schema.spec.strict && this.schema.describe().tests.some(test => test.name === 'noUnknown')
+    const noUnknown = this.schema.spec.strict && this.schema.tests.some(test => test.OPTIONS.name === 'noUnknown')
     if (noUnknown === false) {
       Array(random.number({ min: 10, max: 10 }))
         .fill(null)

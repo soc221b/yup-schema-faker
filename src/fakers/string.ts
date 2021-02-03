@@ -6,31 +6,28 @@ import type { StringSchema } from 'yup'
 
 export class StringFaker extends MixedFaker<StringSchema> {
   doFake() {
-    const description = this.schema.describe()
-    if (description.tests.some(test => test.name === 'uuid')) {
+    if (this.schema.tests.find(test => test.OPTIONS.name === 'uuid')) {
       return random.uuid()
     }
-    if (description.tests.some(test => test.name === 'email')) {
+    if (this.schema.tests.find(test => test.OPTIONS.name === 'email')) {
       return internet.email()
     }
-    if (description.tests.some(test => test.name === 'url')) {
+    if (this.schema.tests.find(test => test.OPTIONS.name === 'url')) {
       return internet.url()
     }
-    const regexTest = description.tests.find(test => test.name === 'matches')
+    const regexTest = this.schema.tests.find(test => test.OPTIONS.name === 'matches')
     if (regexTest) {
-      return randexp(regexTest.params!.regex as RegExp)
+      return randexp(regexTest.OPTIONS.params!.regex as RegExp)
     }
 
-    let min: number | undefined = undefined
-    if (typeof description.tests.find(test => test.name === 'min')?.params?.min === 'number')
-      min = description.tests.find(test => test.name === 'min')?.params?.min as number
-    if (typeof description.tests.find(test => test.name === 'length')?.params?.length === 'number')
-      min = description.tests.find(test => test.name === 'length')?.params?.length as number
-    let max: number | undefined = undefined
-    if (typeof description.tests.find(test => test.name === 'max')?.params?.max === 'number')
-      max = description.tests.find(test => test.name === 'max')?.params?.max as number
-    if (typeof description.tests.find(test => test.name === 'length')?.params?.length === 'number')
-      max = description.tests.find(test => test.name === 'length')?.params?.length as number
+    const min =
+      (this.schema.tests.find(test => test.OPTIONS.name === 'length')?.OPTIONS.params?.length as number) ??
+      (this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.min as number) ??
+      undefined
+    const max =
+      (this.schema.tests.find(test => test.OPTIONS.name === 'length')?.OPTIONS.params?.length as number) ??
+      (this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.max as number) ??
+      undefined
 
     if (
       min === undefined &&
@@ -45,7 +42,7 @@ export class StringFaker extends MixedFaker<StringSchema> {
       .slice(0, max)
       .trim()
 
-    const shouldTrim = this.schema.spec.strict && description.tests.some(test => test.name === 'trim')
+    const shouldTrim = this.schema.spec.strict && this.schema.tests.find(test => test.OPTIONS.name === 'trim')
     if (shouldTrim) {
       result = result.trim() + random.alpha({ count: result.length })
     } else {
