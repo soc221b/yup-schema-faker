@@ -39,21 +39,20 @@ export class StringFaker extends MixedFaker<StringSchema> {
     ) {
       return ''
     }
-    let result = (random.boolean() ? ' ' : '') + lorem.sentence(max ?? min) + (random.boolean() ? ' ' : '')
+
+    let result = lorem
+      .paragraph(max ?? min)
+      .slice(0, max)
+      .trim()
 
     const shouldTrim = this.schema.spec.strict && description.tests.some(test => test.name === 'trim')
     if (shouldTrim) {
-      const trimmedStart = result.trimStart()
-      const trimmedEnd = result.trimEnd()
-      result =
-        random.alpha({ count: result.length - trimmedStart.length }) +
-        result +
-        random.alpha({ count: result.length - trimmedEnd.length })
+      result = result.trim() + random.alpha({ count: result.length })
+    } else {
+      result = ' '.repeat(random.number(max ?? min ?? 3)) + result + ' '.repeat(random.number(max ?? min ?? 3))
     }
 
-    if (max !== undefined && max < result.length) {
-      result = (result + random.alpha({ count: max })).slice(0, max)
-    }
+    result = result.slice(0, max)
 
     const lowercase =
       this.schema.spec.strict &&
