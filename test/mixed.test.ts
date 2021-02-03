@@ -1,4 +1,4 @@
-import { mixed, object, boolean } from 'yup'
+import { mixed, object, boolean, BooleanSchema } from 'yup'
 import { fake } from '../src'
 import { SAFE_COUNT } from './constant'
 
@@ -128,4 +128,21 @@ it('should works with when (with multiple dependencies)', () => {
   }
   const actual = fake(schema, { context })
   expect(schema.isValidSync(actual, { context })).toBe(true)
+})
+
+it('should works with when (with function)', () => {
+  const schema = object()
+    .strict()
+    .defined()
+    .noUnknown()
+    .shape({
+      isTrue: boolean().defined(),
+      when: boolean()
+        .defined()
+        .when('isTrue', (isTrue: number, schema: BooleanSchema) => {
+          return isTrue ? schema.isTrue() : schema.isFalse()
+        }),
+    })
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
 })
