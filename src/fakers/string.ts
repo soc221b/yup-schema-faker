@@ -1,25 +1,13 @@
+import { string } from 'yup'
 import { random, internet, lorem } from 'faker'
 import { randexp } from 'randexp'
 import { MixedFaker } from './mixed'
+import { fakeDedicatedTest } from './base'
 
 import type { StringSchema } from 'yup'
 
 export class StringFaker extends MixedFaker<StringSchema> {
   doFake() {
-    if (this.schema.tests.find(test => test.OPTIONS.name === 'uuid')) {
-      return random.uuid()
-    }
-    if (this.schema.tests.find(test => test.OPTIONS.name === 'email')) {
-      return internet.email()
-    }
-    if (this.schema.tests.find(test => test.OPTIONS.name === 'url')) {
-      return internet.url()
-    }
-    const regexTest = this.schema.tests.find(test => test.OPTIONS.name === 'matches')
-    if (regexTest) {
-      return randexp(regexTest.OPTIONS.params!.regex as RegExp)
-    }
-
     const min =
       (this.schema.tests.find(test => test.OPTIONS.name === 'length')?.OPTIONS.params?.length as number) ??
       (this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.min as number) ??
@@ -64,3 +52,20 @@ export class StringFaker extends MixedFaker<StringSchema> {
     return result
   }
 }
+
+fakeDedicatedTest(string, 'uuid', schema => {
+  return random.uuid()
+})
+
+fakeDedicatedTest(string, 'email', schema => {
+  return internet.email()
+})
+
+fakeDedicatedTest(string, 'url', schema => {
+  return internet.url()
+})
+
+fakeDedicatedTest(string, 'matches', schema => {
+  const regexTest = schema.tests.find(test => test.OPTIONS.name === 'matches')
+  return randexp(regexTest?.OPTIONS.params!.regex as RegExp)
+})
