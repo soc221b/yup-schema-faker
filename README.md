@@ -48,18 +48,59 @@ console.log(fakeData)
 
 # API
 
+## `fake`
+
+Pass a yup schema and return a fake data.
+
+Function signature:
+
 ```typescript
-import { fake } from 'yup-schema-faker'
-
-import type { AnySchema } from 'yup'
-import type { Fake } from 'yup-schema-faker'
-
 interface Options {
   // see: https://github.com/jquense/yup#mixedwhenkeys-string--arraystring-builder-object--value-schema-schema-schema
   context?: object
 }
 
 function fake<Schema etends AnySchema>(schema: Schema, options?: Options): ReturnType<Schema['cast']>;
+```
+
+Example:
+
+See [usage](#usage)
+
+## `fakeDedicatedTest`
+
+Similar to `yup.addMethod`, but for fake.
+
+Function signature:
+
+```typescript
+function fakeDedicatedTest<Schema extends AnySchema>(
+  schemaConstructor: (...arg: any[]) => Schema,
+  name: string,
+  fakeFn: (currentSchema: Schema) => any,
+)
+```
+
+Example:
+
+```typescript
+import { string, AnySchema } from 'yup'
+import { fake, fakeDedicatedTest } from 'yup-schema-faker'
+import { internet } from 'faker'
+
+declare module 'yup' {
+  interface StringSchema {
+    ip<Schema extends AnySchema>(this: Schema): Schema
+  }
+}
+
+fakeDedicatedTest(string, 'ip', (schema: Schema) => {
+  return internet.ip()
+})
+
+const schema = string().strict().defined().ip()
+const actual = fake(schema)
+console.log(actual) // "127.0.0.1" or else
 ```
 
 # Setting a randomness seed
