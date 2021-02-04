@@ -1,5 +1,6 @@
 export { fake, typeToFaker } from './fake'
 export * from './type'
+export * from './fakers/mixed'
 export * from './fakers/array'
 export * from './fakers/boolean'
 export * from './fakers/date'

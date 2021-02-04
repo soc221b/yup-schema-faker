@@ -1,5 +1,5 @@
 import { random } from 'faker'
-import { boolean, number, string, date } from 'yup'
+import { boolean, number, string, date, isSchema } from 'yup'
 
 import type { AnySchema } from 'yup'
 import type { Fake, Options } from '../type'
@@ -13,6 +13,8 @@ const schemas: AnySchema[] = [booleanSchema, numberSchema, stringSchema, dateSch
 const SAFE_COUNT = 99999
 export class MixedFaker<Schema extends AnySchema> {
   static rootFake: Fake<AnySchema>
+
+  static dedicatedTests: { [schema: string]: { [name: string]: (schema: AnySchema) => any } } = {}
 
   schema: Schema
 
@@ -51,6 +53,13 @@ export class MixedFaker<Schema extends AnySchema> {
       return data
     }
 
+    const dedicatedTest = this.schema.tests.find(
+      test => MixedFaker.dedicatedTests[this.schema.type]?.[test.OPTIONS.name!] !== undefined,
+    )
+    if (dedicatedTest) {
+      return MixedFaker.dedicatedTests[this.schema.type][dedicatedTest.OPTIONS.name!](this.schema)
+    }
+
     return this.doFake(options)
   }
 
@@ -84,4 +93,17 @@ export class MixedFaker<Schema extends AnySchema> {
 
     return MixedFaker.rootFake(schema, options)
   }
+}
+
+export function fakeDedicatedTest<Schema extends AnySchema>(
+  schemaConstructor: (...arg: any[]) => Schema,
+  name: string,
+  fakeFn: (schema: AnySchema) => any,
+) {
+  if (isSchema(schemaConstructor) === false) throw new TypeError('You must provide a yup schema constructor function')
+  if (typeof name !== 'string') throw new TypeError('A Method name must be provided')
+  if (typeof fakeFn !== 'function') throw new TypeError('Method function must be provided')
+  const schemaType = schemaConstructor().type
+  MixedFaker.dedicatedTests[schemaType] = MixedFaker.dedicatedTests[schemaType] ?? {}
+  MixedFaker.dedicatedTests[schemaType][name] = fakeFn
 }
