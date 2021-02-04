@@ -1,5 +1,5 @@
 import { addMethod, string, mixed, array } from 'yup'
-import { fake, fakeDedicatedTest } from '../src'
+import { fake, fakeDedicatedTest } from '../../src'
 
 import type { AnySchema } from 'yup'
 
@@ -16,22 +16,12 @@ addMethod(string, 'json', function (schema: AnySchema) {
       schema,
     },
     test(value: unknown) {
-      const errors = []
-
       try {
         const parsedValue = JSON.parse(value as string)
-        schema.validateSync(parsedValue)
+        return schema.isValidSync(parsedValue)
       } catch (error) {
-        errors.push(error)
+        return false
       }
-
-      return errors.length === 0
-        ? true
-        : this.createError({
-            params: {
-              errors,
-            },
-          })
     },
   })
 })
