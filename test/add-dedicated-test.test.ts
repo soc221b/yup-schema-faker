@@ -1,7 +1,7 @@
 import { addMethod, string, mixed, array } from 'yup'
 import { fake, fakeDedicatedTest } from '../src'
 
-import type { AnySchema, StringSchema } from 'yup'
+import type { AnySchema } from 'yup'
 
 declare module 'yup' {
   interface StringSchema {

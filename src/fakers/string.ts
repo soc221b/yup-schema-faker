@@ -53,15 +53,15 @@ export class StringFaker extends MixedFaker<StringSchema> {
   }
 }
 
-fakeDedicatedTest(string, 'uuid', schema => {
+fakeDedicatedTest(string, 'uuid', () => {
   return random.uuid()
 })
 
-fakeDedicatedTest(string, 'email', schema => {
+fakeDedicatedTest(string, 'email', () => {
   return internet.email()
 })
 
-fakeDedicatedTest(string, 'url', schema => {
+fakeDedicatedTest(string, 'url', () => {
   return internet.url()
 })
 

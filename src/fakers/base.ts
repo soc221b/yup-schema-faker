@@ -73,7 +73,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
     return typeof this.schema.spec.default === 'function' ? this.schema.spec.default() : this.schema.spec.default
   }
 
-  doFake(options?: Options) {}
+  doFake(_options?: Options) {}
 }
 
 export function fakeDedicatedTest<Schema extends AnySchema>(

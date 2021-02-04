@@ -1,5 +1,5 @@
 import { random } from 'faker'
-import { boolean, number, string, date, isSchema } from 'yup'
+import { boolean, number, string, date } from 'yup'
 
 import type { AnySchema } from 'yup'
 import type { Options } from '../type'
