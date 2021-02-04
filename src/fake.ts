@@ -1,5 +1,6 @@
 import { random } from 'faker'
 import { AnySchema } from 'yup'
+import { BaseFaker } from './fakers/base'
 import { ArrayFaker } from './fakers/array'
 import { BooleanFaker } from './fakers/boolean'
 import { DateFaker } from './fakers/date'
@@ -10,7 +11,7 @@ import { StringFaker } from './fakers/string'
 import { Fake, Options } from './type'
 import { isLazy, isReference } from './util'
 
-MixedFaker.rootFake = rootFake
+BaseFaker.rootFake = rootFake
 
 export const typeToFaker = new Map<String, any>()
 typeToFaker.set('array', ArrayFaker)
