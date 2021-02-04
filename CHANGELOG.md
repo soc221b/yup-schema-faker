@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/iendeavor/yup-schema-faker/compare/v1.3.2...v1.4.0) (2021-02-04)
+
+
+### Features
+
+* expose fakeDedicatedTest method for custom schema fake implementation ([71675b5](https://github.com/iendeavor/yup-schema-faker/commit/71675b51bf7fa25282b20c9d318ee8d9859a1fcc))
+
 ### [1.3.2](https://github.com/iendeavor/yup-schema-faker/compare/v1.3.1...v1.3.2) (2021-02-02)
 
 
