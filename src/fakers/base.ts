@@ -81,7 +81,8 @@ export function fakeDedicatedTest<Schema extends AnySchema>(
   name: string,
   fakeFn: (schema: AnySchema) => any,
 ) {
-  if (isSchema(schemaConstructor) === false) throw new TypeError('You must provide a yup schema constructor function')
+  if (schemaConstructor === undefined || isSchema(schemaConstructor) === false)
+    throw new TypeError('You must provide a yup schema constructor function')
   if (typeof name !== 'string') throw new TypeError('A Method name must be provided')
   if (typeof fakeFn !== 'function') throw new TypeError('Method function must be provided')
 
@@ -95,7 +96,8 @@ export function addFaker<Schema extends AnySchema, Faker>(
   schemaConstructor: (...arg: any[]) => Schema,
   fakerConstructor: Faker,
 ) {
-  if (isSchema(schemaConstructor) === false) throw new TypeError('You must provide a yup schema constructor function')
+  if (schemaConstructor === undefined || isSchema(schemaConstructor) === false)
+    throw new TypeError('You must provide a yup schema constructor function')
 
   const schemaType = schemaConstructor().type
   typeToFaker.set(schemaType, fakerConstructor)
