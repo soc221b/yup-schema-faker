@@ -103,6 +103,23 @@ const actual = fake(schema)
 console.log(actual) // "127.0.0.1" or else
 ```
 
+# `addFaker`
+
+Register new faker for custom schema or overide existing one.
+
+Function signature:
+
+```typescript
+function addFaker<Schema extends AnySchema, Faker>(
+  schemaConstructor: (...arg: any[]) => Schema,
+  fakerConstructor: Faker,
+)
+```
+
+For example:
+
+See [ISODateStringSchema and ISODateStringFaker](./test/add-faker/iso-date-string.test.ts)
+
 # Setting a randomness seed
 
 If you want to produce consistent results, you can set your own seed with integer:
