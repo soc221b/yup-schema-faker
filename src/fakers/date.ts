@@ -1,5 +1,7 @@
+import { date as yupDate } from 'yup'
 import { date } from 'faker'
 import { MixedFaker } from './mixed'
+import { addFaker } from './base'
 
 import type { DateSchema } from 'yup'
 
@@ -16,3 +18,5 @@ export class DateFaker extends MixedFaker<DateSchema> {
     return date.between(min, max)
   }
 }
+
+addFaker(yupDate, DateFaker)

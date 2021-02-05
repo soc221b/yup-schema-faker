@@ -1,9 +1,9 @@
 import { random } from 'faker'
-import { boolean, number, string, date } from 'yup'
+import { boolean, number, string, date, mixed } from 'yup'
+import { BaseFaker, addFaker } from './base'
 
 import type { AnySchema } from 'yup'
 import type { Options } from '../type'
-import { BaseFaker } from './base'
 
 const booleanSchema = boolean()
 const numberSchema = number()
@@ -32,3 +32,5 @@ export class MixedFaker<Schema extends AnySchema> extends BaseFaker<Schema> {
     return MixedFaker.rootFake(schema, options)
   }
 }
+
+addFaker(mixed, MixedFaker)

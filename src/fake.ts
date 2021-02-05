@@ -1,26 +1,11 @@
 import { random } from 'faker'
 import { AnySchema } from 'yup'
-import { BaseFaker } from './fakers/base'
-import { ArrayFaker } from './fakers/array'
-import { BooleanFaker } from './fakers/boolean'
-import { DateFaker } from './fakers/date'
+import { BaseFaker, typeToFaker } from './fakers/base'
 import { MixedFaker } from './fakers/mixed'
-import { NumberFaker } from './fakers/number'
-import { ObjectFaker } from './fakers/object'
-import { StringFaker } from './fakers/string'
 import { Fake, Options } from './type'
 import { isLazy, isReference } from './util'
 
 BaseFaker.rootFake = rootFake
-
-export const typeToFaker = new Map<String, any>()
-typeToFaker.set('array', ArrayFaker)
-typeToFaker.set('boolean', BooleanFaker)
-typeToFaker.set('date', DateFaker)
-typeToFaker.set('number', NumberFaker)
-typeToFaker.set('object', ObjectFaker)
-typeToFaker.set('string', StringFaker)
-typeToFaker.set('mixed', MixedFaker)
 
 export function rootFake<Schema extends AnySchema>(schema: Schema, options: Options = {}): ReturnType<Fake<Schema>> {
   if (isReference(schema)) {

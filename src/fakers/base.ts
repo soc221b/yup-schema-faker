@@ -89,3 +89,14 @@ export function fakeDedicatedTest<Schema extends AnySchema>(
   BaseFaker.dedicatedTests[schemaType] = BaseFaker.dedicatedTests[schemaType] ?? {}
   BaseFaker.dedicatedTests[schemaType][name] = fakeFn
 }
+
+export const typeToFaker = new Map<String, any>()
+export function addFaker<Schema extends AnySchema, Faker>(
+  schemaConstructor: (...arg: any[]) => Schema,
+  fakerConstructor: Faker,
+) {
+  if (isSchema(schemaConstructor) === false) throw new TypeError('You must provide a yup schema constructor function')
+
+  const schemaType = schemaConstructor().type
+  typeToFaker.set(schemaType, fakerConstructor)
+}

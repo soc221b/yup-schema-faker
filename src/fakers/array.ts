@@ -1,6 +1,7 @@
-import { mixed } from 'yup'
+import { mixed, array } from 'yup'
 import { random } from 'faker'
 import { MixedFaker } from './mixed'
+import { addFaker } from './base'
 
 import type { AnySchema, ArraySchema } from 'yup'
 import type { Options } from '../type'
@@ -27,3 +28,5 @@ export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
     }
   }
 }
+
+addFaker(array, ArrayFaker)

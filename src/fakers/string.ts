@@ -2,7 +2,7 @@ import { string } from 'yup'
 import { random, internet, lorem } from 'faker'
 import { randexp } from 'randexp'
 import { MixedFaker } from './mixed'
-import { fakeDedicatedTest } from './base'
+import { fakeDedicatedTest, addFaker } from './base'
 
 import type { StringSchema } from 'yup'
 
@@ -52,6 +52,8 @@ export class StringFaker extends MixedFaker<StringSchema> {
     return result
   }
 }
+
+addFaker(string, StringFaker)
 
 fakeDedicatedTest(string, 'uuid', () => {
   return random.uuid()

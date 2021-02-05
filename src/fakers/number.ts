@@ -1,5 +1,7 @@
+import { number } from 'yup'
 import { random } from 'faker'
 import { MixedFaker } from './mixed'
+import { addFaker } from './base'
 
 import type { NumberSchema } from 'yup'
 
@@ -35,6 +37,8 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
         })
   }
 }
+
+addFaker(number, NumberFaker)
 
 function findMinimumOffsetPrecision(number: number) {
   number = Math.abs(number)

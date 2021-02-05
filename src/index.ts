@@ -1,4 +1,4 @@
-export { fake, typeToFaker } from './fake'
+export { fake } from './fake'
 export * from './type'
 export * from './fakers/base'
 export * from './fakers/mixed'
