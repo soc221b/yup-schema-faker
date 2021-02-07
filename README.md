@@ -5,6 +5,7 @@
 ![Codecov branch](https://img.shields.io/codecov/c/github/iendeavor/yup-schema-faker/develop)
 ![npm downloads](https://img.shields.io/npm/dm/yup-schema-faker)
 ![last commit](https://img.shields.io/github/last-commit/iendeavor/yup-schema-faker/main)
+[![donate](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange)](https://www.paypal.com/paypalme/iendeavor)
 
 Fake data generator for yup
 
