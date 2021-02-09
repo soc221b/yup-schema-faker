@@ -229,6 +229,7 @@ const data = booleanSchema.fake() // boolean
     > fake function will generate unknown fields, unless in strict mode
 
 # Contributing
+
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
 - Reporting a bug
@@ -237,9 +238,10 @@ We love your input! We want to make contributing to this project as easy and tra
 - Proposing new features
 - Becoming a maintainer
 
-People *love* thorough bug reports. I'm not even kidding.
+People _love_ thorough bug reports. I'm not even kidding.
 
 ## Report bugs using Github's [issues](../../issues)
+
 We use GitHub issues to track public bugs. Report a bug by [opening a new issue](../../issues/new); it's that easy!
 
 ## Write bug reports with detail, background, and sample code
