@@ -4999,9 +4999,9 @@ trim-off-newlines@^1.0.0:
   integrity sha1-n5up2e+odkw4dpi8v+sshI8RrbM=
 
 ts-expect@^1.1.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ts-expect/-/ts-expect-1.1.1.tgz#486f085297b8aa1b9b70d06b0b8b2ee56d7c6b45"
-  integrity sha512-WPNBmqdlTUKn00MKCt6VipMI83v3eWZFCWjgHN34Qz+hDgd+LfWyQVq4q/R7Zbh7qG9JUGJ2qUAHk+ohynQQ5A==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ts-expect/-/ts-expect-1.2.0.tgz#289055cabacf8e4775a2ff35b82c4470ac5ca34c"
+  integrity sha512-ua+0mfz8YO5gnS/Lc1MuKzB1zzlaIN0VACsYnsBNXOoZXxWDWTii1r0t+AfI4WzP3iU3TMZ1GlHs/6q22MBQdw==
 
 ts-jest@^26.4.4:
   version "26.5.1"
