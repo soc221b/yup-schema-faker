@@ -1,34 +1,49 @@
 <template lang="pug">
-pre.w-100(v-show="modelValue !== undefined" ref="visualizer")
-pre.object-visualizer(v-show="modelValue === undefined")
-  span.null
-    span.key $
-    span.separator :&nbsp;
-    span.value undefined
+div
+  fake-button(@click="fake")
+  copy-button(:text="data")
+  button.text-black.px-2.m-0.ml-1.rounded.border.border-gray-400(@click="() => visible = !visible" :class="{visible}") Show {{ visible ? 'result' : 'snippet' }}
+  Data.mt-1(v-show="visible" :data="snippet" is-snippet :class="{visible}" :contenteditable="contenteditable" @input="e => emit('update:snippet', e)")
+  Data.mt-1(v-show="!visible" :data="data")
+br
 </template>
 
 <script>
-import { defineComponent, onMounted, ref, watchEffect } from 'vue'
-import { mount } from 'object-visualizer'
+import { computed, defineComponent, onMounted, onUpdated, ref, watchEffect } from 'vue'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/atom-one-dark.css'
+import FakeButton from './FakeButton.vue'
+import CopyButton from './CopyButton.vue'
+import Data from './Data.vue'
 
 export default defineComponent({
   name: 'Preview',
+  inheritAttrs: false,
+  components: {
+    FakeButton,
+    CopyButton,
+    Data,
+  },
   props: {
-    modelValue: {
+    fake: {
+      type: Function,
+    },
+    snippet: {
       required: true,
     },
+    data: {
+      required: true,
+    },
+    contenteditable: {
+      default: false,
+      type: Boolean,
+    },
   },
-  setup(props) {
-    const mounted = ref(false)
-    onMounted(() => (mounted.value = true))
-
-    const visualizer = ref()
-    watchEffect(() => {
-      if (mounted.value === false) return
-      mount(props.modelValue, visualizer.value, { rootName: '$', expandOnCreatedAndUpdated: () => true })
-    })
+  emits: ['update:snippet'],
+  setup(props, { emit }) {
     return {
-      visualizer,
+      visible: ref(false),
+      emit,
     }
   },
 })

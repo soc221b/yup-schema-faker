@@ -1,41 +1,18 @@
 <template lang="pug">
-h1 Basic
+h1.text-black Basic
 br
-Wrapper
-  fake-button(@click="boolean.fake")
-  copy-button(:modelValue="boolean.data")
-  Code(:modelValue="boolean.code")
-  Preview(:modelValue="boolean.data")
 
-Wrapper
-  fake-button(@click="date.fake")
-  copy-button(:modelValue="date.data")
-  Code(:modelValue="date.code")
-  Preview(:modelValue="date.data === undefined ? undefind : '[object Date]'")
+Preview(:fake="boolean.fake" :snippet="boolean.snippet" :data="boolean.data")
 
-Wrapper
-  fake-button(@click="number.fake")
-  copy-button(:modelValue="number.data")
-  Code(:modelValue="number.code")
-  Preview(:modelValue="number.data")
+Preview(:fake="date.fake" :snippet="date.snippet" :data="date.data")
 
-Wrapper
-  fake-button(@click="string.fake")
-  copy-button(:modelValue="string.data")
-  Code(:modelValue="string.code")
-  Preview(:modelValue="string.data")
+Preview(:fake="number.fake" :snippet="number.snippet" :data="number.data")
 
-Wrapper
-  fake-button(@click="array.fake")
-  copy-button(:modelValue="array.data")
-  Code(:modelValue="array.code")
-  Preview(:modelValue="array.data")
+Preview(:fake="string.fake" :snippet="string.snippet" :data="string.data")
 
-Wrapper
-  fake-button(@click="object.fake")
-  copy-button(:modelValue="object.data")
-  Code(:modelValue="object.code")
-  Preview(:modelValue="object.data")
+Preview(:fake="array.fake" :snippet="array.snippet" :data="array.data")
+
+Preview(:fake="object.fake" :snippet="object.snippet" :data="object.data")
 </template>
 
 <script>
@@ -51,15 +28,12 @@ export default defineComponent({
       types.reduce((accu, type) => {
         return Object.assign(accu, {
           [type]: {
-            schema: computed(() => eval(modelValues[type].code)),
-            code: `yup.${type}()`,
+            schema: computed(() => eval(modelValues[type].snippet)),
+            snippet: `yup.${type}()`,
             data: undefined,
             fake: computed(() => {
               return () => {
                 modelValues[type].data = fake(modelValues[type].schema)
-                if (type === 'date') {
-                  console.log(modelValues[type].data)
-                }
               }
             }),
           },
@@ -68,15 +42,15 @@ export default defineComponent({
     )
 
     const basicTypes = ['boolean', 'date', 'number', 'string']
-    modelValues.object.code = `
+    modelValues.object.snippet = `
 yup.object().shape({
-${basicTypes.map(type => '  ' + type + ': ' + modelValues[type].code).join(',\n')}
+${basicTypes.map(type => '  ' + type + ': ' + modelValues[type].snippet).join(',\n')}
 })
     `.trim()
 
-    modelValues.array.code = `
+    modelValues.array.snippet = `
 yup.array().min(1).max(5).of(
-${modelValues.object.code
+${modelValues.object.snippet
   .split('\n')
   .map(line => '  ' + line)
   .join('\n')}

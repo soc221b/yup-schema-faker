@@ -1,7 +1,7 @@
 <template lang="pug">
 header
-  a(href="https://github.com/iendeavor/yup-schema-faker") Yup Schema Faker
-  .float-right {{ VERSION }}
+  a.text-black(href="https://github.com/iendeavor/yup-schema-faker") Yup Schema Faker
+  .float-right.text-black {{ VERSION }}
 </template>
 
 <script>

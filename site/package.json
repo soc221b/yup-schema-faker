@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "faker": "latest",
-    "object-visualizer": "latest",
+    "highlight.js": "^10.6.0",
     "randexp": "latest",
     "vite": "next",
     "vue": "next",

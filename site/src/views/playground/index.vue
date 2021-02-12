@@ -1,12 +1,7 @@
 <template lang="pug">
-h1 Playground
+h1.text-black Playground
 br
-Wrapper
-  pre.my-1
-    code.js.block.rounded.border.bg-gray-300.text-gray-800.p-2.overflow-auto(contenteditable @input.native="handleInput") {{ defaultCode }}
-  fake-button.my-1(@click="custom.fake")
-  copy-button(:modelValue="custom.data")
-  Preview(:modelValue="custom.data")
+Preview(:fake="custom.fake" :snippet="custom.snippet" :data="custom.data" contenteditable @update:snippet="handleInput")
 </template>
 
 <script lang="ts">
@@ -17,6 +12,7 @@ import { fake } from 'yup-schema-faker'
 
 export default defineComponent({
   name: 'Playground',
+  inheritAttrs: false,
   setup() {
     const defaultCode = `
 // Hint:
@@ -60,19 +56,25 @@ const context = { isRegisterForm: true }
 
     const custom = reactive({
       fake() {
-        const [schema, context] = new Function(
-          'yup, mixed, bool, boolean, string, number, date, array, object, ref, lazy',
-          '"use strict"; ' + custom.code + '; return [schema, context];',
-        )(yup, mixed, bool, boolean, string, number, date, array, object, ref, lazy)
-        custom.data = fake(schema, { context })
+        try {
+          const [schema, context] = new Function(
+            'yup, mixed, bool, boolean, string, number, date, array, object, ref, lazy',
+            '"use strict"; ' + custom.snippet + '; return [schema, context];',
+          )(yup, mixed, bool, boolean, string, number, date, array, object, ref, lazy)
+
+          custom.data = fake(schema, { context })
+        } catch (error) {
+          alert('Syntax error, please open console to see more info.')
+          console.error(error)
+        }
       },
       data: undefined,
-      code: defaultCode,
+      snippet: defaultCode,
     })
     custom.fake()
 
     const handleInput = (e: any) => {
-      custom.code = e.target.innerText
+      custom.snippet = e.target.innerText
     }
 
     return {

@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  min-height: 3000px;
+html {
+  background-color: black;
 }
 
 button {

@@ -1,12 +1,13 @@
 <template lang="pug">
-.app.my-5.m-auto(class="w-1/2")
-  Header
-  br
-  hr
-  Playground
-  br
-  hr
-  Demo
+.app.bg-white.p-2
+  .mx-auto.w-screen-96.max-w-1080
+    Header
+    br
+    hr
+    Playground
+    br
+    hr
+    Demo
 </template>
 
 <script>
@@ -28,5 +29,14 @@ export default defineComponent({
 <style scoped>
 .app {
   min-width: 320px;
+  min-height: 3000px;
+}
+
+.w-screen-96 {
+  width: 96vw;
+}
+
+.max-w-1080 {
+  max-width: 1080px;
 }
 </style>

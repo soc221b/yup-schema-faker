@@ -1,11 +1,7 @@
 <template lang="pug">
-Wrapper
-  fake-button(@click="fake")
-  copy-button(:modelValue="data")
-  label.mx-1(for="reset") Reset seed value
-  input(id="reset" v-model="resetSeedValue" type="checkbox")
-  Code(:modelValue="code")
-  Preview(:modelValue="data")
+label.mx-1.text-black(for="reset") Reset seed value
+input(id="reset" v-model="resetSeedValue" type="checkbox")
+Preview(:fake="fake" :snippet="snippet" :data="data")
 </template>
 
 <script>
@@ -18,7 +14,7 @@ const seedValue = fake(yup.number().defined())
 export default defineComponent({
   name: 'Basic',
   setup() {
-    const code = `
+    const snippet = `
 yup.array().of(
   yup.object({
     boolean: yup.boolean(),
@@ -50,7 +46,7 @@ yup.array().of(
 
     return {
       resetSeedValue,
-      code,
+      snippet,
       data,
       fake: doFake,
     }

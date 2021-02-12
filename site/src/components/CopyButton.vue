@@ -1,6 +1,6 @@
 <template lang="pug">
-button.px-2.m-0.ml-1.rounded.border.border-gray-400(@click="handleClick") {{ text }}
-input(v-show="inputVisible" ref="input" :value="modelValue === undefined ? 'undefined' : JSON.stringify(modelValue)")
+button.text-black.px-2.m-0.ml-1.rounded.border.border-gray-400(@click="handleClick") {{ buttonLabel }}
+input(v-show="inputVisible" ref="input" :value="text === undefined ? 'undefined' : JSON.stringify(text)")
 </template>
 
 <script>
@@ -9,12 +9,12 @@ import { defineComponent, nextTick, ref } from 'vue'
 export default defineComponent({
   name: 'copy-button',
   props: {
-    modelValue: {
+    text: {
       required: true,
     },
   },
   setup(props) {
-    const text = ref('Copy')
+    const buttonLabel = ref('Copy')
 
     const input = ref()
     const inputVisible = ref(false)
@@ -26,15 +26,15 @@ export default defineComponent({
       document.execCommand('copy')
       inputVisible.value = false
 
-      text.value = 'Copied!'
+      buttonLabel.value = 'Copied!'
       setTimeout(() => {
-        text.value = 'Copy'
+        buttonLabel.value = 'Copy'
       }, 500)
     }
     return {
       input,
       inputVisible,
-      text,
+      buttonLabel,
       handleClick,
     }
   },
