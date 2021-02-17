@@ -24,9 +24,10 @@ const registerForm = object()
   .required()
   .noUnknown()
   .shape({
-    name: string().strict().required().trim(),
-    emails: array().required().min(1).of(string().defined().email()),
-    password: string().required().min(8),
+    email: string().defined().email(),
+    Phone: string().matches(/(^\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$)/),
+    birthday: date().min('1900-01-01T00:00:00Z').max(new Date()),
+    password: string().defined().matches(/\\w{8,20}/),
     confirmPassword: ref('password'),
   })
 
