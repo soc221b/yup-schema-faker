@@ -29,7 +29,7 @@ export default defineComponent({
 <style scoped>
 .app {
   min-width: 320px;
-  min-height: 3000px;
+  min-height: 10000px;
 }
 
 .w-screen-96 {

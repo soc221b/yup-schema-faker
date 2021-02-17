@@ -1,6 +1,5 @@
 <template lang="pug">
-h1.text-black Basic
-br
+h1.text-black.mb-2 Basic
 
 Preview(:fake="boolean.fake" :snippet="boolean.snippet" :data="boolean.data")
 

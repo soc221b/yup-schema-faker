@@ -1,6 +1,5 @@
 <template lang="pug">
-h1.text-black Playground
-br
+h1.text-black.mb-2 Playground
 Preview(:fake="custom.fake" :snippet="custom.snippet" :data="custom.data" contenteditable @update:snippet="handleInput")
 </template>
 
