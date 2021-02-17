@@ -36,9 +36,19 @@ export default defineComponent({
     const normalizedData = computed(() => {
       if (props.data === undefined) return 'undefined'
       if (props.data === null) return 'null'
-      if (props.data instanceof Date) return `[object Date] ("${props.data.toISOString()}")`
+      if (props.data instanceof Date) return new Date(props.data).toString()
       if (props.isSnippet) return props.data
-      return JSON.stringify(props.data, null, 2)
+      return JSON.stringify(
+        props.data,
+        (key, value) => {
+          if (value === undefined) return '__undefined'
+          try {
+            if (new Date(value).toISOString() === value) return new Date(value).toString()
+          } catch (error) {}
+          return value
+        },
+        2,
+      ).replace(/"__undefined"/g, 'undefined')
     })
 
     return {
