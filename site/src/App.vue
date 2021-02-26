@@ -1,27 +1,35 @@
 <template lang="pug">
 .app.bg-white.p-2
   .mx-auto.w-screen-96.max-w-1080
-    Header
-    br
+    Header.mb-1
+    hr
+    ToC
     hr
     Playground
-    br
     hr
-    Demo
+    Seed
+    hr
+    Full
+BackToTop
 </template>
 
 <script>
 import { defineComponent } from 'vue'
-import Header from './views/header/index.vue'
-import Demo from './views/demo/index.vue'
-import Playground from './views/playground/index.vue'
+import ToC from './views/ToC/Index.vue'
+import Header from './views/Header.vue'
+import Playground from './views/Playground.vue'
+import Seed from './views/Seed.vue'
+import Full from './views/Full.vue'
+import BackToTop from './views/BackToTop.vue'
 
 export default defineComponent({
-  name: 'App',
   components: {
+    ToC,
     Header,
-    Demo,
     Playground,
+    Seed,
+    Full,
+    BackToTop,
   },
 })
 </script>

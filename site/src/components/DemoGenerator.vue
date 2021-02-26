@@ -1,5 +1,5 @@
 <template lang="pug">
-Preview(:fake="fake" :snippet="snippet" :data="data")
+Preview(:fake="fake" :snippet="snippet" :data="data" :label="label")
 </template>
 
 <script>
@@ -12,6 +12,10 @@ const seedValue = fake(yup.number().defined())
 
 export default defineComponent({
   props: {
+    label: {
+      default: '',
+      type: String,
+    },
     snippet: {
       required: true,
       type: String,

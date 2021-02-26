@@ -1,9 +1,10 @@
 <template lang="pug">
+Link(v-if="label" :label="label" level="3")
 div.mb-5
   fake-button(@click="fake")
   copy-button(:text="data")
   button.text-black.px-2.m-0.ml-1.rounded.border.border-gray-400(@click="() => visible = !visible" :class="{visible}") Show {{ visible ? 'result' : 'snippet' }}
-  Data.mt-1(v-show="visible" :data="snippet" is-snippet :class="{visible}" :contenteditable="contenteditable" @input="e => emit('update:snippet', e)")
+  Data.mt-1(v-show="visible" :data="snippet" is-snippet :class="{visible}" :contenteditable="contenteditable" @change="value => emit('update:snippet', value)")
   Data.mt-1(v-show="!visible" :data="data")
 </template>
 
@@ -16,7 +17,6 @@ import CopyButton from './CopyButton.vue'
 import Data from './Data.vue'
 
 export default defineComponent({
-  name: 'Preview',
   inheritAttrs: false,
   components: {
     FakeButton,
@@ -24,6 +24,10 @@ export default defineComponent({
     Data,
   },
   props: {
+    label: {
+      default: '',
+      type: String,
+    },
     fake: {
       type: Function,
     },

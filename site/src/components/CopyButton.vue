@@ -7,7 +7,6 @@ input(v-show="inputVisible" ref="input" :value="text === undefined ? 'undefined'
 import { defineComponent, nextTick, ref } from 'vue'
 
 export default defineComponent({
-  name: 'copy-button',
   props: {
     text: {
       required: true,

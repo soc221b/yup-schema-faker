@@ -16,6 +16,23 @@ h3::before,
 h4::before,
 h5::before,
 h6::before {
-  content: '# ';
   cursor: pointer;
+}
+h1::before {
+  content: '# ';
+}
+h2::before {
+  content: '## ';
+}
+h3::before {
+  content: '### ';
+}
+h4::before {
+  content: '#### ';
+}
+h5::before {
+  content: '##### ';
+}
+h6::before {
+  content: '###### ';
 }

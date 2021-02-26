@@ -6,7 +6,6 @@ button.text-blue-400.px-2.m-0.rounded.border.border-blue-400(v-bind="$attrs" @cl
 import { defineComponent, nextTick, ref } from 'vue'
 
 export default defineComponent({
-  name: 'fake-button',
   emits: ['click'],
   setup(props, context) {
     const text = ref('Fake')

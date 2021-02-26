@@ -1,16 +1,16 @@
 <template lang="pug">
-h1.text-black.mb-2 Playground
-Preview(:fake="custom.fake" :snippet="custom.snippet" :data="custom.data" contenteditable @update:snippet="handleInput")
+Link(label="Playground" level="1")
+Preview(:fake="custom.fake" :snippet="custom.snippet" :data="custom.data" contenteditable @update:snippet="onUpdateSnippet")
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { computed, defineComponent, onMounted, reactive, watchEffect } from 'vue'
 import { mixed, bool, boolean, string, number, date, array, object, ref, lazy } from 'yup'
 import * as yup from 'yup'
 import { fake } from 'yup-schema-faker'
+import { query } from '../utils'
 
 export default defineComponent({
-  name: 'Playground',
   inheritAttrs: false,
   setup() {
     const defaultCode = `
@@ -24,7 +24,7 @@ const registerForm = object()
   .noUnknown()
   .shape({
     email: string().defined().email(),
-    Phone: string().matches(/(^\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$)/),
+    phone: string().matches(/(^\\([0-9]{3}\\)[0-9]{3}-[0-9]{4}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$)/),
     birthday: date().min('1900-01-01T00:00:00Z').max(new Date()),
     password: string().defined().matches(/\\w{8,20}/),
     confirmPassword: ref('password'),
@@ -71,16 +71,24 @@ const context = { isRegisterForm: true }
       data: undefined,
       snippet: defaultCode,
     })
+
+    const searchParamKey = 'playground.snippet'
+    custom.snippet = query.get(searchParamKey) ?? custom.snippet
+    watchEffect(() => {
+      query.set(searchParamKey, custom.snippet)
+    })
+
     custom.fake()
 
-    const handleInput = (e: any) => {
-      custom.snippet = e.target.innerText
+    const onUpdateSnippet = (value: string) => {
+      custom.snippet = value
     }
 
     return {
       custom,
       defaultCode,
-      handleInput,
+      onUpdateSnippet,
+      query,
     }
   },
 })

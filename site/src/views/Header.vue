@@ -9,7 +9,6 @@ import { defineComponent } from 'vue'
 import { __VERSION__ } from 'yup-schema-faker'
 
 export default defineComponent({
-  name: 'Header',
   setup() {
     return {
       VERSION: 'v' + __VERSION__,

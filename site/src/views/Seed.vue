@@ -1,6 +1,6 @@
 <template lang="pug">
-label.mx-1.text-black(for="reset") Reset seed value
-input(id="reset" v-model="resetSeedValue" type="checkbox")
+Link(label="Seed" level="1")
+button.text-black.border.border-gray-400.rounded.px-2.mb-2(id="reset-seed-value" @click="resetSeedValue") Reset seed value
 Preview(:fake="fake" :snippet="snippet" :data="data")
 </template>
 
@@ -12,7 +12,6 @@ import * as yup from 'yup'
 const seedValue = fake(yup.number().defined())
 
 export default defineComponent({
-  name: 'Basic',
   setup() {
     const snippet = `
 yup.array().of(
@@ -25,9 +24,11 @@ yup.array().of(
 )
     `.trim()
     const data = ref()
-    const resetSeedValue = ref(true)
+    const resetSeedValue = () => {
+      seed(seedValue)
+      doFake()
+    }
     const doFake = () => {
-      if (resetSeedValue.value) seed(seedValue)
       data.value = fake(
         yup.array().of(
           yup.object({
@@ -41,7 +42,7 @@ yup.array().of(
     }
 
     onMounted(() => {
-      doFake()
+      resetSeedValue()
     })
 
     return {

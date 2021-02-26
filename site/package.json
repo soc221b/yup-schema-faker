@@ -10,6 +10,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "contents": "^5.0.0",
     "faker": "latest",
     "highlight.js": "^10.6.0",
     "randexp": "latest",

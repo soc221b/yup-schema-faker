@@ -1,6 +1,6 @@
 <template lang="pug">
 pre
-  code.rounded.javascript(ref="snippet" v-bind="$attrs" :contenteditable="contenteditable" @input.native="e => emit('input', e)") {{ normalizedData }}
+  code.rounded.javascript(ref="snippet" v-bind="$attrs" :contenteditable="contenteditable" @input.native="onInput" @blur.native="onBlur") {{ normalizedData }}
 </template>
 
 <script>
@@ -9,7 +9,6 @@ import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
 
 export default defineComponent({
-  name: 'Data',
   inheritAttrs: false,
   props: {
     data: {
@@ -24,7 +23,7 @@ export default defineComponent({
       type: Boolean,
     },
   },
-  emits: ['input'],
+  emits: ['change'],
   setup(props, { emit }) {
     const snippet = ref()
     const highlight = () => {
@@ -51,10 +50,22 @@ export default defineComponent({
       ).replace(/"__undefined"/g, 'undefined')
     })
 
+    const changedSnippet = ref()
+    watchEffect(() => {
+      changedSnippet.value = props.data
+    })
+    const onInput = e => {
+      changedSnippet.value = e.target.innerText
+    }
+    const onBlur = () => {
+      emit('change', changedSnippet.value ?? props.data)
+    }
+
     return {
       snippet,
       normalizedData,
-      emit,
+      onInput,
+      onBlur,
     }
   },
 })
