@@ -34,6 +34,7 @@
     "build": "rimraf dist && rollup -c",
     "release": "standard-version && yarn build",
     "test": "yarn tsc --noEmit && jest",
+    "postinstall": "husky install",
     "lint": "prettier --check ."
   },
   "devDependencies": {
