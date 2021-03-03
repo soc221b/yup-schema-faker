@@ -54,6 +54,7 @@ function createConfig({ format, mode, outputConfig }) {
       }),
       nodeResolve(),
       replace({
+        preventAssignment: true,
         __DEV__: isBundler ? `(process.env.NODE_ENV !== 'production')` : isDev,
       }),
       isDev ? undefined : terser(),
