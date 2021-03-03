@@ -2,19 +2,6 @@
   "name": "yup-schema-faker",
   "version": "1.5.0",
   "description": "Fake data generator for yup",
-  "author": "Ernest <iendeavor.github.io@gmail.com>",
-  "license": "MIT",
-  "main": "dist/index.cjs.prod.js",
-  "module": "dist/index.esm-bundler.js",
-  "types": "dist/src/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iendeavor/yup-schema-faker.git"
-  },
-  "bugs": {
-    "url": "https://github.com/iendeavor/yup-schema-faker/issues"
-  },
-  "homepage": "https://github.com/iendeavor/yup-schema-faker#readme",
   "keywords": [
     "yup",
     "fake",
@@ -24,12 +11,22 @@
     "json",
     "schema"
   ],
+  "homepage": "https://github.com/iendeavor/yup-schema-faker#readme",
+  "bugs": {
+    "url": "https://github.com/iendeavor/yup-schema-faker/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iendeavor/yup-schema-faker.git"
+  },
+  "license": "MIT",
+  "author": "Ernest <iendeavor.github.io@gmail.com>",
+  "main": "dist/index.cjs.prod.js",
+  "module": "dist/index.esm-bundler.js",
+  "types": "dist/src/index.d.ts",
   "files": [
     "dist"
   ],
-  "engines": {
-    "node": ">= 10"
-  },
   "scripts": {
     "build": "rimraf dist && rollup -c",
     "release": "standard-version && yarn build",
@@ -67,5 +64,8 @@
     "faker": "^5.1.0",
     "randexp": "^0.5.3",
     "yup": "^0.32.8"
+  },
+  "engines": {
+    "node": ">= 10"
   }
 }
