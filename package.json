@@ -32,6 +32,8 @@
     "release": "standard-version && yarn build",
     "test": "yarn tsc --noEmit && jest",
     "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable",
     "lint": "prettier --check ."
   },
   "devDependencies": {
@@ -46,6 +48,7 @@
     "faker": "^5.1.0",
     "husky": "^5.0.9",
     "jest": "^26.6.3",
+    "pinst": "^2.1.6",
     "prettier": "^2.2.1",
     "randexp": "^0.5.3",
     "rollup": "^2.36.1",

@@ -7,7 +7,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "postinstall": "yarn upgrade yup-schema-faker"
   },
   "dependencies": {
     "contents": "^5.0.0",
@@ -17,7 +18,7 @@
     "vite": "next",
     "vue": "next",
     "yup": "latest",
-    "yup-schema-faker": "latest"
+    "yup-schema-faker": "^1.5.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.0.4",
