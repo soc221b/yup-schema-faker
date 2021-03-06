@@ -68,9 +68,12 @@ Example:
 
 See [usage](#usage)
 
-## `fakeDedicatedTest`
+# Extending Faker
 
-Similar to `yup.addMethod`, but for fake.
+## Fake extended methods
+
+Similar to `yup.addMethod`, `yup-schema-faker` provides a `fakeDedicatedTest` method to fake extending method for a
+schema.
 
 Function signature:
 
@@ -82,31 +85,14 @@ function fakeDedicatedTest<Schema extends AnySchema>(
 )
 ```
 
-Example:
+For Example:
 
-```typescript
-import { string, AnySchema } from 'yup'
-import { fake, fakeDedicatedTest } from 'yup-schema-faker'
-import { internet } from 'faker'
+See [`string.json` example](./site/src/views/Custom/string-json.ts)
 
-declare module 'yup' {
-  interface StringSchema {
-    ip<Schema extends AnySchema>(this: Schema): Schema
-  }
-}
+## Fake extended schemas
 
-fakeDedicatedTest(string, 'ip', (schema: Schema) => {
-  return internet.ip()
-})
-
-const schema = string().strict().defined().ip()
-const actual = fake(schema)
-console.log(actual) // "127.0.0.1" or else
-```
-
-## `addFaker`
-
-Register new faker for custom schema or overide existing one.
+`yup-schema-faker` also provides a `addFaker` method, which gives you the ability to extend faker for custom schema or
+overide existing one.
 
 Function signature:
 
@@ -119,7 +105,7 @@ function addFaker<Schema extends AnySchema, Faker>(
 
 For example:
 
-See [ISODateStringSchema and ISODateStringFaker](./test/add-faker/iso-date-string.test.ts)
+See [customMixed example](./site/src/views/Custom/custom-mixed.ts)
 
 # Setting a randomness seed
 

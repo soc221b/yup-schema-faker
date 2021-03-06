@@ -10,6 +10,8 @@
     Seed
     hr
     Full
+    hr
+    Custom
 BackToTop
 </template>
 
@@ -20,6 +22,7 @@ import Header from './views/Header.vue'
 import Playground from './views/Playground.vue'
 import Seed from './views/Seed.vue'
 import Full from './views/Full.vue'
+import Custom from './views/Custom/index.vue'
 import BackToTop from './views/BackToTop.vue'
 
 export default defineComponent({
@@ -29,6 +32,7 @@ export default defineComponent({
     Playground,
     Seed,
     Full,
+    Custom,
     BackToTop,
   },
 })
