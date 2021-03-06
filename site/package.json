@@ -18,7 +18,7 @@
     "vite": "next",
     "vue": "next",
     "yup": "latest",
-    "yup-schema-faker": "^1.5.1"
+    "yup-schema-faker": "^1.5.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.0.4",
