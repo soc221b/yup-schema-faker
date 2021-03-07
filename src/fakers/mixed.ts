@@ -18,18 +18,18 @@ export class MixedFaker<Schema extends AnySchema> extends BaseFaker<Schema> {
   }
 
   doFake(options?: Options) {
-    let schema = schemas[random.number({ min: 0, max: schemas.length - 1 })]
+    let randomSchema = schemas[random.number({ min: 0, max: schemas.length - 1 })]
 
     if (this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!))) {
-      schema = schema.required()
+      randomSchema = randomSchema.required()
     }
 
     if (this.schema.spec.nullable) {
       /* istanbul ignore next */
-      schema = schema.nullable()
+      randomSchema = randomSchema.nullable()
     }
 
-    return MixedFaker.rootFake(schema, options)
+    return MixedFaker.rootFake(randomSchema, options)
   }
 }
 
