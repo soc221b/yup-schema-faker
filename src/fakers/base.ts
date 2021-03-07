@@ -10,7 +10,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
 
   static dedicatedTests: { [schema: string]: { [name: string]: (schema: AnySchema) => any } } = {}
 
-  schema: Schema
+  protected schema: Schema
 
   constructor(schema: Schema) {
     this.schema = schema
@@ -57,7 +57,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
     return this.doFake(options)
   }
 
-  fakeUndefined() {
+  protected fakeUndefined() {
     if (this.schema.spec.default !== undefined) {
       return this.fakeDefault()
     }
@@ -65,15 +65,15 @@ export abstract class BaseFaker<Schema extends AnySchema> {
     return undefined
   }
 
-  fakeNullable() {
+  protected fakeNullable() {
     return null
   }
 
-  fakeDefault() {
+  protected fakeDefault() {
     return typeof this.schema.spec.default === 'function' ? this.schema.spec.default() : this.schema.spec.default
   }
 
-  doFake(_options?: Options) {}
+  protected doFake(_options?: Options) {}
 }
 
 export function fakeDedicatedTest<Schema extends AnySchema>(
