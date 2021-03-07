@@ -17,26 +17,61 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   }
 
   fake(options?: Options) {
+    const fns = [
+      this.fakeDefault,
+      this.fakeUndefined,
+      this.fakeNullable,
+      this.fakeOneOf,
+      this.fakeNotOneOf,
+      this.fakeDedicatedTest,
+    ]
+    for (const fn of fns) {
+      const [hasFaked, result] = fn.call(this, options)
+      if (hasFaked) return result
+    }
+
+    return this.doFake(options)
+  }
+
+  protected fakeDefault(): [boolean, any?] {
+    if (this.schema.spec.default !== undefined)
+      return [
+        true,
+        typeof this.schema.spec.default === 'function' ? this.schema.spec.default() : this.schema.spec.default,
+      ]
+
+    return [false]
+  }
+
+  protected fakeUndefined(): [boolean, any?] {
     if (
       random.float({ min: 0, max: 1 }) > 0.8 &&
       this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!)) === false
-    ) {
-      return this.fakeUndefined()
-    }
+    )
+      return [true, undefined]
 
+    return [false]
+  }
+
+  protected fakeNullable(): [boolean, any?] {
     if (
       random.float({ min: 0, max: 1 }) > 0.8 &&
       this.schema.spec.nullable &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false
-    ) {
-      return this.fakeNullable()
-    }
+    )
+      return [true, null]
 
+    return [false]
+  }
+
+  protected fakeOneOf(): [boolean, any?] {
     const oneOf = this.schema.describe().oneOf
-    if (oneOf.length) {
-      return oneOf[random.number({ min: 0, max: oneOf.length - 1 })]
-    }
+    if (oneOf.length) return [true, oneOf[random.number({ min: 0, max: oneOf.length - 1 })]]
 
+    return [false]
+  }
+
+  protected fakeNotOneOf(options?: Options): [boolean, any?] {
     const notOneOf = this.schema.describe().notOneOf
     if (notOneOf.length) {
       let safeCount = 0
@@ -44,33 +79,20 @@ export abstract class BaseFaker<Schema extends AnySchema> {
       do {
         data = this.doFake(options)
       } while (notOneOf.includes(data) && ++safeCount < SAFE_COUNT)
-      return data
+      return [true, data]
     }
 
+    return [false]
+  }
+
+  protected fakeDedicatedTest(): [boolean, any?] {
     const dedicatedTest = this.schema.tests.find(
       test => BaseFaker.dedicatedTests[this.schema.type]?.[test.OPTIONS.name!] !== undefined,
     )
-    if (dedicatedTest) {
-      return BaseFaker.dedicatedTests[this.schema.type][dedicatedTest.OPTIONS.name!](this.schema)
-    }
+    if (dedicatedTest)
+      return [true, BaseFaker.dedicatedTests[this.schema.type][dedicatedTest.OPTIONS.name!](this.schema)]
 
-    return this.doFake(options)
-  }
-
-  protected fakeUndefined() {
-    if (this.schema.spec.default !== undefined) {
-      return this.fakeDefault()
-    }
-
-    return undefined
-  }
-
-  protected fakeNullable() {
-    return null
-  }
-
-  protected fakeDefault() {
-    return typeof this.schema.spec.default === 'function' ? this.schema.spec.default() : this.schema.spec.default
+    return [false]
   }
 
   protected doFake(_options?: Options) {}
