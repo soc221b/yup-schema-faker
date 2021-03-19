@@ -3,12 +3,10 @@ Preview(:fake="fake" :snippet="snippet" :data="data" :label="label")
 </template>
 
 <script>
-import { fake, seed } from 'yup-schema-faker'
+import { fake } from 'yup-schema-faker'
 import { defineComponent, onMounted, ref as vueRef, computed, reactive, toRefs } from 'vue'
 import { mixed, bool, boolean, string, number, date, array, object, ref, lazy } from 'yup'
 import * as yup from 'yup'
-
-const seedValue = fake(yup.number().defined())
 
 export default defineComponent({
   props: {
