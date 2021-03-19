@@ -1,15 +1,13 @@
 <template lang="pug">
 Link(label="Seed" level="1")
-button.text-black.border.border-gray-400.rounded.px-2.mb-2(id="reset-seed-value" @click="resetSeedValue") Reset seed value
+button.text-black.border.border-gray-400.rounded.px-2.mb-2(@click="reloadToResetSeedValue") Reload to reset seed value
 Preview(:fake="fake" :snippet="snippet" :data="data")
 </template>
 
 <script>
-import { fake, seed } from 'yup-schema-faker'
+import { fake } from '../faker'
 import { defineComponent, onMounted, ref, computed, reactive, toRefs } from 'vue'
 import * as yup from 'yup'
-
-const seedValue = fake(yup.number().defined())
 
 export default defineComponent({
   setup() {
@@ -24,9 +22,8 @@ yup.array().of(
 )
     `.trim()
     const data = ref()
-    const resetSeedValue = () => {
-      seed(seedValue)
-      doFake()
+    const reloadToResetSeedValue = () => {
+      window.location.reload()
     }
     const doFake = () => {
       data.value = fake(
@@ -41,12 +38,8 @@ yup.array().of(
       )
     }
 
-    onMounted(() => {
-      resetSeedValue()
-    })
-
     return {
-      resetSeedValue,
+      reloadToResetSeedValue,
       snippet,
       data,
       fake: doFake,

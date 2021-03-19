@@ -1,5 +1,6 @@
 import { addMethod, string, AnySchema } from 'yup'
-import { fake, fakeDedicatedTest } from 'yup-schema-faker'
+import { fake } from '../../faker'
+import { fakeDedicatedTest } from 'yup-schema-faker'
 
 // Extend json method for string schema
 addMethod(string, 'json', function (schema: AnySchema) {

@@ -7,7 +7,7 @@ Preview(:fake="custom.fake" :snippet="custom.snippet" :data="custom.data" conten
 import { defineComponent, reactive, watchEffect } from 'vue'
 import { mixed, bool, boolean, string, number, date, array, object, ref, lazy } from 'yup'
 import * as yup from 'yup'
-import { fake } from 'yup-schema-faker'
+import { fake } from '../faker'
 import { query } from '../utils'
 
 export default defineComponent({

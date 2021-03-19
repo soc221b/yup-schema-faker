@@ -1,7 +1,8 @@
 <template lang="pug">
 .app.bg-white.p-2
   .mx-auto.w-screen-96.max-w-1080
-    Header.mb-1
+    Header
+    br
     hr
     ToC
     hr
