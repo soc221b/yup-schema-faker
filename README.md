@@ -124,7 +124,7 @@ const secondRandom = fake(string())
 console.log(firstRandom === secondRandom) // true
 ```
 
-# Add `fake` Method to Schema
+# TypeScript support
 
 **Step 1. Augment the yup module**
 
