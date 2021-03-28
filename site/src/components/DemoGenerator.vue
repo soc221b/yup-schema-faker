@@ -2,9 +2,9 @@
 Preview(:fake="fake" :snippet="snippet" :data="data" :label="label")
 </template>
 
-<script>
+<script lang="ts">
 import { fake } from '../faker'
-import { defineComponent, onMounted, ref as vueRef, computed, reactive, toRefs } from 'vue'
+import { defineComponent, onMounted, ref as vueRef } from 'vue'
 import { mixed, bool, boolean, string, number, date, array, object, ref, lazy } from 'yup'
 import * as yup from 'yup'
 
@@ -23,7 +23,6 @@ export default defineComponent({
   setup(props) {
     const data = vueRef()
     const schema = vueRef()
-    const resetSeedValue = vueRef(true)
     const doFake = () => {
       try {
         schema.value = new Function(

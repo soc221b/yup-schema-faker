@@ -6,7 +6,7 @@ header
     span {{ VERSION }}
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import { __VERSION__ } from 'yup-schema-faker'
 

@@ -16,7 +16,7 @@
 BackToTop
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import ToC from './views/ToC/Index.vue'
 import Header from './views/Header.vue'

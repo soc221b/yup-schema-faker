@@ -4,9 +4,9 @@ button.text-black.border.border-gray-400.rounded.px-2.mb-2(@click="reloadToReset
 Preview(:fake="fake" :snippet="snippet" :data="data")
 </template>
 
-<script>
+<script lang="ts">
 import { fake } from '../faker'
-import { defineComponent, onMounted, ref, computed, reactive, toRefs } from 'vue'
+import { defineComponent, ref } from 'vue'
 import * as yup from 'yup'
 
 export default defineComponent({
@@ -37,6 +37,7 @@ yup.array().of(
         ),
       )
     }
+    doFake()
 
     return {
       reloadToResetSeedValue,

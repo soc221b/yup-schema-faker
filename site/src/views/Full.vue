@@ -1,10 +1,10 @@
 <template lang="pug">
-Link(label="Full API Reference" level="1")
+Link(label="yup" level="1")
 template(v-for="schemas, type of schemasOfType" :key="type")
   Link(:label="type" level="2")
 
   template(v-for="schema, label of schemas" :key="schema")
-    demo-generator(:label="label" :snippet="schema")
+    demo-generator(:label="label + ''" :snippet="schema")
 </template>
 
 <script lang="ts">

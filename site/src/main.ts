@@ -10,7 +10,6 @@ const app = createApp(App)
 app.component('Preview', Preview)
 app.component('DemoGenerator', DemoGenerator)
 app.component('Link', Link)
-app.mount('#app')
 app.mixin({
   mounted() {
     nextTick(() => {
@@ -18,3 +17,4 @@ app.mixin({
     })
   },
 })
+app.mount('#app')

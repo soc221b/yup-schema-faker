@@ -1,16 +1,15 @@
 <template lang="pug">
 Link(v-if="label" :label="label" level="3")
 div.mb-5
-  fake-button(@click="fake")
+  fake-button(@click="() => fake()")
   copy-button(:text="data")
   button.text-black.px-2.m-0.ml-1.rounded.border.border-gray-400(@click="() => visible = !visible" :class="{visible}") Show {{ visible ? 'result' : 'snippet' }}
   Data.mt-1(v-show="visible" :data="snippet" is-snippet :class="{visible}" :contenteditable="contenteditable" @change="value => emit('update:snippet', value)")
   Data.mt-1(v-show="!visible" :data="data")
 </template>
 
-<script>
-import { computed, defineComponent, onMounted, onUpdated, ref, watchEffect } from 'vue'
-import hljs from 'highlight.js'
+<script lang="ts">
+import { defineComponent, ref } from 'vue'
 import 'highlight.js/styles/atom-one-dark.css'
 import FakeButton from './FakeButton.vue'
 import CopyButton from './CopyButton.vue'
@@ -29,10 +28,12 @@ export default defineComponent({
       type: String,
     },
     fake: {
+      required: true,
       type: Function,
     },
     snippet: {
       required: true,
+      type: String,
     },
     data: {
       required: true,
@@ -43,7 +44,7 @@ export default defineComponent({
     },
   },
   emits: ['update:snippet'],
-  setup(props, { emit }) {
+  setup(_, { emit }) {
     return {
       visible: ref(false),
       emit,

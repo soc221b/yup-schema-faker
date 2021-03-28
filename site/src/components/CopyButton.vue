@@ -3,7 +3,7 @@ button.text-black.px-2.m-0.ml-1.rounded.border.border-gray-400(@click="handleCli
 input(v-show="inputVisible" ref="input" :value="text === undefined ? 'undefined' : JSON.stringify(text)")
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, nextTick, ref } from 'vue'
 
 export default defineComponent({
@@ -12,7 +12,7 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(props) {
+  setup(_) {
     const buttonLabel = ref('Copy')
 
     const input = ref()
