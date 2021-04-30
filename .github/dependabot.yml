@@ -1,18 +1,18 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-    time: "21:00"
-  open-pull-requests-limit: 10
-  target-branch: main
-  versioning-strategy: lockfile-only
-  ignore:
-  - dependency-name: husky
-    versions:
-    - 5.1.1
-    - 5.1.2
-  - dependency-name: "@types/faker"
-    versions:
-    - 5.1.6
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: daily
+      time: '21:00'
+    open-pull-requests-limit: 10
+    target-branch: main
+    versioning-strategy: lockfile-only
+    ignore:
+      - dependency-name: husky
+        versions:
+          - 5.1.1
+          - 5.1.2
+      - dependency-name: '@types/faker'
+        versions:
+          - 5.1.6
