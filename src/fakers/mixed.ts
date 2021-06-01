@@ -1,4 +1,4 @@
-import { random } from 'faker'
+import { datatype } from 'faker'
 import { boolean, number, string, date, mixed } from 'yup'
 import { BaseFaker, addFaker } from './base'
 
@@ -18,7 +18,7 @@ export class MixedFaker<Schema extends AnySchema> extends BaseFaker<Schema> {
   }
 
   doFake(options?: Options) {
-    let randomSchema = schemas[random.number({ min: 0, max: schemas.length - 1 })]
+    let randomSchema = schemas[datatype.number({ min: 0, max: schemas.length - 1 })]
 
     if (this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!))) {
       randomSchema = randomSchema.required()

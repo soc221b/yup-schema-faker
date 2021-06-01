@@ -1,5 +1,5 @@
 import { string } from 'yup'
-import { random, internet, lorem } from 'faker'
+import { random, datatype, internet, lorem } from 'faker'
 import { randexp } from 'randexp'
 import { MixedFaker } from './mixed'
 import { fakeDedicatedTest, addFaker } from './base'
@@ -20,7 +20,7 @@ export class StringFaker extends MixedFaker<StringSchema> {
     if (
       min === undefined &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false &&
-      random.float({ min: 0, max: 1 }) > 0.8
+      datatype.float({ min: 0, max: 1 }) > 0.8
     ) {
       return ''
     }
@@ -34,7 +34,7 @@ export class StringFaker extends MixedFaker<StringSchema> {
     if (shouldTrim) {
       result = result.trim() + random.alpha({ count: result.length })
     } else {
-      result = ' '.repeat(random.number(max ?? min ?? 3)) + result + ' '.repeat(random.number(max ?? min ?? 3))
+      result = ' '.repeat(datatype.number(max ?? min ?? 3)) + result + ' '.repeat(datatype.number(max ?? min ?? 3))
     }
 
     result = result.slice(0, max)
@@ -56,7 +56,7 @@ export class StringFaker extends MixedFaker<StringSchema> {
 addFaker(string, StringFaker)
 
 fakeDedicatedTest(string, 'uuid', () => {
-  return random.uuid()
+  return datatype.uuid()
 })
 
 fakeDedicatedTest(string, 'email', () => {
