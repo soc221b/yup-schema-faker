@@ -1,5 +1,5 @@
 import { number } from 'yup'
-import { datatype } from 'faker'
+import { datatype } from '../faker'
 import { MixedFaker } from './mixed'
 import { addFaker } from './base'
 

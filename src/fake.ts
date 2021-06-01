@@ -1,4 +1,4 @@
-import { datatype } from 'faker'
+import { datatype } from './faker'
 import { AnySchema } from 'yup'
 import { BaseFaker, typeToFaker } from './fakers/base'
 import { MixedFaker } from './fakers/mixed'

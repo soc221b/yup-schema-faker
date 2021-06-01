@@ -1,5 +1,5 @@
 import { boolean } from 'yup'
-import { datatype } from 'faker'
+import { datatype } from '../faker'
 import { MixedFaker } from './mixed'
 import { fakeDedicatedTest, addFaker } from './base'
 
