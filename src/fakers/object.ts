@@ -1,5 +1,5 @@
 import { mixed, object } from 'yup'
-import { random, lorem } from 'faker'
+import { datatype, lorem } from 'faker'
 import { MixedFaker } from './mixed'
 import { isReference } from '../util'
 import { addFaker } from './base'
@@ -30,7 +30,7 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
 
     const noUnknown = this.schema.spec.strict && this.schema.tests.some(test => test.OPTIONS.name === 'noUnknown')
     if (noUnknown === false) {
-      Array(random.number({ min: 10, max: 10 }))
+      Array(datatype.number({ min: 10, max: 10 }))
         .fill(null)
         .map(() => lorem.word())
         .filter(field => fields.includes(field) === false)

@@ -1,5 +1,5 @@
 import { number } from 'yup'
-import { random } from 'faker'
+import { datatype } from 'faker'
 import { MixedFaker } from './mixed'
 import { addFaker } from './base'
 
@@ -26,11 +26,11 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
     }
 
     return this.schema.tests.find(test => test.OPTIONS.name === 'integer')
-      ? random.number({
+      ? datatype.number({
           min: Math.ceil(min),
           max: Math.floor(max),
         })
-      : random.float({
+      : datatype.float({
           min,
           max,
           precision: 1 / 1e16,
