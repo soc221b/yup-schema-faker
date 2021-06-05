@@ -1,9 +1,13 @@
 <template lang="pug">
-header
-  a.text-black(href="https://github.com/iendeavor/yup-schema-faker") Yup Schema Faker
-  .float-right.text-black
-    button.inline-block.mr-2.border.border-gray-400.rounded.px-2.mb-2(@click="reloadToClearSeedValue") Reload to clear seed value
-    span {{ VERSION }}
+header.text-black
+  div
+    span Yup Schema Faker
+      sub {{ VERSION }}
+    .float-right
+      a.mr-1(href='https://github.com/iendeavor/yup-schema-faker') GitHub
+  .mt-1
+    button.mb-1.mr-1.inline-block.border.border-gray-400.rounded.px-2(@click='reloadToResetSeedValue') Reload to reset seed value
+    button.mb-1.inline-block.border.border-gray-400.rounded.px-2(@click='reloadToGenerateNewSeedValue') Reload to generate new seed value
 </template>
 
 <script lang="ts">
@@ -12,12 +16,16 @@ import { __VERSION__ } from 'yup-schema-faker'
 
 export default defineComponent({
   setup() {
-    const reloadToClearSeedValue = () => {
+    const reloadToResetSeedValue = () => {
+      location.reload()
+    }
+    const reloadToGenerateNewSeedValue = () => {
       location.search = ''
     }
 
     return {
-      reloadToClearSeedValue,
+      reloadToResetSeedValue,
+      reloadToGenerateNewSeedValue,
       VERSION: 'v' + __VERSION__,
     }
   },

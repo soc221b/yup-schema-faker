@@ -8,7 +8,6 @@
     hr
     Playground
     hr
-    Seed
     hr
     Full
     hr
@@ -21,7 +20,6 @@ import { defineComponent } from 'vue'
 import ToC from './views/ToC/Index.vue'
 import Header from './views/Header.vue'
 import Playground from './views/Playground.vue'
-import Seed from './views/Seed.vue'
 import Full from './views/Full.vue'
 import Custom from './views/Custom/index.vue'
 import BackToTop from './views/BackToTop.vue'
@@ -31,7 +29,6 @@ export default defineComponent({
     ToC,
     Header,
     Playground,
-    Seed,
     Full,
     Custom,
     BackToTop,

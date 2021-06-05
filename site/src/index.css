@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-  background-color: black;
-}
-
 button {
   outline: none !important;
 }
