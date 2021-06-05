@@ -19,26 +19,19 @@ export default defineComponent({
         'custom.fakeDedicatedTest.yup.string.json': `
 // fake a list of emails and stringify it.
 const schema = string()
-  .defined()
-  .strict()
   .json(
-    array()
-      .defined()
-      .of(
-        string()
-          .defined()
-          .email()
-      )
+    array().defined().of(
+      string().defined().email()
+    )
   )
+  .defined().strict()
 `.trim(),
       },
       'custom.addFaker': {
         'custom.addFaker.customMixed': `
 // just like yup.mixed
 const schema = customMixed()
-  .defined()
-  .strict()
-  .oneOf([42])
+  .defined().strict().oneOf([42])
 `.trim(),
       },
     }
