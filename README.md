@@ -7,7 +7,7 @@
 ![last commit](https://img.shields.io/github/last-commit/iendeavor/yup-schema-faker/main)
 [![donate](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange)](https://www.paypal.com/paypalme/iendeavor)
 
-Fake data generator for yup
+Fake data generator for [yup](https://github.com/jquense/yup)
 
 # Demo and Playground
 
