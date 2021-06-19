@@ -13,6 +13,12 @@ Fake data generator for [yup](https://github.com/jquense/yup)
 
 https://iendeavor.github.io/yup-schema-faker/
 
+# Installation
+
+```sh
+yarn add --dev yup-schema-faker faker randexp
+```
+
 # Usage
 
 ```typescript
