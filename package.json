@@ -1,6 +1,6 @@
 {
   "name": "yup-schema-faker",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "description": "Yup-schema-faker will generate you a fake data based on your yup schema.",
   "keywords": [
     "yup",
