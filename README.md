@@ -1,4 +1,6 @@
-# yup-schema-faker
+# Yup-schema-faker
+
+> Yup-schema-faker will generate you a fake data based on your [yup](https://github.com/jquense/yup) schema.
 
 [![npm](https://img.shields.io/npm/v/yup-schema-faker)](https://www.npmjs.com/package/yup-schema-faker)
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/iendeavor/yup-schema-faker/CI/main)](https://github.com/iendeavor/yup-schema-faker/actions?query=workflow%3ACI+branch%3Amain+)
@@ -7,24 +9,25 @@
 ![last commit](https://img.shields.io/github/last-commit/iendeavor/yup-schema-faker/main)
 [![donate](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange)](https://www.paypal.com/paypalme/iendeavor)
 
-Fake data generator for [yup](https://github.com/jquense/yup)
+You can see full demo and online playground [here](https://iendeavor.github.io/yup-schema-faker/).
 
-# Demo and Playground
+## Getting Started
 
-https://iendeavor.github.io/yup-schema-faker/
+### Setup
 
-# Installation
+Install this package and peer dependencies.
 
 ```sh
 yarn add --dev yup-schema-faker faker randexp
 ```
 
-# Usage
+### Usage
 
 ```typescript
 import * as yup from 'yup'
 import { fake } from 'yup-schema-faker'
 
+// write a schema
 const schema = yup
   .object()
   .required()
@@ -39,6 +42,7 @@ const schema = yup
     }),
   })
 
+// generate a fake data
 const fakeData = fake(schema)
 
 console.log(fakeData)
@@ -53,9 +57,9 @@ console.log(fakeData)
 */
 ```
 
-# API
+## API
 
-## `fake`
+### `fake`
 
 Pass a yup schema and return a fake data.
 
@@ -74,9 +78,9 @@ Example:
 
 See [usage](#usage)
 
-# Extending Faker
+## Extending Faker
 
-## Fake extended methods
+### Fake extended methods
 
 Similar to `yup.addMethod`, `yup-schema-faker` provides a `fakeDedicatedTest` method to fake extending method for a
 schema.
@@ -95,7 +99,7 @@ For Example:
 
 See [`string.json` example](./site/src/views/Custom/string-json.ts)
 
-## Fake extended schemas
+### Fake extended schemas
 
 `yup-schema-faker` also provides a `addFaker` method, which gives you the ability to extend faker for custom schema or
 overide existing one.
@@ -113,7 +117,7 @@ For example:
 
 See [customMixed example](./site/src/views/Custom/custom-mixed.ts)
 
-# Setting a randomness seed
+## Setting a randomness seed
 
 If you want to produce consistent results, you can set your own seed with integer:
 
@@ -130,7 +134,7 @@ const secondRandom = fake(string())
 console.log(firstRandom === secondRandom) // true
 ```
 
-# TypeScript support
+## TypeScript support
 
 **Step 1. Augment the yup module**
 
@@ -165,7 +169,7 @@ const booleanSchema = boolean().required()
 const data = booleanSchema.fake() // boolean
 ```
 
-# Supported yup API
+## Supported yup API
 
 - yup
   - ✅ yup.ref(path: string, options: { contextPrefix: string }): Ref
@@ -220,7 +224,7 @@ const data = booleanSchema.fake() // boolean
   - ✅ object.noUnknown(onlyKnownKeys: boolean = true, message?: string | function): Schema
     > fake function will generate unknown fields, unless in strict mode
 
-# Contributing
+## Contributing
 
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
@@ -232,11 +236,11 @@ We love your input! We want to make contributing to this project as easy and tra
 
 People _love_ thorough bug reports. I'm not even kidding.
 
-## Report bugs using Github's [issues](../../issues)
+### Report bugs using Github's [issues](../../issues)
 
 We use GitHub issues to track public bugs. Report a bug by [opening a new issue](../../issues/new); it's that easy!
 
-## Write bug reports with detail, background, and sample code
+### Write bug reports with detail, background, and sample code
 
 **Great Bug Reports** tend to have:
 
