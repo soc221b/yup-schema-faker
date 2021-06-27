@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.8](https://github.com/iendeavor/yup-schema-faker/compare/v1.5.7...v1.5.8) (2021-06-27)
+
+
+### Bug Fixes
+
+* remove unknown fields if they are all undefined ([c85c260](https://github.com/iendeavor/yup-schema-faker/commit/c85c260938f2a2b81d12441b15b550e6c01ff72c))
+
 ### [1.5.7](https://github.com/iendeavor/yup-schema-faker/compare/v1.5.6...v1.5.7) (2021-06-19)
 
 ### [1.5.6](https://github.com/iendeavor/yup-schema-faker/compare/v1.5.4...v1.5.6) (2021-06-01)
