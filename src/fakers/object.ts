@@ -30,11 +30,10 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
 
     const noUnknown = this.schema.spec.strict && this.schema.tests.some(test => test.OPTIONS.name === 'noUnknown')
     if (noUnknown === false) {
-      Array(datatype.number({ min: 10, max: 10 }))
+      Array(datatype.number({ min: 0, max: 5 }))
         .fill(null)
         .map(() => lorem.word())
         .filter(field => fields.includes(field) === false)
-        .slice(0, 5)
         .reduce((object, key) => {
           return Object.assign(object, { [key]: ObjectFaker.rootFake(mixed(), options) })
         }, result)
