@@ -13,7 +13,7 @@
     "randexp": "latest",
     "vue": "^3.0.9",
     "yup": "latest",
-    "yup-schema-faker": "^1.5.2"
+    "yup-schema-faker": "^1.5.8"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.1.5",
