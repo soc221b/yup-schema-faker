@@ -10,11 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Waiting for publishing
-        uses: jakejarvis/wait-action@master
-        with:
-          time: '5m'
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -28,6 +23,7 @@ jobs:
           cd site
           yarn install
           yarn build
+          yarn add yup-schema-faker
           sed -i 's/assets/yup-schema-faker\/assets/' ./dist/index.html
           cd ..
           mv site/dist docs
