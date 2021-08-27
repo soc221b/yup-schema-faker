@@ -20,15 +20,21 @@ export class StringFaker extends MixedFaker<StringSchema> {
     if (
       min === undefined &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false &&
-      datatype.float({ min: 0, max: 1 }) > 0.8
+      datatype.float({ min: 0, max: 1 }) > 0.9
     ) {
       return ''
     }
 
-    let result = lorem
-      .paragraph(max ?? min)
-      .slice(0, max)
-      .trim()
+    // sentence and other function sometimes return undefined!
+    let result = lorem.paragraph(max ?? min)
+    if (datatype.float({ min: 0, max: 1 }) > 0.9) {
+      result = lorem.paragraph(max ?? min) ?? result
+    } else if (datatype.float({ min: 0, max: 1 }) > 0.9) {
+      result = lorem.word(max ?? min) ?? result
+    } else {
+      result = lorem.sentence(max ?? min) ?? result
+    }
+    result = result.slice(0, max).trim()
 
     const shouldTrim = this.schema.spec.strict && this.schema.tests.find(test => test.OPTIONS.name === 'trim')
     if (shouldTrim) {

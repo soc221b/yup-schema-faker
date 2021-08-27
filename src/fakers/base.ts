@@ -34,7 +34,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   }
 
   protected fakeDefault(): [boolean, any?] {
-    if (datatype.float({ min: 0, max: 1 }) > 0.8 && this.schema.spec.default !== undefined)
+    if (datatype.float({ min: 0, max: 1 }) > 0.9 && this.schema.spec.default !== undefined)
       return [
         true,
         typeof this.schema.spec.default === 'function' ? this.schema.spec.default() : this.schema.spec.default,
@@ -45,7 +45,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
 
   protected fakeUndefined(): [boolean, any?] {
     if (
-      datatype.float({ min: 0, max: 1 }) > 0.8 &&
+      datatype.float({ min: 0, max: 1 }) > 0.9 &&
       this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!)) === false
     )
       return [true, undefined]
@@ -55,7 +55,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
 
   protected fakeNullable(): [boolean, any?] {
     if (
-      datatype.float({ min: 0, max: 1 }) > 0.8 &&
+      datatype.float({ min: 0, max: 1 }) > 0.9 &&
       this.schema.spec.nullable &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false
     )
