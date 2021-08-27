@@ -34,7 +34,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   }
 
   protected fakeDefault(): [boolean, any?] {
-    if (this.schema.spec.default !== undefined)
+    if (datatype.float({ min: 0, max: 1 }) > 0.8 && this.schema.spec.default !== undefined)
       return [
         true,
         typeof this.schema.spec.default === 'function' ? this.schema.spec.default() : this.schema.spec.default,

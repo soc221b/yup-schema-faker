@@ -57,6 +57,30 @@ it('defined allows null values', () => {
   expect(actual).toBe(null)
 })
 
+it('should works with default (return default)', () => {
+  const defaultData = new Date()
+  const defaultCb = jest.fn(() => defaultData)
+  const schema = mixed().default(defaultCb)
+  let count = 0
+  let actual
+  do {
+    actual = fake(schema)
+  } while (defaultCb.mock.calls.length === 0 && ++count < SAFE_COUNT)
+  expect(actual).toBeInstanceOf(Date)
+  expect(actual.toISOString()).toBe(defaultData.toISOString())
+})
+
+it('should works with default (return random value)', () => {
+  const defaultData = new Date()
+  const defaultCb = jest.fn(() => defaultData)
+  const schema = mixed().default(defaultCb)
+  let actual
+  do {
+    actual = fake(schema)
+  } while (actual === defaultData)
+  expect(actual).not.toBe(defaultData)
+})
+
 it('should works with oneOf', () => {
   const data = {}
   const schema = mixed().defined().oneOf([data])
