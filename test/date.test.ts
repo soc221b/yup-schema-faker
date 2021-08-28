@@ -32,6 +32,17 @@ it('should sometimes fake string type date when not in strict mode', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
+it('should not fake string type date when set strict option to true', () => {
+  const schema = date().defined()
+  let count = 0
+  let actual
+  do {
+    actual = fake(schema, { strict: true })
+  } while (actual instanceof Date && ++count < SAFE_COUNT)
+  expect(actual instanceof Date).toBe(true)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
 it('should works with min', () => {
   const now = new Date().toISOString()
   const schema = date().defined().min(now)

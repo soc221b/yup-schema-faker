@@ -10,4 +10,5 @@ export interface Options {
   context?: object
   parent?: any
   value?: any
+  strict?: boolean
 }

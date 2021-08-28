@@ -1,6 +1,6 @@
 import { datatype } from './faker'
 import { AnySchema } from 'yup'
-import { BaseFaker, typeToFaker } from './fakers/base'
+import { BaseFaker, globalOptions, typeToFaker } from './fakers/base'
 import { MixedFaker } from './fakers/mixed'
 import { Fake, Options } from './type'
 import { isLazy, isReference } from './util'
@@ -23,6 +23,7 @@ export function rootFake<Schema extends AnySchema>(schema: Schema, options: Opti
   return faker.fake(options)
 }
 
-export function fake<Schema extends AnySchema>(schema: Schema, options?: Pick<Options, 'context'>) {
+export function fake<Schema extends AnySchema>(schema: Schema, options?: Pick<Options, 'context' | 'strict'>) {
+  globalOptions.strict = options?.strict ?? false
   return rootFake(schema, options)
 }

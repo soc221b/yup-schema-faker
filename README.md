@@ -69,6 +69,8 @@ Function signature:
 interface Options {
   // see: https://github.com/jquense/yup#mixedwhenkeys-string--arraystring-builder-object--value-schema-schema-schema
   context?: object
+  // see: https://github.com/jquense/yup#mixedvalidatevalue-any-options-object-promiseany-validationerror
+  strict?: boolean
 }
 
 function fake<Schema etends AnySchema>(schema: Schema, options?: Options): ReturnType<Schema['cast']>;

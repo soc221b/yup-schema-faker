@@ -31,6 +31,17 @@ it('should sometimes fake string type number when not in strict mode', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
+it('should not fake string type number when set strict option to true', () => {
+  const schema = number().defined()
+  let count = 0
+  let actual
+  do {
+    actual = fake(schema, { strict: true })
+  } while (typeof actual === 'number' && ++count < SAFE_COUNT)
+  expect(typeof actual).toBe('number')
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
 it('should works with number.min', () => {
   const schema = number().defined().min(42)
   const actual = fake(schema)

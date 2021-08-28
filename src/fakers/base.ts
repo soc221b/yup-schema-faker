@@ -4,6 +4,8 @@ import { isSchema } from 'yup'
 import type { AnySchema } from 'yup'
 import type { Fake, Options } from '../type'
 
+export const globalOptions = { strict: false }
+
 const SAFE_COUNT = 99999
 export abstract class BaseFaker<Schema extends AnySchema> {
   static rootFake: Fake<AnySchema>

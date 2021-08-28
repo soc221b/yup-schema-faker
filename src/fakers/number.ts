@@ -1,7 +1,7 @@
 import { number } from 'yup'
 import { datatype } from '../faker'
 import { MixedFaker } from './mixed'
-import { addFaker } from './base'
+import { addFaker, globalOptions } from './base'
 
 import type { NumberSchema } from 'yup'
 
@@ -36,7 +36,7 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
           precision: 1 / 1e16,
         })
 
-    if (this.schema.spec.strict !== true && datatype.float({ min: 0, max: 1 }) > 0.8) {
+    if ((this.schema.spec.strict || globalOptions.strict) !== true && datatype.float({ min: 0, max: 1 }) > 0.8) {
       return result + ''
     }
 
