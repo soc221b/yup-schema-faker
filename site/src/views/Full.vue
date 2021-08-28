@@ -18,7 +18,7 @@ const schema = object({
   key: mixed(),
   ref: ref('key')
 })
-  .defined().strict().noUnknown()
+  .noUnknown()
 `.trim(),
       },
       'yup.lazy': {
@@ -29,12 +29,12 @@ const schema = object()
     left: mixed().when('value', {
       is: value => value > 60,
       then: lazy(() => schema),
-      otherwise: mixed().defined().oneOf([undefined]),
+      otherwise: mixed().oneOf([undefined]),
     }),
     right: mixed().when('value', {
       is: value => value > 60,
       then: lazy(() => schema),
-      otherwise: mixed().defined().oneOf([undefined]),
+      otherwise: mixed().oneOf([undefined]),
     }),
   })
 `.trim(),
@@ -43,8 +43,7 @@ const schema = object()
         'yup.mixed.default': `const schema = mixed()
   .default("A default value")`,
         'yup.mixed.nullable': `const schema = mixed()
-  .nullable()
-  .defined()`,
+  .nullable()`,
         'yup.mixed.required': `const schema = mixed()
   .required()`,
         'yup.mixed.notRequired': `const schema = mixed()
@@ -52,11 +51,10 @@ const schema = object()
         'yup.mixed.defined': `const schema = mixed()
   .defined()`,
         'yup.mixed.oneOf': `const schema = mixed()
-  .oneOf(['foo', 42])
-  .defined()`,
+  .oneOf(['foo', 42])`,
         'yup.mixed.notOneOf': `const schema = number()
   .notOneOf([1, 2])
-  .defined().integer().min(1).max(5)`,
+  .integer().min(1).max(5)`,
         'yup.mixed.when': `
 const schema = object().defined().strict().noUnknown().shape({
   value: boolean().defined(),
@@ -70,98 +68,79 @@ const schema = object().defined().strict().noUnknown().shape({
       },
       'yup.boolean': {
         'yup.boolean.isTrue': `const schema = boolean()
-  .isTrue()
-  .defined()`,
+  .isTrue()`,
         'yup.boolean.isFalse': `const schema = boolean()
-  .isFalse()
-  .defined()`,
+  .isFalse()`,
       },
       'yup.number': {
         'yup.number.min': `const schema = number()
-  .min(1)
-  .defined().integer().max(5)`,
+  .min(20)
+  .max(100)`,
         'yup.number.max': `const schema = number()
-  .max(5)
-  .defined().integer().min(1)`,
+  .max(-20)
+  .min(-100)`,
         'yup.number.moreThan': `const schema = number()
-  .moreThan(1)
-  .defined().integer().lessThan(5)`,
+  .moreThan(20)
+  .lessThan(100)`,
         'yup.number.lessThan': `const schema = number()
-  .lessThan(5)
-  .defined().integer().moreThan(1)`,
+  .lessThan(-20)
+  .moreThan(-100)`,
         'yup.number.positive': `const schema = number()
-  .positive()
-  .defined().max(5)`,
+  .positive()`,
         'yup.number.negative': `const schema = number()
-  .negative()
-  .defined().min(-5)`,
+  .negative()`,
         'yup.number.integer': `const schema = number()
-  .integer()
-  .defined().min(-5).max(5)`,
+  .integer()`,
       },
       'yup.date': {
         'yup.date.min': `const schema = date()
-  .min(new Date())
-  .defined()`,
+  .min(new Date())`,
         'yup.date.max': `const schema = date()
-  .max(new Date())
-  .defined()`,
+  .max(new Date())`,
       },
       'yup.string': {
         'yup.string.required': `const schema = string()
   .required()`,
         'yup.string.length': `const schema = string()
-  .length(5)
-  .defined()`,
+  .length(10)`,
         'yup.string.min': `const schema = string()
-  .min(5)
-  .defined()`,
+  .min(10)`,
         'yup.string.max': `const schema = string()
-  .max(5)
-  .defined()`,
+  .max(10)`,
         'yup.string.matches': `const schema = string()
-  .matches(/\\w{1,5}/)
-  .defined()`,
+  .matches(/(foo|bar|baz)/)`,
         'yup.string.email': `const schema = string()
-  .email()
-  .defined()`,
+  .email()`,
         'yup.string.url': `const schema = string()
-  .url()
-  .defined()`,
+  .url()`,
         'yup.string.uuid': `const schema = string()
-  .uuid()
-  .defined()`,
+  .uuid()`,
         'yup.string.trim': `const schema = string()
   .trim()
-  .defined().strict()`,
+  .strict()`,
         'yup.string.lowercase': `const schema = string()
   .lowercase()
-  .defined().strict()`,
+  .strict()`,
         'yup.string.uppercase': `const schema = string()
   .uppercase()
-  .defined().strict()`,
+  .strict()`,
       },
       'yup.array': {
         'yup.array.of': `const schema = array()
-  .of(mixed())
-  .defined()`,
+  .of(mixed())`,
         'yup.array.length': `const schema = array()
-  .length(5)
-  .defined()`,
+  .length(5)`,
         'yup.array.min': `const schema = array()
-  .min(5)
-  .defined()`,
+  .min(5)`,
         'yup.array.max': `const schema = array()
-  .max(5)
-  .defined()`,
+  .max(5)`,
       },
       'yup.object': {
         'yup.object.shape': `const schema = object()
-  .shape({ key: mixed() })
-  .defined()`,
+  .shape({ key: mixed() })`,
         'yup.object.noUnknown': `const schema = object()
   .noUnknown()
-  .defined().strict().shape({ key: mixed() })`,
+  .shape({ key: mixed() })`,
       },
     }
 

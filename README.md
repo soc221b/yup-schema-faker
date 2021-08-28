@@ -177,6 +177,7 @@ const data = booleanSchema.fake() // boolean
   - ✅ yup.ref(path: string, options: { contextPrefix: string }): Ref
   - ✅ yup.lazy((value: any) => Schema): Lazy
 - mixed
+  - ✅ mixed.strict(isStrict: boolean = false): Schema
   - ✅ mixed.default(value: any): Schema
   - ✅ mixed.nullable(isNullable: boolean = true): Schema
   - ✅ mixed.required(message?: string | function): Schema
