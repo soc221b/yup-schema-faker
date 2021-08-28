@@ -60,3 +60,15 @@ it('should works with of', () => {
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
+
+it('should sometimes fake stringified data when not in strict mode', () => {
+  const schema = array().defined()
+  let count = 0
+  let actual: any
+  do {
+    actual = fake(schema)
+  } while (Array.isArray(actual) && ++count < SAFE_COUNT)
+  expect(typeof actual).toBe('string')
+  expect(Array.isArray(JSON.parse(actual))).toBe(true)
+  expect(schema.isValidSync(actual)).toBe(true)
+})

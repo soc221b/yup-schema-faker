@@ -2,7 +2,7 @@ import { mixed, object } from 'yup'
 import { datatype, lorem } from '../faker'
 import { MixedFaker } from './mixed'
 import { isReference } from '../util'
-import { addFaker } from './base'
+import { addFaker, globalOptions } from './base'
 
 import type { AnySchema, ObjectSchema } from 'yup'
 import type { Options } from '../type'
@@ -42,6 +42,10 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
       if (unknownFields.every(field => (result as any)[field] === undefined)) {
         unknownFields.forEach(field => delete (result as any)[field])
       }
+    }
+
+    if ((this.schema.spec.strict || globalOptions.strict) !== true && datatype.float({ min: 0, max: 1 }) > 0.9) {
+      result = JSON.stringify(result)
     }
 
     return result

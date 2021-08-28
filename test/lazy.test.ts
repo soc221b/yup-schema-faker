@@ -30,6 +30,7 @@ it('should works with lazy (array)', () => {
   let actual
   do {
     actual = fake(schema)
+    if (typeof actual === 'string') actual = JSON.parse(actual)
   } while ((actual === undefined || actual.every((item: any) => item.under === undefined)) && ++count < SAFE_COUNT)
   expect(schema.isValidSync(actual)).toBe(true)
 })

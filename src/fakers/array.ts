@@ -1,7 +1,7 @@
 import { mixed, array } from 'yup'
 import { datatype } from '../faker'
 import { MixedFaker } from './mixed'
-import { addFaker } from './base'
+import { addFaker, globalOptions } from './base'
 
 import type { AnySchema, ArraySchema } from 'yup'
 import type { Options } from '../type'
@@ -19,13 +19,19 @@ export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
       ((this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.max as number) || undefined) ??
       min + 10
 
-    const array = Array(datatype.number({ min, max })).fill(null)
+    let array = Array(datatype.number({ min, max })).fill(null)
     const innerSchema = this.schema.innerType
     if (innerSchema) {
-      return array.map(() => ArrayFaker.rootFake(this.schema.innerType!, options))
+      array = array.map(() => ArrayFaker.rootFake(this.schema.innerType!, options))
     } else {
-      return array.map(() => ArrayFaker.rootFake(mixed(), options))
+      array = array.map(() => ArrayFaker.rootFake(mixed(), options))
     }
+
+    if ((this.schema.spec.strict || globalOptions.strict) !== true && datatype.float({ min: 0, max: 1 }) > 0.9) {
+      return JSON.stringify(array)
+    }
+
+    return array
   }
 }
 
