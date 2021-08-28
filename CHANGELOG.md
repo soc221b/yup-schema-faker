@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/iendeavor/yup-schema-faker/compare/v1.5.9...v1.6.0) (2021-08-28)
+
+
+### Features
+
+* add strict option to fake ([4d9e4a9](https://github.com/iendeavor/yup-schema-faker/commit/4d9e4a99d1ec7870ce120a2adf40ee7f14a34c8b))
+* to simulate cast when not in strict mode ([930b490](https://github.com/iendeavor/yup-schema-faker/commit/930b49039c9898b70296c0ac2ef10f1b6d0167d9))
+* to simulate skipping coercion when not in strict mode ([4d53e85](https://github.com/iendeavor/yup-schema-faker/commit/4d53e8511a933199701a49a36bda68682af9b57f))
+
+
+### Bug Fixes
+
+* enable noUnknown will also enable stripUnknown when not in strict mode ([1759663](https://github.com/iendeavor/yup-schema-faker/commit/175966350fe39e7faeae8685fcf42d7a82ac291d))
+* inherit strict mode ([fa3e8db](https://github.com/iendeavor/yup-schema-faker/commit/fa3e8db02bf41607ad7134065277884c5f2069f9))
+* object should not fake unknown fields when in strict mode ([2ac3cd7](https://github.com/iendeavor/yup-schema-faker/commit/2ac3cd74ccf99a3493dae7e45a4de0731888ec3d))
+* should not return undefeind if provide default ([b72e2c8](https://github.com/iendeavor/yup-schema-faker/commit/b72e2c8d3876df243105f6f549b0319e5d1f4f58))
+
 ### [1.5.9](https://github.com/iendeavor/yup-schema-faker/compare/v1.5.8...v1.5.9) (2021-08-27)
 
 
