@@ -28,7 +28,10 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
         }, result),
     }
 
-    const noUnknown = this.schema.tests.some(test => test.OPTIONS.name === 'noUnknown')
+    const noUnknown =
+      this.schema.spec.strict ||
+      globalOptions.strict ||
+      this.schema.tests.some(test => test.OPTIONS.name === 'noUnknown')
     if (noUnknown === false) {
       const unknownFields = Array(datatype.number({ min: 0, max: 5 }))
         .fill(null)
