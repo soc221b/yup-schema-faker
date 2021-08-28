@@ -25,7 +25,7 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
       max = Math.min(max, less - precision)
     }
 
-    return this.schema.tests.find(test => test.OPTIONS.name === 'integer')
+    const result = this.schema.tests.find(test => test.OPTIONS.name === 'integer')
       ? datatype.number({
           min: Math.ceil(min),
           max: Math.floor(max),
@@ -35,6 +35,12 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
           max,
           precision: 1 / 1e16,
         })
+
+    if (this.schema.spec.strict !== true && datatype.float({ min: 0, max: 1 }) > 0.8) {
+      return result + ''
+    }
+
+    return result
   }
 }
 

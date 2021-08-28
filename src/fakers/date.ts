@@ -1,5 +1,6 @@
 import { date as yupDate } from 'yup'
 import { date } from 'faker'
+import { datatype } from '../faker'
 import { MixedFaker } from './mixed'
 import { addFaker } from './base'
 
@@ -15,7 +16,13 @@ export class DateFaker extends MixedFaker<DateSchema> {
     const max =
       (this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.max as Date | undefined) ?? MAX
 
-    return date.between(min, max)
+    const result = date.between(min, max)
+
+    if (this.schema.spec.strict !== true && datatype.float({ min: 0, max: 1 }) > 0.8) {
+      return result.toISOString()
+    }
+
+    return result
   }
 }
 
