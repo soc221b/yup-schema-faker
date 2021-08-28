@@ -224,7 +224,6 @@ const data = booleanSchema.fake() // boolean
 - object
   - ✅ object.shape(fields: object, noSortEdges?: Array<[string, string]>): Schema
   - ✅ object.noUnknown(onlyKnownKeys: boolean = true, message?: string | function): Schema
-    > fake function will generate unknown fields, unless in strict mode
 
 ## Contributing
 
