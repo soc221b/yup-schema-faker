@@ -1,4 +1,4 @@
-import { object } from 'yup'
+import { object, array, number } from 'yup'
 import { fake } from '../src'
 import { SAFE_COUNT } from './constant'
 
@@ -50,5 +50,16 @@ it('should sometimes fake stringified data when not in strict mode', () => {
   } while (typeof actual === 'object' && ++count < SAFE_COUNT)
   expect(typeof actual).toBe('string')
   expect(typeof JSON.parse(actual)).toBe('object')
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
+it('should inherit strict mode', () => {
+  const schema = object({
+    key: array(number().defined()).length(10000).defined(),
+  })
+    .strict()
+    .defined()
+  const actual = fake(schema)
+  actual.key!.every(s => expect(typeof s).not.toBe('string'))
   expect(schema.isValidSync(actual)).toBe(true)
 })
