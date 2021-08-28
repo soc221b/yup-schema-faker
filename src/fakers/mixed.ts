@@ -29,6 +29,10 @@ export class MixedFaker<Schema extends AnySchema> extends BaseFaker<Schema> {
       randomSchema = randomSchema.nullable()
     }
 
+    if (this.schema.spec.default) {
+      randomSchema.spec.default = this.schema.spec.default
+    }
+
     return MixedFaker.rootFake(randomSchema, options)
   }
 }

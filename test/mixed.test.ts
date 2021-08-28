@@ -81,6 +81,16 @@ it('should works with default (return random value)', () => {
   expect(actual).not.toBe(defaultData)
 })
 
+it('should not return undefined if provide default', () => {
+  const schema = mixed().default(123)
+  let count = 0
+  let actual
+  do {
+    actual = fake(schema)
+    expect(actual).not.toBe(undefined)
+  } while (++count < SAFE_COUNT)
+})
+
 it('should works with oneOf', () => {
   const data = {}
   const schema = mixed().defined().oneOf([data])
