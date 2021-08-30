@@ -16,13 +16,13 @@ it('should works with default', () => {
 })
 
 it('should works with date', () => {
-  const schema = date().defined()
+  const schema = date().defined().nullable(false)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should sometimes fake string type date when not in strict mode', () => {
-  const schema = date().defined()
+  const schema = date().defined().strict(false).nullable(false)
   let count = 0
   let actual
   do {
@@ -33,7 +33,7 @@ it('should sometimes fake string type date when not in strict mode', () => {
 })
 
 it('should not fake string type date when set strict option to true', () => {
-  const schema = date().defined()
+  const schema = date().defined().nullable(false)
   let count = 0
   let actual
   do {
@@ -45,21 +45,21 @@ it('should not fake string type date when set strict option to true', () => {
 
 it('should works with min', () => {
   const now = new Date().toISOString()
-  const schema = date().defined().min(now)
+  const schema = date().defined().min(now).nullable(false)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with max', () => {
   const now = new Date().toISOString()
-  const schema = date().defined().max(now)
+  const schema = date().defined().max(now).nullable(false)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with min, max', () => {
   const now = new Date().toISOString()
-  const schema = date().defined().min(now).max(now)
+  const schema = date().defined().min(now).max(now).nullable(false)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })

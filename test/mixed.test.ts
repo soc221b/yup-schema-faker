@@ -93,18 +93,18 @@ it('should not return undefined if provide default', () => {
 
 it('should works with oneOf', () => {
   const data = {}
-  const schema = mixed().defined().oneOf([data])
+  const schema = mixed().defined().oneOf([data]).nullable(false)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with both oneOf and notOneOf', () => {
-  const schema = mixed().defined().oneOf(['jimmy', 42]).notOneOf([42])
+  const schema = mixed().defined().oneOf(['jimmy', 42]).notOneOf([42]).nullable(false)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
   expect(actual).toBe('jimmy')
 
-  const schema2 = mixed().defined().notOneOf([42]).oneOf([42])
+  const schema2 = mixed().defined().notOneOf([42]).oneOf([42]).nullable(false)
   const actual2 = fake(schema2)
   expect(schema2.isValidSync(actual2)).toBe(true)
   expect(actual2).toBe(42)
@@ -118,8 +118,8 @@ it('should works with when', () => {
       isTrue: boolean().defined(),
       when: mixed().when('isTrue', {
         is: (value: boolean) => value,
-        then: boolean().defined().oneOf([true]),
-        otherwise: boolean().defined().oneOf([false]),
+        then: boolean().defined().oneOf([true]).nullable(false),
+        otherwise: boolean().defined().oneOf([false]).nullable(false),
       }),
     })
   const actual = fake(schema)
@@ -133,8 +133,8 @@ it('should works with when (with context)', () => {
     .shape({
       when: mixed().when('$isTrue', {
         is: (value: boolean) => value,
-        then: boolean().defined().oneOf([true]),
-        otherwise: boolean().defined().oneOf([false]),
+        then: boolean().defined().oneOf([true]).nullable(false),
+        otherwise: boolean().defined().oneOf([false]).nullable(false),
       }),
     })
   const context = {
@@ -153,8 +153,8 @@ it('should works with when (with multiple dependencies)', () => {
       sibling: boolean().defined(),
       count: boolean().when(['$sibling', '$context'], {
         is: (sibling: boolean, context: boolean) => sibling && context,
-        then: boolean().defined().oneOf([true]),
-        otherwise: boolean().defined().oneOf([false]),
+        then: boolean().defined().oneOf([true]).nullable(false),
+        otherwise: boolean().defined().oneOf([false]).nullable(false),
       }),
     })
   const context = {
@@ -175,7 +175,8 @@ it('should works with when (with function)', () => {
         .defined()
         .when('isTrue', (isTrue: number, schema: BooleanSchema) => {
           return isTrue ? schema.oneOf([true]) : schema.oneOf([false])
-        }),
+        })
+        .nullable(false),
     })
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)

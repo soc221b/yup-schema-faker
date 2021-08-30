@@ -21,7 +21,7 @@ it('should works with number', () => {
 })
 
 it('should sometimes fake string type number when not in strict mode', () => {
-  const schema = number().defined()
+  const schema = number().defined().strict(false).nullable(false)
   let count = 0
   let actual
   do {
@@ -32,7 +32,7 @@ it('should sometimes fake string type number when not in strict mode', () => {
 })
 
 it('should not fake string type number when set strict option to true', () => {
-  const schema = number().defined()
+  const schema = number().defined().nullable(false)
   let count = 0
   let actual
   do {

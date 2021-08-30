@@ -27,7 +27,7 @@ it('should works with shape', () => {
 })
 
 it('should works with noUnknown', () => {
-  const schema = object().defined().shape({ key: object().defined() }).noUnknown()
+  const schema = object().defined().shape({ key: object().defined() }).noUnknown().nullable(false)
   let actual = fake(schema)
   if (typeof actual === 'string') actual = JSON.parse(actual)
   expect(Object.keys(actual).length).toBe(1)
@@ -35,14 +35,14 @@ it('should works with noUnknown', () => {
 })
 
 it('should works with noUnknown', () => {
-  const schema = object().strict(true).defined().shape({ key: object().defined() }).noUnknown()
+  const schema = object().strict(true).defined().shape({ key: object().defined() }).noUnknown().nullable(false)
   const actual = fake(schema)
   expect(Object.keys(actual).length).toBe(1)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should sometimes fake stringified data when not in strict mode', () => {
-  const schema = object().defined()
+  const schema = object().defined().strict(false).nullable(false)
   let count = 0
   let actual: any
   do {
@@ -55,10 +55,11 @@ it('should sometimes fake stringified data when not in strict mode', () => {
 
 it('should inherit strict mode', () => {
   const schema = object({
-    key: array(number().defined()).min(10000).max(10000).defined(),
+    key: array(number().defined()).min(10000).max(10000).defined().nullable(false),
   })
     .strict(true)
     .defined()
+    .nullable(false)
   const actual = fake(schema)
   actual.key!.every(s => expect(typeof s).not.toBe('string'))
   expect(schema.isValidSync(actual)).toBe(true)

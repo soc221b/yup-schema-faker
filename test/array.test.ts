@@ -55,7 +55,7 @@ it('should works with of', () => {
 })
 
 it('should sometimes fake stringified data when not in strict mode', () => {
-  const schema = array().defined()
+  const schema = array().defined().strict(false).nullable(false)
   let count = 0
   let actual: any
   do {
@@ -67,11 +67,12 @@ it('should sometimes fake stringified data when not in strict mode', () => {
 })
 
 it('should inherit strict mode', () => {
-  const schema = array(object({ key: number().defined() }).defined())
+  const schema = array(object({ key: number().defined() }).defined().nullable(false))
     .min(10000)
     .max(10000)
     .strict(true)
     .defined()
+    .nullable(false)
   const actual = fake(schema)
   actual!.every(o => expect(typeof o).toBe('object'))
   actual!.every(o => expect(typeof o.key).not.toBe('string'))
