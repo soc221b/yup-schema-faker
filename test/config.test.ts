@@ -11,6 +11,7 @@ const schemas = [
   yup.date(),
 
   yup.string(),
+  yup.string().uuid(),
   yup.string().email(),
   yup.string().url(),
   yup.string().matches(/\d{10}/),
