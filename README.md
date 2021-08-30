@@ -214,8 +214,6 @@ const data = booleanSchema.fake() // boolean
   - ✅ number.negative(message?: string | function): Schema
   - ✅ number.integer(message?: string | function): Schema
 - boolean
-  - ✅ boolean.isTrue(message?: string | function): Schema
-  - ✅ boolean.isFalse(message?: string | function): Schema
 - date
   - ✅ date.min(limit: Date | string | Ref, message?: string | function): Schema
   - ✅ date.max(limit: Date | string | Ref, message?: string | function): Schema

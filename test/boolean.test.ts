@@ -25,17 +25,3 @@ it('should works with boolean', () => {
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
-
-it('should works with isTrue', () => {
-  const schema = boolean().defined().isTrue()
-  const actual = fake(schema)
-  expect(schema.isValidSync(actual)).toBe(true)
-  expect(actual).toBe(true)
-})
-
-it('should works with isFalse', () => {
-  const schema = boolean().defined().isFalse()
-  const actual = fake(schema)
-  expect(schema.isValidSync(actual)).toBe(true)
-  expect(actual).toBe(false)
-})

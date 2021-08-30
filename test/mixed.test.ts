@@ -118,8 +118,8 @@ it('should works with when', () => {
       isTrue: boolean().defined(),
       when: mixed().when('isTrue', {
         is: (value: boolean) => value,
-        then: boolean().defined().isTrue(),
-        otherwise: boolean().defined().isFalse(),
+        then: boolean().defined().oneOf([true]),
+        otherwise: boolean().defined().oneOf([false]),
       }),
     })
   const actual = fake(schema)
@@ -133,8 +133,8 @@ it('should works with when (with context)', () => {
     .shape({
       when: mixed().when('$isTrue', {
         is: (value: boolean) => value,
-        then: boolean().defined().isTrue(),
-        otherwise: boolean().defined().isFalse(),
+        then: boolean().defined().oneOf([true]),
+        otherwise: boolean().defined().oneOf([false]),
       }),
     })
   const context = {
@@ -153,8 +153,8 @@ it('should works with when (with multiple dependencies)', () => {
       sibling: boolean().defined(),
       count: boolean().when(['$sibling', '$context'], {
         is: (sibling: boolean, context: boolean) => sibling && context,
-        then: boolean().defined().isTrue(),
-        otherwise: boolean().defined().isFalse(),
+        then: boolean().defined().oneOf([true]),
+        otherwise: boolean().defined().oneOf([false]),
       }),
     })
   const context = {
@@ -174,7 +174,7 @@ it('should works with when (with function)', () => {
       when: boolean()
         .defined()
         .when('isTrue', (isTrue: number, schema: BooleanSchema) => {
-          return isTrue ? schema.isTrue() : schema.isFalse()
+          return isTrue ? schema.oneOf([true]) : schema.oneOf([false])
         }),
     })
   const actual = fake(schema)

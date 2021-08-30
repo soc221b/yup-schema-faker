@@ -60,17 +60,11 @@ const schema = object().defined().strict().noUnknown().shape({
   value: boolean().defined(),
   reverse: boolean().defined().when('value', {
     is: value => value,
-    then: boolean().isFalse(),
-    otherwise: boolean().isTrue(),
+    then: boolean().oneOf([false]),
+    otherwise: boolean().oneOf([true]),
   })
 })
 `.trim(),
-      },
-      'yup.boolean': {
-        'yup.boolean.isTrue': `const schema = boolean()
-  .isTrue()`,
-        'yup.boolean.isFalse': `const schema = boolean()
-  .isFalse()`,
       },
       'yup.number': {
         'yup.number.min': `const schema = number()
