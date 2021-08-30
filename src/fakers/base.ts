@@ -1,20 +1,21 @@
 import { datatype } from '../faker'
 import { isSchema } from 'yup'
+import { hasDefault, getDefault, isNullable } from '../util'
 
-import type { AnySchema } from 'yup'
+import type { Schema } from 'yup'
 import type { Fake, Options } from '../type'
 
 export const globalOptions = { strict: false }
 
 const SAFE_COUNT = 99999
-export abstract class BaseFaker<Schema extends AnySchema> {
-  static rootFake: Fake<AnySchema>
+export abstract class BaseFaker<S extends Schema<unknown>> {
+  static rootFake: Fake<Schema<unknown>>
 
-  static dedicatedTests: { [schema: string]: { [name: string]: (schema: AnySchema) => any } } = {}
+  static dedicatedTests: { [schema: string]: { [name: string]: (schema: Schema<unknown>) => any } } = {}
 
-  protected schema: Schema
+  protected schema: S
 
-  constructor(schema: Schema) {
+  constructor(schema: S) {
     this.schema = schema
   }
 
@@ -36,18 +37,17 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   }
 
   protected fakeDefault(): [boolean, any?] {
-    if (datatype.float({ min: 0, max: 1 }) > 0.9 && this.schema.spec.default !== undefined)
-      return [
-        true,
-        typeof this.schema.spec.default === 'function' ? this.schema.spec.default() : this.schema.spec.default,
-      ]
+    if (datatype.float({ min: 0, max: 1 }) > 0.9 && hasDefault(this.schema)) {
+      const _default = getDefault(this.schema)
+      return [true, typeof _default === 'function' ? _default() : _default]
+    }
 
     return [false]
   }
 
   protected fakeUndefined(): [boolean, any?] {
     if (
-      this.schema.spec.default === undefined &&
+      hasDefault(this.schema) === false &&
       datatype.float({ min: 0, max: 1 }) > 0.9 &&
       this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!)) === false
     )
@@ -59,7 +59,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   protected fakeNullable(): [boolean, any?] {
     if (
       datatype.float({ min: 0, max: 1 }) > 0.9 &&
-      this.schema.spec.nullable &&
+      isNullable(this.schema) &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false
     )
       return [true, null]
@@ -68,20 +68,22 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   }
 
   protected fakeOneOf(): [boolean, any?] {
-    const oneOf = this.schema.describe().oneOf
-    if (oneOf.length) return [true, oneOf[datatype.number({ min: 0, max: oneOf.length - 1 })]]
+    if (this.schema._whitelistError !== undefined) {
+      const oneOf = this.schema._whitelist.toArray()
+      return [true, oneOf[datatype.number({ min: 0, max: oneOf.length - 1 })]]
+    }
 
     return [false]
   }
 
   protected fakeNotOneOf(options?: Options): [boolean, any?] {
-    const notOneOf = this.schema.describe().notOneOf
-    if (notOneOf.length) {
+    const notOneOf = this.schema._blacklist
+    if (this.schema._blacklistError !== undefined) {
       let safeCount = 0
       let data
       do {
         data = this.doFake(options)
-      } while (notOneOf.includes(data) && ++safeCount < SAFE_COUNT)
+      } while (notOneOf.has(data) && ++safeCount < SAFE_COUNT)
       return [true, data]
     }
 
@@ -101,10 +103,10 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   protected doFake(_options?: Options) {}
 }
 
-export function fakeDedicatedTest<Schema extends AnySchema>(
-  schemaConstructor: (...arg: any[]) => Schema,
+export function fakeDedicatedTest<S extends Schema<unknown>>(
+  schemaConstructor: (...arg: any[]) => S,
   name: string,
-  fakeFn: (schema: AnySchema) => any,
+  fakeFn: (schema: Schema<unknown>) => any,
 ) {
   if (schemaConstructor === undefined || isSchema(schemaConstructor) === false)
     throw new TypeError('You must provide a yup schema constructor function')
@@ -117,8 +119,8 @@ export function fakeDedicatedTest<Schema extends AnySchema>(
 }
 
 export const typeToFaker = new Map<String, any>()
-export function addFaker<Schema extends AnySchema, Faker>(
-  schemaConstructor: (...arg: any[]) => Schema,
+export function addFaker<S extends Schema<unknown>, Faker>(
+  schemaConstructor: (...arg: any[]) => S,
   fakerConstructor: Faker,
 ) {
   if (schemaConstructor === undefined || isSchema(schemaConstructor) === false)

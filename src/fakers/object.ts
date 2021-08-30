@@ -1,10 +1,10 @@
 import { mixed, object } from 'yup'
 import { datatype, lorem } from '../faker'
 import { MixedFaker } from './mixed'
-import { isReference } from '../util'
+import { isReference, isStrict } from '../util'
 import { addFaker, globalOptions } from './base'
 
-import type { AnySchema, ObjectSchema } from 'yup'
+import type { Schema, ObjectSchema } from 'yup'
 import type { Options } from '../type'
 
 export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
@@ -16,22 +16,20 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
         .filter(key => isReference(this.schema.fields[key]) === false)
         .reduce((object, key) => {
           return Object.assign(object, {
-            [key]: ObjectFaker.rootFake(this.schema.fields[key] as AnySchema, { ...options, parent: result }),
+            [key]: ObjectFaker.rootFake(this.schema.fields[key] as Schema<unknown>, { ...options, parent: result }),
           })
         }, result),
       ...fields
         .filter(key => isReference(this.schema.fields[key]))
         .reduce((object, key) => {
           return Object.assign(object, {
-            [key]: ObjectFaker.rootFake(this.schema.fields[key] as AnySchema, { ...options, parent: result }),
+            [key]: ObjectFaker.rootFake(this.schema.fields[key] as Schema<unknown>, { ...options, parent: result }),
           })
         }, result),
     }
 
     const noUnknown =
-      this.schema.spec.strict ||
-      globalOptions.strict ||
-      this.schema.tests.some(test => test.OPTIONS.name === 'noUnknown')
+      isStrict(this.schema) || globalOptions.strict || this.schema.tests.some(test => test.OPTIONS.name === 'noUnknown')
     if (noUnknown === false) {
       const unknownFields = Array(datatype.number({ min: 0, max: 5 }))
         .fill(null)
@@ -47,7 +45,7 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
       }
     }
 
-    if ((this.schema.spec.strict || globalOptions.strict) !== true && datatype.float({ min: 0, max: 1 }) > 0.9) {
+    if ((isStrict(this.schema) || globalOptions.strict) !== true && datatype.float({ min: 0, max: 1 }) > 0.9) {
       result = JSON.stringify(result)
     }
 

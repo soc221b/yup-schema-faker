@@ -2,11 +2,12 @@ import { mixed, array } from 'yup'
 import { datatype } from '../faker'
 import { MixedFaker } from './mixed'
 import { addFaker, globalOptions } from './base'
+import { isStrict } from '../util'
 
-import type { AnySchema, ArraySchema } from 'yup'
+import type { Schema, ArraySchema } from 'yup'
 import type { Options } from '../type'
 
-export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
+export class ArrayFaker extends MixedFaker<ArraySchema<Schema<unknown>>> {
   doFake(options?: Options) {
     const min =
       ((this.schema.tests.find(test => test.OPTIONS.name === 'length')?.OPTIONS.params?.length as number) ||
@@ -27,7 +28,7 @@ export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
       array = array.map(() => ArrayFaker.rootFake(mixed(), options))
     }
 
-    if ((this.schema.spec.strict || globalOptions.strict) !== true && datatype.float({ min: 0, max: 1 }) > 0.9) {
+    if ((isStrict(this.schema) || globalOptions.strict) !== true && datatype.float({ min: 0, max: 1 }) > 0.9) {
       return JSON.stringify(array)
     }
 

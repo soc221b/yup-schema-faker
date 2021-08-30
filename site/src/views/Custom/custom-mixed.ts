@@ -1,5 +1,7 @@
-import { MixedSchema } from 'yup'
+import { mixed } from 'yup'
 import { addFaker, MixedFaker } from 'yup-schema-faker'
+
+const MixedSchema = mixed
 
 // Define a custom schema
 class CustomMixedSchema extends MixedSchema {

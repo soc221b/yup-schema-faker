@@ -1,12 +1,12 @@
-import { addMethod, mixed, boolean, number, date, string, array, object, AnySchema } from 'yup'
+import { addMethod, mixed, boolean, number, date, string, array, object } from 'yup'
 import { fake, Fake } from '../src'
 import { expectType, TypeEqual } from 'ts-expect'
 
 it('', () => {})
 
 declare module 'yup' {
-  interface BaseSchema {
-    fake<Schema extends AnySchema>(this: Schema): ReturnType<Fake<Schema>>
+  interface Schema<T, C = object> {
+    fake<S extends Schema<unknown>>(this: S): ReturnType<Fake<S>>
   }
 }
 

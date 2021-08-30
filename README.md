@@ -183,7 +183,7 @@ const data = booleanSchema.fake() // boolean
   - ✅ mixed.default(value: any): Schema
   - ✅ mixed.nullable(isNullable: boolean = true): Schema
   - ✅ mixed.required(message?: string | function): Schema
-  - ✅ mixed.notRequired(): Schema Alias: optional()
+  - ✅ mixed.notRequired(): Schema
   - ✅ mixed.defined(): Schema
   - ✅ mixed.oneOf(arrayOfValues: Array<any>, message?: string | function): Schema Alias: equals
   - ✅ mixed.notOneOf(arrayOfValues: Array<any>, message?: string | function)

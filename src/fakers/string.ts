@@ -3,6 +3,7 @@ import { random, datatype, internet, lorem } from '../faker'
 import { randexp } from 'randexp'
 import { MixedFaker } from './mixed'
 import { fakeDedicatedTest, addFaker, globalOptions } from './base'
+import { isStrict } from '../util'
 
 import type { StringSchema } from 'yup'
 
@@ -37,7 +38,7 @@ export class StringFaker extends MixedFaker<StringSchema> {
     result = result.slice(0, max).trim()
 
     const shouldTrim =
-      (this.schema.spec.strict || globalOptions.strict) && this.schema.tests.find(test => test.OPTIONS.name === 'trim')
+      (isStrict(this.schema) || globalOptions.strict) && this.schema.tests.find(test => test.OPTIONS.name === 'trim')
     if (shouldTrim) {
       result = result.trim() + random.alpha({ count: result.length })
     } else {
@@ -47,11 +48,11 @@ export class StringFaker extends MixedFaker<StringSchema> {
     result = result.slice(0, max)
 
     const lowercase =
-      (this.schema.spec.strict || globalOptions.strict) &&
+      (isStrict(this.schema) || globalOptions.strict) &&
       this.schema.tests.some(test => test.OPTIONS.name === 'string_case') &&
       this.schema.isValidSync(result.toLowerCase())
     const uppercase =
-      (this.schema.spec.strict || globalOptions.strict) &&
+      (isStrict(this.schema) || globalOptions.strict) &&
       this.schema.tests.some(test => test.OPTIONS.name === 'string_case') &&
       this.schema.isValidSync(result.toUpperCase())
     result = lowercase ? result.toLowerCase() : uppercase ? result.toUpperCase() : result

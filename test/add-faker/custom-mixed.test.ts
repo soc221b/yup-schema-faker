@@ -1,5 +1,7 @@
-import { MixedSchema } from 'yup'
+import { mixed } from 'yup'
 import { addFaker, MixedFaker, fake } from '../../src'
+
+const MixedSchema = mixed
 
 // define custom schema
 class CustomMixedSchema extends MixedSchema {

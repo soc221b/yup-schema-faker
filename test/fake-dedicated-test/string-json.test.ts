@@ -1,15 +1,17 @@
 import { addMethod, string, mixed, array } from 'yup'
 import { fake, fakeDedicatedTest } from '../../src'
 
-import type { AnySchema } from 'yup'
+import type { Schema } from 'yup'
 
 declare module 'yup' {
   interface StringSchema {
-    json<Schema extends AnySchema>(this: Schema, schema: AnySchema): Schema
+    json<S extends Schema<unknown>>(this: S, schema: Schema<unknown>): S
+
+    test(_: unknown): this
   }
 }
 
-addMethod(string, 'json', function (schema: AnySchema) {
+addMethod(string, 'json', function (schema: Schema<unknown>) {
   return this.test({
     name: 'json',
     params: {
@@ -42,14 +44,16 @@ it('should be a valid schema', () => {
 
 it('should be allowed to add dedicated test', () => {
   fakeDedicatedTest(string, 'json', schema => {
-    const innerSchema = schema.tests.find(test => test.OPTIONS.name === 'json')?.OPTIONS.params?.schema as AnySchema
+    const innerSchema = schema.tests.find(test => test.OPTIONS.name === 'json')?.OPTIONS.params
+      ?.schema as Schema<unknown>
     return fake(innerSchema)
   })
 })
 
 it('should run dedicated test', () => {
   fakeDedicatedTest(string, 'json', schema => {
-    const innerSchema = schema.tests.find(test => test.OPTIONS.name === 'json')?.OPTIONS.params?.schema as AnySchema
+    const innerSchema = schema.tests.find(test => test.OPTIONS.name === 'json')?.OPTIONS.params
+      ?.schema as Schema<unknown>
     return JSON.stringify(fake(innerSchema))
   })
 

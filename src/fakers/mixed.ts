@@ -1,18 +1,24 @@
 import { datatype } from '../faker'
 import { boolean, number, string, date, mixed } from 'yup'
 import { BaseFaker, addFaker } from './base'
+import { getDefault, hasDefault, isNullable } from '../util'
 
-import type { AnySchema } from 'yup'
+import type { Schema, BooleanSchema, NumberSchema, StringSchema, DateSchema } from 'yup'
 import type { Options } from '../type'
 
 const booleanSchema = boolean()
 const numberSchema = number()
 const stringSchema = string()
 const dateSchema = date()
-const schemas: AnySchema[] = [booleanSchema, numberSchema, stringSchema, dateSchema]
+const schemas: Array<BooleanSchema<any> | NumberSchema<any> | StringSchema<any> | DateSchema<any>> = [
+  booleanSchema,
+  numberSchema,
+  stringSchema,
+  dateSchema,
+]
 
-export class MixedFaker<Schema extends AnySchema> extends BaseFaker<Schema> {
-  constructor(schema: Schema) {
+export class MixedFaker<S extends Schema<unknown>> extends BaseFaker<S> {
+  constructor(schema: S) {
     super(schema)
     this.schema = schema
   }
@@ -24,13 +30,13 @@ export class MixedFaker<Schema extends AnySchema> extends BaseFaker<Schema> {
       randomSchema = randomSchema.required()
     }
 
-    if (this.schema.spec.nullable) {
+    if (isNullable(this.schema)) {
       /* istanbul ignore next */
       randomSchema = randomSchema.nullable()
     }
 
-    if (this.schema.spec.default) {
-      randomSchema.spec.default = this.schema.spec.default
+    if (hasDefault(this.schema)) {
+      randomSchema = randomSchema.default(getDefault(this.schema))
     }
 
     return MixedFaker.rootFake(randomSchema, options)

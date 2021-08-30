@@ -1,11 +1,19 @@
 import { addMethod, mixed } from 'yup'
 import { fake, fakeDedicatedTest } from '../../src'
 
-import type { AnySchema } from 'yup'
+import type { Schema } from 'yup'
 
 declare module 'yup' {
-  interface BaseSchema {
-    oneOfSchema<Schema extends AnySchema>(this: Schema, schemas: AnySchema[]): Schema
+  interface Schema<T> {
+    oneOfSchema<S extends Schema<unknown>>(this: S, schemas: Schema<unknown>[]): S
+
+    tests: {
+      OPTIONS: {
+        name: string
+        params?: Record<any, any>
+      }
+    }[]
+    test(_: unknown): this
   }
 }
 
@@ -20,8 +28,8 @@ addMethod(mixed, 'oneOfSchema', function (schemas) {
     params: {
       schemas,
     },
-    test(value) {
-      return schemas.some((schema: AnySchema) => schema.isValidSync(value))
+    test(value: any) {
+      return schemas.some((schema: Schema<unknown>) => schema.isValidSync(value))
     },
   })
 })
@@ -43,7 +51,7 @@ it('should be a valid schema', () => {
 it('should be allowed to add dedicated test', () => {
   fakeDedicatedTest(mixed, 'oneOfSchema', schema => {
     const innerSchema = schema.tests.find(test => test.OPTIONS.name === 'oneOfSchema')?.OPTIONS.params
-      ?.schema as AnySchema
+      ?.schema as Schema<unknown>
     return fake(innerSchema)
   })
 })
@@ -51,7 +59,7 @@ it('should be allowed to add dedicated test', () => {
 it('should run dedicated test', () => {
   fakeDedicatedTest(mixed, 'oneOfSchema', schema => {
     const innerSchemas = schema.tests.find(test => test.OPTIONS.name === 'oneOfSchema')?.OPTIONS.params
-      ?.schemas as AnySchema[]
+      ?.schemas as Schema<unknown>[]
     const pickedSchema = innerSchemas[Math.floor(Math.random() * innerSchemas.length)]
     return fake(pickedSchema)
   })
