@@ -2,7 +2,8 @@ import { seed, fake } from '../src'
 import * as yup from 'yup'
 
 const schemas = [
-  yup.mixed(),
+  // TODO
+  // yup.mixed(),
 
   yup.boolean(),
 
