@@ -98,13 +98,13 @@ it('should works with min, max, and length', () => {
 })
 
 it('should works with lowercase', () => {
-  const schema = string().strict().defined().lowercase()
+  const schema = string().strict(true).defined().lowercase()
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with uppercase', () => {
-  const schema = string().strict().defined().uppercase()
+  const schema = string().strict(true).defined().uppercase()
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
@@ -117,7 +117,7 @@ it('should works with matches', () => {
 })
 
 it('should works with trim', () => {
-  const schema = string().defined().strict().trim().min(10).max(20)
+  const schema = string().defined().strict(true).trim().min(10).max(20)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })

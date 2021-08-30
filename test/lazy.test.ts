@@ -18,7 +18,7 @@ it('should works with lazy (array)', () => {
     .min(1)
     .of(
       object()
-        .strict()
+        .strict(true)
         .noUnknown()
         .required()
         .shape({

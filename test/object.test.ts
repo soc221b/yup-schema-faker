@@ -35,7 +35,7 @@ it('should works with noUnknown', () => {
 })
 
 it('should works with noUnknown', () => {
-  const schema = object().strict().defined().shape({ key: object().defined() }).noUnknown()
+  const schema = object().strict(true).defined().shape({ key: object().defined() }).noUnknown()
   const actual = fake(schema)
   expect(Object.keys(actual).length).toBe(1)
   expect(schema.isValidSync(actual)).toBe(true)
@@ -57,7 +57,7 @@ it('should inherit strict mode', () => {
   const schema = object({
     key: array(number().defined()).min(10000).max(10000).defined(),
   })
-    .strict()
+    .strict(true)
     .defined()
   const actual = fake(schema)
   actual.key!.every(s => expect(typeof s).not.toBe('string'))

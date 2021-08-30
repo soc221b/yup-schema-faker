@@ -4,7 +4,7 @@ import { fake } from '../src'
 it('should works with ref', () => {
   const schema = object()
     .defined()
-    .strict()
+    .strict(true)
     .noUnknown()
     .shape({
       siblingRef: ref('value'),
@@ -12,7 +12,7 @@ it('should works with ref', () => {
       siblingDescRef: ref('desc.value'),
       desc: object()
         .defined()
-        .strict()
+        .strict(true)
         .noUnknown()
         .shape({
           siblingRef: ref('value'),
@@ -20,7 +20,7 @@ it('should works with ref', () => {
           siblingDescRef: ref('desc.value'),
           desc: object()
             .defined()
-            .strict()
+            .strict(true)
             .noUnknown()
             .shape({
               siblingRef: ref('value'),
@@ -39,21 +39,21 @@ it('should works with ref', () => {
 it('should works with ref', () => {
   const schema = object()
     .defined()
-    .strict()
+    .strict(true)
     .noUnknown()
     .shape({
       siblingRef: ref('$value'),
       siblingDescRef: ref('$desc.value'),
       desc: object()
         .defined()
-        .strict()
+        .strict(true)
         .noUnknown()
         .shape({
           siblingRef: ref('$desc.value'),
           siblingDescRef: ref('$desc.desc.value'),
           desc: object()
             .defined()
-            .strict()
+            .strict(true)
             .noUnknown()
             .shape({
               siblingRef: ref('$desc.desc.value'),

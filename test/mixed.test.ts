@@ -147,7 +147,7 @@ it('should works with when (with context)', () => {
 it('should works with when (with multiple dependencies)', () => {
   const schema = object()
     .defined()
-    .strict()
+    .strict(true)
     .noUnknown()
     .shape({
       sibling: boolean().defined(),
@@ -166,7 +166,7 @@ it('should works with when (with multiple dependencies)', () => {
 
 it('should works with when (with function)', () => {
   const schema = object()
-    .strict()
+    .strict(true)
     .defined()
     .noUnknown()
     .shape({

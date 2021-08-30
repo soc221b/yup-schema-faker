@@ -70,7 +70,7 @@ it('should inherit strict mode', () => {
   const schema = array(object({ key: number().defined() }).defined())
     .min(10000)
     .max(10000)
-    .strict()
+    .strict(true)
     .defined()
   const actual = fake(schema)
   actual!.every(o => expect(typeof o).toBe('object'))
