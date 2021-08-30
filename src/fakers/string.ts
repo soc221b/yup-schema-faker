@@ -63,10 +63,6 @@ export class StringFaker extends MixedFaker<StringSchema> {
 
 addFaker(string, StringFaker)
 
-fakeDedicatedTest(string, 'uuid', () => {
-  return datatype.uuid()
-})
-
 fakeDedicatedTest(string, 'email', () => {
   return internet.email()
 })

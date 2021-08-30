@@ -107,8 +107,6 @@ const schema = object().defined().strict().noUnknown().shape({
   .email()`,
         'yup.string.url': `const schema = string()
   .url()`,
-        'yup.string.uuid': `const schema = string()
-  .uuid()`,
         'yup.string.trim': `const schema = string()
   .trim()
   .strict()`,

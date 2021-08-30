@@ -50,14 +50,6 @@ it('should works with url', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
-it('should works with uuid', () => {
-  const uuidRe = /^[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}$/
-  const schema = string().defined().uuid()
-  const actual = fake(schema)
-  expect(actual).toMatch(uuidRe)
-  expect(schema.isValidSync(actual)).toBe(true)
-})
-
 const length = 20
 it('should works with min', () => {
   const schema = string().defined().min(length)

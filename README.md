@@ -198,7 +198,6 @@ const data = booleanSchema.fake() // boolean
     > this feature cannot be detected, use another schema to achieve this behavior
   - ✅ string.email(message?: string | function): Schema
   - ✅ string.url(message?: string | function): Schema
-  - ✅ string.uuid(message?: string | function): Schema
   - ✅ string.trim(message?: string | function): Schema
     > generate trimmed string iff in strict mode
   - ✅ string.lowercase(message?: string | function): Schema
