@@ -20,6 +20,16 @@ it('should works with array', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
+it('should works with required', () => {
+  const schema = array().required().max(1).of(number().defined().nullable(false))
+  let count = 0
+  let actual: number[]
+  do {
+    actual = fake(schema)
+  } while (actual.length !== 0 && ++count < SAFE_COUNT)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
 it('should works with min', () => {
   const schema = array().defined().min(42)
   const actual = fake(schema)
