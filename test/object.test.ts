@@ -55,7 +55,7 @@ it('should sometimes fake stringified data when not in strict mode', () => {
 
 it('should inherit strict mode', () => {
   const schema = object({
-    key: array(number().defined()).length(10000).defined(),
+    key: array(number().defined()).min(10000).max(10000).defined(),
   })
     .strict()
     .defined()

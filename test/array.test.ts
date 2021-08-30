@@ -38,25 +38,18 @@ it('should works with min and max', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
-it('should works with length', () => {
-  const schema = array().defined().length(42)
-  const actual = fake(schema)
-  expect(schema.isValidSync(actual)).toBe(true)
-})
-
-it('should works with min, max, and length', () => {
+it('should works with min, max', () => {
   const length = 42
   const schema = array()
     .defined()
     .min(length / 2)
-    .length(length)
     .max(length * 2)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
 it('should works with of', () => {
-  const schema = array().defined().length(1).of(array().defined())
+  const schema = array().defined().min(1).max(1).of(array().defined())
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
@@ -75,7 +68,8 @@ it('should sometimes fake stringified data when not in strict mode', () => {
 
 it('should inherit strict mode', () => {
   const schema = array(object({ key: number().defined() }).defined())
-    .length(10000)
+    .min(10000)
+    .max(10000)
     .strict()
     .defined()
   const actual = fake(schema)

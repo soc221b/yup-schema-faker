@@ -221,7 +221,6 @@ const data = booleanSchema.fake() // boolean
   - ✅ date.max(limit: Date | string | Ref, message?: string | function): Schema
 - array
   - ✅ array.of(type: Schema): Schema
-  - ✅ array.length(length: number | Ref, message?: string | function): Schema
   - ✅ array.min(limit: number | Ref, message?: string | function): Schema
   - ✅ array.max(limit: number | Ref, message?: string | function): Schema
 - object

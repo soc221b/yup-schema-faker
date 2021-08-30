@@ -128,8 +128,6 @@ const schema = object().defined().strict().noUnknown().shape({
       'yup.array': {
         'yup.array.of': `const schema = array()
   .of(mixed())`,
-        'yup.array.length': `const schema = array()
-  .length(5)`,
         'yup.array.min': `const schema = array()
   .min(5)`,
         'yup.array.max': `const schema = array()
