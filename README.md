@@ -1,5 +1,10 @@
 # Yup-schema-faker
 
+| yup     | yup-schema-faker |
+| ------- | ---------------- |
+| ~0.28.x | ~2.28.x          |
+| ~0.32.x | ~2.32.x          |
+
 > Yup-schema-faker will generate you a fake data based on your [yup](https://github.com/jquense/yup) schema.
 
 [![npm](https://img.shields.io/npm/v/yup-schema-faker)](https://www.npmjs.com/package/yup-schema-faker)
