@@ -51,7 +51,7 @@ it('should works with url', () => {
 
 it('should works with uuid', () => {
   const uuidRe = /^[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}$/
-  const schema = string().defined().uuid()
+  const schema = string().defined().uuid().nullable(false)
   const actual = fake(schema)
   expect(actual).toMatch(uuidRe)
   expect(schema.isValidSync(actual)).toBe(true)

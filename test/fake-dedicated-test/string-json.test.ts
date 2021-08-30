@@ -71,7 +71,7 @@ it('should run dedicated test', () => {
     .min(1)
     .of(mixed().strict(true).defined().oneOf([42, 'foo']).nullable(false))
     .nullable(false)
-  const schema = string().strict(true).defined().json(innerSchema)
+  const schema = string().strict(true).defined().json(innerSchema).nullable(false)
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
