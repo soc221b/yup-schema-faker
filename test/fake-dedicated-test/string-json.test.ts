@@ -4,10 +4,18 @@ import { fake, fakeDedicatedTest } from '../../src'
 import type { Schema } from 'yup'
 
 declare module 'yup' {
+  interface Schema<T> {
+    tests: {
+      OPTIONS: {
+        name: string
+        params?: Record<any, any>
+      }
+    }[]
+    test(_: unknown): this
+  }
+
   interface StringSchema {
     json<S extends Schema<unknown>>(this: S, schema: Schema<unknown>): S
-
-    test(_: unknown): this
   }
 }
 
