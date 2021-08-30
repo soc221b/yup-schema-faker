@@ -36,7 +36,7 @@ export class MixedFaker<S extends Schema<unknown>> extends BaseFaker<S> {
     }
 
     if (hasDefault(this.schema)) {
-      randomSchema = randomSchema.default(getDefault(this.schema))
+      randomSchema = (randomSchema.default as any)(getDefault(this.schema))
     }
 
     return MixedFaker.rootFake(randomSchema, options)
