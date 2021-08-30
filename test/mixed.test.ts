@@ -60,9 +60,9 @@ it('defined allows null values', () => {
 it('should works with default (return default)', () => {
   const defaultData = new Date()
   const defaultCb = jest.fn(() => defaultData)
-  const schema = mixed().default(defaultCb)
+  const schema = mixed<Date>().default(defaultCb)
   let count = 0
-  let actual
+  let actual: Date
   do {
     actual = fake(schema)
   } while (defaultCb.mock.calls.length === 0 && ++count < SAFE_COUNT)
