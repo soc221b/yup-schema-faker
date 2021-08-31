@@ -1,5 +1,10 @@
 # Yup-schema-faker
 
+| yup     | yup-schema-faker |
+| ------- | ---------------- |
+| ~0.28.x | ~2.28.x          |
+| ~0.29.x | ~2.29.x          |
+
 > Yup-schema-faker will generate you a fake data based on your [yup](https://github.com/jquense/yup) schema.
 
 [![npm](https://img.shields.io/npm/v/yup-schema-faker)](https://www.npmjs.com/package/yup-schema-faker)
@@ -9,7 +14,7 @@
 ![last commit](https://img.shields.io/github/last-commit/iendeavor/yup-schema-faker/main)
 [![donate](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange)](https://www.paypal.com/paypalme/iendeavor)
 
-[Playground](https://runkit.com/iendeavor/yup-schema-faker)
+[Playground](https://runkit.com/iendeavor/yup-schema-faker/2.29.0)
 
 [Showcase](https://iendeavor.github.io/yup-schema-faker/)
 
