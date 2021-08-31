@@ -1,4 +1,4 @@
-import { mixed, object, boolean, BooleanSchema } from 'yup'
+import { mixed, object, array, boolean, BooleanSchema } from 'yup'
 import { fake } from '../src'
 import { SAFE_COUNT } from './constant'
 
@@ -141,6 +141,130 @@ it('should works with when (with context)', () => {
     isTrue: Math.random() > 0.5,
   }
   const actual = fake(schema, { context })
+  expect(schema.isValidSync(actual, { context })).toBe(true)
+})
+
+it('should works nested context (array of object)', () => {
+  const then = jest.fn().mockReturnValue(boolean().defined().nullable(false))
+  const schema = array()
+    .strict(true)
+    .defined()
+    .nullable(false)
+    .min(1)
+    .max(1)
+    .of(
+      object()
+        .defined()
+        .nullable(false)
+        .shape({
+          value: mixed()
+            .defined()
+            .nullable(false)
+            .when('$isTrue', {
+              is: (value: boolean) => value,
+              then: then,
+            }),
+        }),
+    )
+  const context = {
+    isTrue: true,
+  }
+  const actual = fake(schema, { context })
+  expect(then).toBeCalled()
+  expect(typeof actual[0].value).toBe('boolean')
+  expect(schema.isValidSync(actual, { context })).toBe(true)
+})
+
+it('should works nested context (object of array)', () => {
+  const then = jest.fn().mockReturnValue(boolean().defined().nullable(false))
+  const schema = object()
+    .strict(true)
+    .defined()
+    .nullable(false)
+    .shape({
+      value: array()
+        .defined()
+        .nullable(false)
+        .min(1)
+        .max(1)
+        .of(
+          mixed()
+            .defined()
+            .nullable(false)
+            .when('$isTrue', {
+              is: (value: boolean) => value,
+              then: then,
+            }),
+        ),
+    })
+  const context = {
+    isTrue: true,
+  }
+  const actual = fake(schema, { context })
+  expect(then).toBeCalled()
+  expect(typeof actual.value[0]).toBe('boolean')
+  expect(schema.isValidSync(actual, { context })).toBe(true)
+})
+
+it('should works nested context (array of array)', () => {
+  const then = jest.fn().mockReturnValue(boolean().defined().nullable(false))
+  const schema = array()
+    .strict(true)
+    .defined()
+    .nullable(false)
+    .min(1)
+    .max(1)
+    .of(
+      array()
+        .defined()
+        .nullable(false)
+        .min(1)
+        .max(1)
+        .of(
+          mixed()
+            .defined()
+            .nullable(false)
+            .when('$isTrue', {
+              is: (value: boolean) => value,
+              then: then,
+            }),
+        ),
+    )
+  const context = {
+    isTrue: true,
+  }
+  const actual = fake(schema, { context })
+  expect(then).toBeCalled()
+  expect(typeof actual[0][0]).toBe('boolean')
+  expect(schema.isValidSync(actual, { context })).toBe(true)
+})
+
+it('should works nested context (object of object)', () => {
+  const then = jest.fn().mockReturnValue(boolean().defined().nullable(false))
+  const schema = object()
+    .strict(true)
+    .defined()
+    .nullable(false)
+    .shape({
+      value: object()
+        .defined()
+        .nullable(false)
+        .shape({
+          value: mixed()
+            .defined()
+            .nullable(false)
+            .when('$isTrue', {
+              is: (value: boolean) => value,
+              then: then,
+            }),
+        }),
+    })
+  const context = {
+    isTrue: true,
+  }
+  const actual = fake(schema, { context })
+  expect(then).toBeCalled()
+  expect(typeof actual.value.value).toBe('boolean')
   expect(schema.isValidSync(actual, { context })).toBe(true)
 })
 
