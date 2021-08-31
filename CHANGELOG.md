@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.29.1](https://github.com/iendeavor/yup-schema-faker/compare/v1.6.0...v2.29.1) (2021-08-31)
+
+
+### Features
+
+* 0.28 ([524f171](https://github.com/iendeavor/yup-schema-faker/commit/524f1714e68dd09720e4c3197222b804e56c23bf))
+* 0.29 ([b20b0b7](https://github.com/iendeavor/yup-schema-faker/commit/b20b0b7e93983d6892a4b864657f80bc0804573a))
+* empty arrays are considered 'missing' values ([f2f8f87](https://github.com/iendeavor/yup-schema-faker/commit/f2f8f878ae12221b0dc915f816fd31dce7bdfb3a))
+* support string uuid ([2f3660f](https://github.com/iendeavor/yup-schema-faker/commit/2f3660f5eee5f221f0d7388422c489e3f341ea1d))
+* todo ([6fff2dc](https://github.com/iendeavor/yup-schema-faker/commit/6fff2dca2f80e2f2b05ebf6352bd84fbd85e329d))
+
+
+### Bug Fixes
+
+* array does not has length test ([4d05f4c](https://github.com/iendeavor/yup-schema-faker/commit/4d05f4c0110c6ba35e6938a4ca699c7735615eec))
+* boolean does not has isValue test ([c5f6241](https://github.com/iendeavor/yup-schema-faker/commit/c5f6241a2aebbb9853e4f983cf4f9d042d60ddf2))
+* defined schema will be nullable ([0ad6156](https://github.com/iendeavor/yup-schema-faker/commit/0ad6156b0e435be9939ee16b8ca8db1e517d7552))
+* strict should explicit pass value ([a32f2d4](https://github.com/iendeavor/yup-schema-faker/commit/a32f2d43b26358e0bd472aab6afbfa5a80207b39))
+* string does not has uuid test ([bad8437](https://github.com/iendeavor/yup-schema-faker/commit/bad8437e95dc7142a3a41e5fade86dc8af670ba7))
+
 ## [1.6.0](https://github.com/iendeavor/yup-schema-faker/compare/v1.5.9...v1.6.0) (2021-08-28)
 
 
