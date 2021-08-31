@@ -13,7 +13,7 @@
 ![last commit](https://img.shields.io/github/last-commit/iendeavor/yup-schema-faker/main)
 [![donate](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange)](https://www.paypal.com/paypalme/iendeavor)
 
-[Playground](https://runkit.com/iendeavor/yup-schema-faker)
+[Playground](https://runkit.com/iendeavor/yup-schema-faker/2.28.0)
 
 [Showcase](https://iendeavor.github.io/yup-schema-faker/)
 
