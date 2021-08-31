@@ -171,7 +171,7 @@ it('should works nested context (array of object)', () => {
   }
   const actual = fake(schema, { context })
   expect(then).toBeCalled()
-  expect(typeof actual[0].value).toBe('boolean')
+  expect(typeof actual?.[0].value).toBe('boolean')
   expect(schema.isValidSync(actual, { context })).toBe(true)
 })
 
@@ -202,7 +202,7 @@ it('should works nested context (object of array)', () => {
   }
   const actual = fake(schema, { context })
   expect(then).toBeCalled()
-  expect(typeof actual.value[0]).toBe('boolean')
+  expect(typeof actual.value?.[0]).toBe('boolean')
   expect(schema.isValidSync(actual, { context })).toBe(true)
 })
 
@@ -235,7 +235,7 @@ it('should works nested context (array of array)', () => {
   }
   const actual = fake(schema, { context })
   expect(then).toBeCalled()
-  expect(typeof actual[0][0]).toBe('boolean')
+  expect(typeof actual?.[0]?.[0]).toBe('boolean')
   expect(schema.isValidSync(actual, { context })).toBe(true)
 })
 
