@@ -1,4 +1,4 @@
-import Faker from 'faker'
+import Faker from '@faker-js/faker'
 
 export const datatype = Faker.datatype ?? Faker.random
 export const lorem = Faker.lorem
