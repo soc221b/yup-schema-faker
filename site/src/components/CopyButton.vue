@@ -1,5 +1,5 @@
 <template lang="pug">
-button.text-black.px-2.m-0.ml-1.rounded.border.border-gray-400(@click="handleClick") {{ buttonLabel }}
+button.px-2.m-0.ml-1.rounded.border.border-gray-400(@click="handleClick") {{ buttonLabel }}
 input(v-show="inputVisible" ref="input" :value="text === undefined ? 'undefined' : JSON.stringify(text)")
 </template>
 

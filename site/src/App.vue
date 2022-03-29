@@ -1,23 +1,25 @@
 <template lang="pug">
-.app.bg-white.p-2
+.app.p-2.pb-5.mb-5(class="text-[#24292f] bg-[#ffffff] dark:text-[#c9d1d9] dark:bg-[#0d1117]")
   .mx-auto.w-screen-96.max-w-1080
     Header
     br
     hr
-    ToC
-    hr
-    Playground
-    hr
-    hr
-    Full
-    hr
-    Custom
+    main
+      section
+        Playground
+      br
+      hr
+      section
+        Full
+      br
+      hr
+      section
+        Custom
 BackToTop
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ToC from './views/ToC/Index.vue'
 import Header from './views/Header.vue'
 import Playground from './views/Playground.vue'
 import Full from './views/Full.vue'
@@ -26,7 +28,6 @@ import BackToTop from './views/BackToTop.vue'
 
 export default defineComponent({
   components: {
-    ToC,
     Header,
     Playground,
     Full,
@@ -39,7 +40,6 @@ export default defineComponent({
 <style scoped>
 .app {
   min-width: 320px;
-  min-height: 10000px;
 }
 
 .w-screen-96 {

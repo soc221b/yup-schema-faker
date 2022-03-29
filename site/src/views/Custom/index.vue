@@ -1,7 +1,7 @@
 <template lang="pug">
-Link(label="custom" level="1")
+Link(label="Custom" level="2")
 template(v-for="schemas, type of schemasOfType" :key="type")
-  Link(:label="type" level="2")
+  Link(:label="type" level="3")
 
   template(v-for="schema, label of schemas" :key="schema")
     demo-generator(:label="label + ''" :snippet="schema")
@@ -15,8 +15,8 @@ import './custom-mixed'
 export default defineComponent({
   setup() {
     const schemasOfType = {
-      'custom.fakeDedicatedTest': {
-        'custom.fakeDedicatedTest.yup.string.json': `
+      'Custom.fakeDedicatedTest': {
+        'Custom.fakeDedicatedTest.yup.string.json': `
 // fake a list of emails and stringify it.
 const schema = string()
   .json(
@@ -27,8 +27,8 @@ const schema = string()
   .defined().strict()
 `.trim(),
       },
-      'custom.addFaker': {
-        'custom.addFaker.customMixed': `
+      'Custom.addFaker': {
+        'Custom.addFaker.customMixed': `
 // just like yup.mixed
 const schema = customMixed()
   .defined().strict().oneOf([42])

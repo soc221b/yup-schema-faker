@@ -1,7 +1,7 @@
 <template lang="pug">
-Link(label="yup" level="1")
+Link(label="Yup" level="2")
 template(v-for="schemas, type of schemasOfType" :key="type")
-  Link(:label="type" level="2")
+  Link(:label="type" level="3")
 
   template(v-for="schema, label of schemas" :key="schema")
     demo-generator(:label="label + ''" :snippet="schema")
@@ -12,7 +12,7 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   setup() {
     const schemasOfType = {
-      'yup.ref': {
+      'Yup.ref': {
         '': `
 const schema = object({
   key: mixed(),
@@ -21,7 +21,7 @@ const schema = object({
   .noUnknown()
 `.trim(),
       },
-      'yup.lazy': {
+      'Yup.lazy': {
         '': `
 const schema = object()
   .strict().required().noUnknown().shape({
@@ -39,23 +39,23 @@ const schema = object()
   })
 `.trim(),
       },
-      'yup.mixed': {
-        'yup.mixed.default': `const schema = mixed()
+      'Yup.mixed': {
+        'Yup.mixed.default': `const schema = mixed()
   .default("A default value")`,
-        'yup.mixed.nullable': `const schema = mixed()
+        'Yup.mixed.nullable': `const schema = mixed()
   .nullable()`,
-        'yup.mixed.required': `const schema = mixed()
+        'Yup.mixed.required': `const schema = mixed()
   .required()`,
-        'yup.mixed.notRequired': `const schema = mixed()
+        'Yup.mixed.notRequired': `const schema = mixed()
   .notRequired()`,
-        'yup.mixed.defined': `const schema = mixed()
+        'Yup.mixed.defined': `const schema = mixed()
   .defined()`,
-        'yup.mixed.oneOf': `const schema = mixed()
+        'Yup.mixed.oneOf': `const schema = mixed()
   .oneOf(['foo', 42])`,
-        'yup.mixed.notOneOf': `const schema = number()
+        'Yup.mixed.notOneOf': `const schema = number()
   .notOneOf([1, 2])
   .integer().min(1).max(5)`,
-        'yup.mixed.when': `
+        'Yup.mixed.when': `
 const schema = object().defined().strict().noUnknown().shape({
   value: boolean().defined(),
   reverse: boolean().defined().when('value', {
@@ -66,79 +66,79 @@ const schema = object().defined().strict().noUnknown().shape({
 })
 `.trim(),
       },
-      'yup.boolean': {
-        'yup.boolean.isTrue': `const schema = boolean()
+      'Yup.boolean': {
+        'Yup.boolean.isTrue': `const schema = boolean()
   .isTrue()`,
-        'yup.boolean.isFalse': `const schema = boolean()
+        'Yup.boolean.isFalse': `const schema = boolean()
   .isFalse()`,
       },
-      'yup.number': {
-        'yup.number.min': `const schema = number()
+      'Yup.number': {
+        'Yup.number.min': `const schema = number()
   .min(20)
   .max(100)`,
-        'yup.number.max': `const schema = number()
+        'Yup.number.max': `const schema = number()
   .max(-20)
   .min(-100)`,
-        'yup.number.moreThan': `const schema = number()
+        'Yup.number.moreThan': `const schema = number()
   .moreThan(20)
   .lessThan(100)`,
-        'yup.number.lessThan': `const schema = number()
+        'Yup.number.lessThan': `const schema = number()
   .lessThan(-20)
   .moreThan(-100)`,
-        'yup.number.positive': `const schema = number()
+        'Yup.number.positive': `const schema = number()
   .positive()`,
-        'yup.number.negative': `const schema = number()
+        'Yup.number.negative': `const schema = number()
   .negative()`,
-        'yup.number.integer': `const schema = number()
+        'Yup.number.integer': `const schema = number()
   .integer()`,
       },
-      'yup.date': {
-        'yup.date.min': `const schema = date()
+      'Yup.date': {
+        'Yup.date.min': `const schema = date()
   .min(new Date())`,
-        'yup.date.max': `const schema = date()
+        'Yup.date.max': `const schema = date()
   .max(new Date())`,
       },
-      'yup.string': {
-        'yup.string.required': `const schema = string()
+      'Yup.string': {
+        'Yup.string.required': `const schema = string()
   .required()`,
-        'yup.string.length': `const schema = string()
+        'Yup.string.length': `const schema = string()
   .length(10)`,
-        'yup.string.min': `const schema = string()
+        'Yup.string.min': `const schema = string()
   .min(10)`,
-        'yup.string.max': `const schema = string()
+        'Yup.string.max': `const schema = string()
   .max(10)`,
-        'yup.string.matches': `const schema = string()
+        'Yup.string.matches': `const schema = string()
   .matches(/(foo|bar|baz)/)`,
-        'yup.string.email': `const schema = string()
+        'Yup.string.email': `const schema = string()
   .email()`,
-        'yup.string.url': `const schema = string()
+        'Yup.string.url': `const schema = string()
   .url()`,
-        'yup.string.uuid': `const schema = string()
+        'Yup.string.uuid': `const schema = string()
   .uuid()`,
-        'yup.string.trim': `const schema = string()
+        'Yup.string.trim': `const schema = string()
   .trim()
   .strict()`,
-        'yup.string.lowercase': `const schema = string()
+        'Yup.string.lowercase': `const schema = string()
   .lowercase()
   .strict()`,
-        'yup.string.uppercase': `const schema = string()
+        'Yup.string.uppercase': `const schema = string()
   .uppercase()
   .strict()`,
       },
-      'yup.array': {
-        'yup.array.of': `const schema = array()
+      'Yup.array': {
+        'Yup.array.of': `const schema = array()
   .of(mixed())`,
-        'yup.array.length': `const schema = array()
+        'Yup.array.length': `const schema = array()
   .length(5)`,
-        'yup.array.min': `const schema = array()
+        'Yup.array.min': `const schema = array()
   .min(5)`,
-        'yup.array.max': `const schema = array()
+        'Yup.array.max': `const schema = array()
   .max(5)`,
       },
-      'yup.object': {
-        'yup.object.shape': `const schema = object()
+      'Yup.object': {
+        'Yup.object.shape': `const schema = object()
   .shape({ key: mixed() })`,
-        'yup.object.noUnknown': `const schema = object()
+        'Yup.object.noUnknown': `const schema = object()
   .noUnknown()
   .shape({ key: mixed() })`,
       },

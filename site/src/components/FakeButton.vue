@@ -1,5 +1,5 @@
 <template lang="pug">
-button.text-blue-400.px-2.m-0.rounded.border.border-blue-400(v-bind="$attrs" @click="() => handleClick()") {{ text }}
+button.font-bold.px-2.m-0.rounded.border(v-bind="$attrs" @click="() => handleClick()") {{ text }}
 </template>
 
 <script lang="ts">

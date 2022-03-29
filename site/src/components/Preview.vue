@@ -3,7 +3,7 @@ Link(v-if="label" :label="label" level="3")
 div.mb-5
   fake-button(@click="() => fake()")
   copy-button(:text="data")
-  button.text-black.px-2.m-0.ml-1.rounded.border.border-gray-400(@click="() => visible = !visible" :class="{visible}") Show {{ visible ? 'result' : 'snippet' }}
+  button.px-2.m-0.ml-1.rounded.border.border-gray-400(@click="() => visible = !visible" :class="{visible}") Show {{ visible ? 'result' : 'snippet' }}
   Data.mt-1(v-show="visible" :data="snippet" is-snippet :class="{visible}" :contenteditable="contenteditable" @change="value => emit('update:snippet', value)")
   Data.mt-1(v-show="!visible" :data="data")
 </template>

@@ -1,5 +1,5 @@
 <template lang="pug">
-Link(label="Playground" level="1")
+Link(label="Playground" level="2")
 Preview(:fake="custom.fake" :snippet="custom.snippet" :data="custom.data" contenteditable @update:snippet="onUpdateSnippet")
 </template>
 
