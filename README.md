@@ -166,41 +166,6 @@ const secondRandom = fake(string())
 console.log(firstRandom === secondRandom) // true
 ```
 
-## TypeScript support
-
-**Step 1. Augment the yup module**
-
-```typescript
-import { AnySchema } from 'yup'
-import { Fake } from 'yup-schema-faker'
-
-declare module 'yup' {
-  interface BaseSchema {
-    fake<Schema extends AnySchema>(this: Schema): ReturnType<Fake<Schema>>
-  }
-}
-```
-
-**Step 2. Add the method**
-
-```typescript
-import { addMethod, mixed } from 'yup'
-import { fake } from 'yup-schema-faker'
-
-addMethod(mixed, 'fake', function () {
-  return fake(this)
-})
-```
-
-**Step 3. Use it!**
-
-```typescript
-import { boolean } from 'yup'
-
-const booleanSchema = boolean().required()
-const data = booleanSchema.fake() // boolean
-```
-
 ## Supported yup API
 
 - yup
