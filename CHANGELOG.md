@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/iendeavor/yup-schema-faker/compare/v2.32.0...v3.0.0) (2022-03-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* need to explicitly call install function to install fakers
+* drop support for Node.js 10 and 12
+
+### Features
+
+* expose install function, make it tree-shakeable ([16a72f6](https://github.com/iendeavor/yup-schema-faker/commit/16a72f6d7351948f0ffc56d61e45b9eec8880e42))
+
+
+### Bug Fixes
+
+* use same Faker instance ([b9c1f79](https://github.com/iendeavor/yup-schema-faker/commit/b9c1f792b83896ce98710bf4eb658fb499d0ae63))
+
+
+* update from faker to @faker-js/faker ([#166](https://github.com/iendeavor/yup-schema-faker/issues/166)) ([cb9374a](https://github.com/iendeavor/yup-schema-faker/commit/cb9374a498326bc4fa2ef2f387384dcf003f63e6))
+
 ## [2.32.0](https://github.com/iendeavor/yup-schema-faker/compare/v1.6.0...v2.32.0) (2021-08-30)
 
 ## [1.6.0](https://github.com/iendeavor/yup-schema-faker/compare/v1.5.9...v1.6.0) (2021-08-28)
