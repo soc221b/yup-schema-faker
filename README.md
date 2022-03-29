@@ -8,11 +8,10 @@
 [![codecov](https://codecov.io/gh/iendeavor/yup-schema-faker/branch/develop/graph/badge.svg?token=OP3HU6QW90)](https://codecov.io/gh/iendeavor/yup-schema-faker)
 ![last commit](https://img.shields.io/github/last-commit/iendeavor/yup-schema-faker/main)
 
-## Features
+Key features:
 
 - Easy to use: minimal setup and API.
-- Tree-shakeable: no side-effects.
-- Customizable: fake custom schema, method or override existing one.
+- Extensible: Add fakers for your own schemas, methods or override existing ones.
 
 ## Version Compatibiility
 
@@ -37,22 +36,22 @@ pnpm add -D randexp@^0.5.3
 Before using it, you need to install the built-in fakers:
 
 ```typescript
-import { install, addFaker, fakeDedicatedTest } from 'yup-schema-faker'
+import { install } from 'yup-schema-faker'
 
 // You probably only want to use it in development mode.
 if (process.env.NODE_ENV === 'development') {
   install()
 
-  // If you have custom fakers, you will need to install them here:
+  // If you have custom fakers, you will need to install them here, too.
 
   // 1. to fake extended schema (or override existing ones):
-  addFaker(boolean, BooleanFaker)
+  // addFaker(boolean, BooleanFaker)
 
   // 2. to fake extended schema methods (or override existing ones):
-  fakeDedicatedTest(boolean, 'is-value', schema => {
-    const isValueTest = schema.tests.find(test => test.OPTIONS.name === 'is-value')!
-    return isValueTest.OPTIONS.params?.value === 'true'
-  })
+  // fakeDedicatedTest(boolean, 'is-value', schema => {
+  //   const isValueTest = schema.tests.find(test => test.OPTIONS.name === 'is-value')!
+  //   return isValueTest.OPTIONS.params?.value === 'true'
+  // })
 }
 ```
 
