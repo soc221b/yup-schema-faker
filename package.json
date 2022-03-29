@@ -37,9 +37,9 @@
     "lint": "prettier --check ."
   },
   "devDependencies": {
-    "@faker-js/faker": "^6.0.0",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@faker-js/faker": "^6.0.0",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.0.1",
@@ -50,6 +50,7 @@
     "pinst": "^2.1.6",
     "prettier": "^2.2.1",
     "randexp": "^0.5.3",
+    "rimraf": "^3.0.2",
     "rollup": "^2.36.1",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-node-globals": "^1.4.0",
