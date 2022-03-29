@@ -3,7 +3,7 @@
 > Yup-schema-faker will generate you a fake data based on your [yup](https://github.com/jquense/yup) schema.
 
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/iendeavor/yup-schema-faker/CI/main)](https://github.com/iendeavor/yup-schema-faker/actions?query=workflow%3ACI+branch%3Amain+)
-![Codecov branch](https://img.shields.io/codecov/c/github/iendeavor/yup-schema-faker/develop)
+[![codecov](https://codecov.io/gh/iendeavor/yup-schema-faker/branch/develop/graph/badge.svg?token=OP3HU6QW90)](https://codecov.io/gh/iendeavor/yup-schema-faker)
 ![last commit](https://img.shields.io/github/last-commit/iendeavor/yup-schema-faker/main)
 [![donate](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-blue)](https://www.paypal.com/paypalme/iendeavor)
 
