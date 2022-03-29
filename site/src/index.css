@@ -10,6 +10,10 @@ button {
   outline: none !important;
 }
 
+hr {
+  border-color: #0d1117;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
@@ -23,6 +27,10 @@ button {
 @media (prefers-color-scheme: dark) {
   html {
     background-color: #0d1117;
+  }
+
+  hr {
+    border-color: #fff;
   }
 
   ::-webkit-scrollbar-thumb {
