@@ -37,7 +37,7 @@ it('should produce same results', () => {
       console.log(`schema: ${JSON.stringify(schema.describe(), null, 2)}`)
       console.log(`first: ${JSON.stringify(firstRandom, null, 2)}`)
       console.log(`second: ${JSON.stringify(secondRandom, null, 2)}`)
-      console.error(error)
+      throw error
     }
   }
 })
