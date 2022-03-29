@@ -16,10 +16,10 @@ jobs:
           node-version: 14
 
       - name: Install
-        run: yarn install
+        run: pnpm install
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
 
   build:
     runs-on: ubuntu-latest
@@ -34,10 +34,10 @@ jobs:
           node-version: 14
 
       - name: Install
-        run: yarn install
+        run: pnpm install
 
       - name: Build
-        run: yarn build
+        run: pnpm build
 
   test:
     runs-on: ubuntu-latest
@@ -51,14 +51,11 @@ jobs:
         with:
           node-version: 14
 
-      - name: Log env
-        run: yarn env
-
       - name: Install
-        run: yarn install
+        run: pnpm install
 
       - name: Test
-        run: yarn test --no-cache --collect-coverage
+        run: pnpm test --no-cache --collect-coverage
 
       - name: Coverage
         uses: codecov/codecov-action@v1

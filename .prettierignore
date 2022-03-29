@@ -5,3 +5,4 @@ docs
 temp
 api
 coverage
+pnpm-lock.yaml
