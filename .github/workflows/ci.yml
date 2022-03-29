@@ -73,7 +73,7 @@ jobs:
         run: pnpm install
 
       - name: Test
-        run: pnpm test --no-cache --collect-coverage
+        run: pnpm test -- --no-cache --collect-coverage
 
       - name: Coverage
         uses: codecov/codecov-action@v1
