@@ -18,12 +18,16 @@ jobs:
         with:
           node-version: 14
 
+      - name: Build package
+        run: |
+          pnpm install
+          pnpm build
+
       - name: Build docs
         run: |
           cd site
-          yarn install
-          yarn add yup-schema-faker
-          yarn build
+          pnpm install
+          pnpm build
           sed -i 's/assets/yup-schema-faker\/assets/' ./dist/index.html
           cd ..
           mv site/dist docs
