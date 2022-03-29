@@ -55,4 +55,6 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
   }
 }
 
-addFaker(object, ObjectFaker)
+export const installObjectFaker = () => {
+  addFaker(object, ObjectFaker)
+}

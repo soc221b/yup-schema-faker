@@ -44,7 +44,9 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
   }
 }
 
-addFaker(number, NumberFaker)
+export const installNumberFaker = () => {
+  addFaker(number, NumberFaker)
+}
 
 function findMinimumOffsetPrecision(number: number) {
   number = Math.abs(number)

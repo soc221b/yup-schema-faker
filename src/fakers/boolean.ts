@@ -11,9 +11,11 @@ export class BooleanFaker extends MixedFaker<BooleanSchema> {
   }
 }
 
-addFaker(boolean, BooleanFaker)
+export const installBooleanFaker = () => {
+  addFaker(boolean, BooleanFaker)
 
-fakeDedicatedTest(boolean, 'is-value', schema => {
-  const isValueTest = schema.tests.find(test => test.OPTIONS.name === 'is-value')!
-  return isValueTest.OPTIONS.params?.value === 'true'
-})
+  fakeDedicatedTest(boolean, 'is-value', schema => {
+    const isValueTest = schema.tests.find(test => test.OPTIONS.name === 'is-value')!
+    return isValueTest.OPTIONS.params?.value === 'true'
+  })
+}

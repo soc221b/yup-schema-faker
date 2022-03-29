@@ -25,4 +25,6 @@ export class DateFaker extends MixedFaker<DateSchema> {
   }
 }
 
-addFaker(yupDate, DateFaker)
+export const installDateFaker = () => {
+  addFaker(yupDate, DateFaker)
+}

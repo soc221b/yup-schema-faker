@@ -5,6 +5,9 @@ import DemoGenerator from './components/DemoGenerator.vue'
 import Link from './components/Link.vue'
 import './index.css'
 import { isInit } from './faker'
+import { install } from 'yup-schema-faker'
+
+install()
 
 const app = createApp(App)
 app.component('Preview', Preview)

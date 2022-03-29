@@ -9,20 +9,22 @@ declare module 'yup' {
   }
 }
 
-addMethod(mixed, 'oneOfSchema', function (schemas) {
-  // eslint-disable-next-line no-template-curly-in-string
-  const message = '${path} is not a correct type'
+beforeAll(() => {
+  addMethod(mixed, 'oneOfSchema', function (schemas) {
+    // eslint-disable-next-line no-template-curly-in-string
+    const message = '${path} is not a correct type'
 
-  return this.test({
-    message,
-    name: 'oneOfSchema',
-    exclusive: true,
-    params: {
-      schemas,
-    },
-    test(value) {
-      return schemas.some((schema: AnySchema) => schema.isValidSync(value))
-    },
+    return this.test({
+      message,
+      name: 'oneOfSchema',
+      exclusive: true,
+      params: {
+        schemas,
+      },
+      test(value) {
+        return schemas.some((schema: AnySchema) => schema.isValidSync(value))
+      },
+    })
   })
 })
 

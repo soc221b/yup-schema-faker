@@ -7,8 +7,10 @@ declare module 'yup' {
   }
 }
 
-addMethod(mixed, 'fake', function () {
-  return fake(this)
+beforeAll(() => {
+  addMethod(mixed, 'fake', function () {
+    return fake(this)
+  })
 })
 
 it('should add fake method to yup', () => {

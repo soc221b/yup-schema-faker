@@ -37,4 +37,6 @@ export class MixedFaker<Schema extends AnySchema> extends BaseFaker<Schema> {
   }
 }
 
-addFaker(mixed, MixedFaker)
+export const installMixedFaker = () => {
+  addFaker(mixed, MixedFaker)
+}

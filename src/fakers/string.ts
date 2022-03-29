@@ -60,21 +60,23 @@ export class StringFaker extends MixedFaker<StringSchema> {
   }
 }
 
-addFaker(string, StringFaker)
+export const installStringFaker = () => {
+  addFaker(string, StringFaker)
 
-fakeDedicatedTest(string, 'uuid', () => {
-  return datatype.uuid()
-})
+  fakeDedicatedTest(string, 'uuid', () => {
+    return datatype.uuid()
+  })
 
-fakeDedicatedTest(string, 'email', () => {
-  return internet.email()
-})
+  fakeDedicatedTest(string, 'email', () => {
+    return internet.email()
+  })
 
-fakeDedicatedTest(string, 'url', () => {
-  return internet.url()
-})
+  fakeDedicatedTest(string, 'url', () => {
+    return internet.url()
+  })
 
-fakeDedicatedTest(string, 'matches', schema => {
-  const regexTest = schema.tests.find(test => test.OPTIONS.name === 'matches')
-  return randexp(regexTest?.OPTIONS.params!.regex as RegExp)
-})
+  fakeDedicatedTest(string, 'matches', schema => {
+    const regexTest = schema.tests.find(test => test.OPTIONS.name === 'matches')
+    return randexp(regexTest?.OPTIONS.params!.regex as RegExp)
+  })
+}

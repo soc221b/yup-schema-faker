@@ -35,4 +35,6 @@ export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
   }
 }
 
-addFaker(array, ArrayFaker)
+export const installArrayFaker = () => {
+  addFaker(array, ArrayFaker)
+}

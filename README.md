@@ -35,10 +35,20 @@
 
 ### Setup
 
-Install this package and peer dependencies.
+Install this package and its peer dependencies:
 
 ```sh
 yarn add --dev yup-schema-faker@^3.0.0 @faker-js/faker@^6.0.0 randexp@^0.5.3
+```
+
+Install faker:
+
+```typescript
+import { install } from 'yup-schema-faker'
+
+if (process.env.NODE_ENV === 'development') {
+  install()
+}
 ```
 
 ### Usage

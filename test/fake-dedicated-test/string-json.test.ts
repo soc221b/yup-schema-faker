@@ -9,20 +9,22 @@ declare module 'yup' {
   }
 }
 
-addMethod(string, 'json', function (schema: AnySchema) {
-  return this.test({
-    name: 'json',
-    params: {
-      schema,
-    },
-    test(value: unknown) {
-      try {
-        const parsedValue = JSON.parse(value as string)
-        return schema.isValidSync(parsedValue)
-      } catch (error) {
-        return false
-      }
-    },
+beforeAll(() => {
+  addMethod(string, 'json', function (schema: AnySchema) {
+    return this.test({
+      name: 'json',
+      params: {
+        schema,
+      },
+      test(value: unknown) {
+        try {
+          const parsedValue = JSON.parse(value as string)
+          return schema.isValidSync(parsedValue)
+        } catch (error) {
+          return false
+        }
+      },
+    })
   })
 })
 

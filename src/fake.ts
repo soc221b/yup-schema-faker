@@ -1,11 +1,9 @@
 import { datatype } from './faker'
 import { AnySchema } from 'yup'
-import { BaseFaker, globalOptions, typeToFaker } from './fakers/base'
+import { globalOptions, typeToFaker } from './fakers/base'
 import { MixedFaker } from './fakers/mixed'
 import { Fake, Options } from './type'
 import { isLazy, isReference } from './util'
-
-BaseFaker.rootFake = rootFake
 
 export function rootFake<Schema extends AnySchema>(schema: Schema, options: Options = {}): ReturnType<Fake<Schema>> {
   const originalStrict = globalOptions.strict
