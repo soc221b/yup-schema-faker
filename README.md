@@ -2,10 +2,17 @@
 
 > Yup-schema-faker will generate you a fake data based on your [yup](https://github.com/jquense/yup) schema.
 
+[Showcase & Playground](https://iendeavor.github.io/yup-schema-faker/)
+
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/iendeavor/yup-schema-faker/CI/main)](https://github.com/iendeavor/yup-schema-faker/actions?query=workflow%3ACI+branch%3Amain+)
 [![codecov](https://codecov.io/gh/iendeavor/yup-schema-faker/branch/develop/graph/badge.svg?token=OP3HU6QW90)](https://codecov.io/gh/iendeavor/yup-schema-faker)
 ![last commit](https://img.shields.io/github/last-commit/iendeavor/yup-schema-faker/main)
-[![donate](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-blue)](https://www.paypal.com/paypalme/iendeavor)
+
+## Features
+
+- Easy to use: minimal setup and API.
+- Tree-shakeable: no side-effects.
+- Customizable: fake custom schema, method or override existing one.
 
 ## Version Compatibiility
 
@@ -14,22 +21,7 @@
 | [~0.28.x](https://github.com/jquense/yup/tree/v0.28.5)               | [~0.28.x](https://www.npmjs.com/package/@types/yup) | [~2.28.x](https://github.com/iendeavor/yup-schema-faker/tree/v2.28.x) |
 | [~0.29.x](https://github.com/jquense/yup/tree/v0.29.3)               | [~0.29.x](https://www.npmjs.com/package/@types/yup) | [~2.29.x](https://github.com/iendeavor/yup-schema-faker/tree/v2.29.x) |
 | [>= 0.32.0, <= 0.32.10](https://github.com/jquense/yup/tree/v0.32.9) | N/A                                                 | [~2.32.x](https://github.com/iendeavor/yup-schema-faker/tree/v2.32.x) |
-| [>= 0.32.11](https://github.com/jquense/yup/tree/v0.32.11)           | N/A                                                 | [main](https://github.com/iendeavor/yup-schema-faker/tree/main)       |
-
-# Yup-schema-faker
-
-> Yup-schema-faker will generate you a fake data based on your [yup](https://github.com/jquense/yup) schema.
-
-[![npm](https://img.shields.io/npm/v/yup-schema-faker)](https://www.npmjs.com/package/yup-schema-faker)
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/iendeavor/yup-schema-faker/CI/main)](https://github.com/iendeavor/yup-schema-faker/actions?query=workflow%3ACI+branch%3Amain+)
-![Codecov branch](https://img.shields.io/codecov/c/github/iendeavor/yup-schema-faker/develop)
-![npm downloads](https://img.shields.io/npm/dm/yup-schema-faker)
-![last commit](https://img.shields.io/github/last-commit/iendeavor/yup-schema-faker/main)
-[![donate](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange)](https://www.paypal.com/paypalme/iendeavor)
-
-[Playground](https://runkit.com/iendeavor/yup-schema-faker/3.0.0)
-
-[Showcase](https://iendeavor.github.io/yup-schema-faker/)
+| [>= 0.32.11](https://github.com/jquense/yup/tree/v0.32.11)           | N/A                                                 | main                                                                  |
 
 ## Getting Started
 
@@ -47,7 +39,7 @@ Before using it, you need to install the built-in fakers:
 ```typescript
 import { install, addFaker, fakeDedicatedTest } from 'yup-schema-faker'
 
-// You probably want to use it in development mode.
+// You probably only want to use it in development mode.
 if (process.env.NODE_ENV === 'development') {
   install()
 
@@ -261,3 +253,8 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 - What you expected would happen
 - What actually happens
 - Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
+
+## Support Me
+
+[![paypal](https://img.shields.io/badge/donate-paypal-blue)](https://www.paypal.com/paypalme/iendeavor)
+[![buymeacoffee](https://img.shields.io/badge/donate-buymeacoffee-blue)](https://www.buymeacoffee.com/iendeavor)
