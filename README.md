@@ -33,25 +33,38 @@
 
 ## Getting Started
 
-### Setup
-
-Install this package and its peer dependencies:
+Install `yup-schema-faker` and its peer dependencies with your favorite package manager:
 
 ```sh
-yarn add --dev yup-schema-faker@^3.0.0 @faker-js/faker@^6.0.0 randexp@^0.5.3
+pnpm add yup@^0.32.11
+pnpm add -D yup-schema-faker@^3.0.0
+pnpm add -D @faker-js/faker@^6.0.0
+pnpm add -D randexp@^0.5.3
 ```
 
-Install faker:
+Before using it, you need to install the built-in fakers:
 
 ```typescript
-import { install } from 'yup-schema-faker'
+import { install, addFaker, fakeDedicatedTest } from 'yup-schema-faker'
 
+// You probably want to use it in development mode.
 if (process.env.NODE_ENV === 'development') {
   install()
+
+  // If you have custom fakers, you will need to install them here:
+
+  // 1. to fake extended schema (or override existing ones):
+  addFaker(boolean, BooleanFaker)
+
+  // 2. to fake extended schema methods (or override existing ones):
+  fakeDedicatedTest(boolean, 'is-value', schema => {
+    const isValueTest = schema.tests.find(test => test.OPTIONS.name === 'is-value')!
+    return isValueTest.OPTIONS.params?.value === 'true'
+  })
 }
 ```
 
-### Usage
+And then you can use it:
 
 ```typescript
 import * as yup from 'yup'
