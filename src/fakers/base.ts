@@ -81,7 +81,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
       let data
       do {
         data = this.doFake(options)
-      } while (notOneOf.includes(data) && ++safeCount < SAFE_COUNT)
+      } while (++safeCount < SAFE_COUNT && notOneOf.includes(data))
       return [true, data]
     }
 
