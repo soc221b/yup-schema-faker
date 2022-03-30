@@ -10,7 +10,6 @@ div.mb-5
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
-import 'highlight.js/styles/atom-one-dark.css'
 import FakeButton from './FakeButton.vue'
 import CopyButton from './CopyButton.vue'
 import Data from './Data.vue'
