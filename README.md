@@ -10,8 +10,7 @@
 
 Key features:
 
-- Easy to use: minimal setup and API.
-- Extensible: Add fakers for your own schemas, methods or override existing ones.
+- Extensible: you can fake for your own schemas, methods or override existing ones.
 
 ## Version Compatibiility
 
