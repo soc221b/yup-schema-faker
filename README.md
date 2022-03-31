@@ -61,8 +61,6 @@ const userSchema = object({
 
 // Fake data:
 const fakeUser = fake(userSchema)
-
-console.log(fakeUser)
 // {
 //   "name": " Assumenda eos volup",
 //   "age": 73684592,
@@ -82,10 +80,12 @@ Function signature:
 
 ```typescript
 interface Options {
-  // see: https://github.com/jquense/yup#mixedwhenkeys-string--arraystring-builder-object--value-schema-schema-schema
-  context?: object
-  // see: https://github.com/jquense/yup#mixedvalidatevalue-any-options-object-promiseany-validationerror
+  // please see https://github.com/jquense/yup#schemastrictenabled-boolean--false-schema
   strict?: boolean
+
+  // External values that used to resolve conditions and references.
+  // please see https://github.com/jquense/yup#schemacastvalue-any-options---infertypeschema
+  context?: object
 }
 
 function fake<Schema etends AnySchema>(schema: Schema, options?: Options): ReturnType<Schema['cast']>;
@@ -93,14 +93,35 @@ function fake<Schema etends AnySchema>(schema: Schema, options?: Options): Retur
 
 Example:
 
-See [usage](#usage)
+```typescript
+const schema1 = yup.number().required()
+fake(schema1)
+// 763 or "971235"
+fake(schema1, { strict: true })
+// 9102
 
-## Extending Faker
+const schema2 = object({
+  baz: ref('foo.bar'),
+  foo: object({
+    bar: string(),
+  }),
+  x: ref('$x'),
+})
+const context = { x: 5 }
+fake(schema2, { context })
+// {
+//   foo: {
+//     bar: 'Sit atque temporibus',
+//   },
+//   baz: 'Sit atque temporibus',
+//   x: 5,
+// }
+```
 
-### Fake extended methods
+### `fakeDedicatedTest`
 
-Similar to `yup.addMethod`, `yup-schema-faker` provides a `fakeDedicatedTest` method to fake extending method for a
-schema.
+Similar to [`addMethod`](https://github.com/jquense/yup#addmethodschematype-schema-name-string-method--schema-void), you
+can use `fakeDedicatedTest` to fake extended methods.
 
 Function signature:
 
@@ -112,14 +133,12 @@ function fakeDedicatedTest<Schema extends AnySchema>(
 )
 ```
 
-For Example:
+Example: [`string.json` example](./site/src/views/Custom/string-json.ts)
 
-See [`string.json` example](./site/src/views/Custom/string-json.ts)
+### `addFaker`
 
-### Fake extended schemas
-
-`yup-schema-faker` also provides a `addFaker` method, which gives you the ability to extend faker for custom schema or
-overide existing one.
+You can [create new schemas](https://github.com/jquense/yup/blob/master/docs/extending.md#creating-new-schema-types) in
+yup. Similarly, you can use addFaker to create corresponding fakers for these schemas.
 
 Function signature:
 
@@ -130,11 +149,9 @@ function addFaker<Schema extends AnySchema, Faker>(
 )
 ```
 
-For example:
+Example: [customMixed example](./site/src/views/Custom/custom-mixed.ts)
 
-See [customMixed example](./site/src/views/Custom/custom-mixed.ts)
-
-## Setting a randomness seed
+### `seed`
 
 If you want to produce consistent results, you can set your own seed with integer:
 
@@ -143,12 +160,12 @@ import { seed, fake } from 'yup-schema-faker'
 import { string } from 'yup'
 
 seed(123)
-const firstRandom = fake(string())
+const first = fake(string())
 
 seed(123)
-const secondRandom = fake(string())
+const second = fake(string())
 
-console.log(firstRandom === secondRandom) // true
+console.log(first === second) // true
 ```
 
 ## Supported yup API
