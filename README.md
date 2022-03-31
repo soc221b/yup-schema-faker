@@ -32,62 +32,44 @@ pnpm add -D @faker-js/faker@^6.0.0
 pnpm add -D randexp@^0.5.3
 ```
 
-Before using it, you need to install the built-in fakers:
+Usage:
 
 ```typescript
-import { install } from 'yup-schema-faker'
+import { object, string, number, date } from 'yup'
+import { install, fake } from 'yup-schema-faker'
 
-// You probably only want to use it in development mode.
-if (process.env.NODE_ENV === 'development') {
-  install()
+// Before using it, you need to install all built-in fakers:
+install()
 
-  // If you have custom fakers, you will need to install them here, too.
+// If you have extended fakers, you need to install them here, too:
+//
+// addFaker(boolean, BooleanFaker)
+//
+// fakeDedicatedTest(boolean, 'is-value', schema => {
+//   const isValueTest = schema.tests.find(test => test.OPTIONS.name === 'is-value')!
+//   return isValueTest.OPTIONS.params?.value === 'true'
+// })
 
-  // 1. to fake extended schema (or override existing ones):
-  // addFaker(boolean, BooleanFaker)
+// Define schema:
+const userSchema = object({
+  name: string().required(),
+  age: number().required().positive().integer(),
+  email: string().email(),
+  website: string().url().nullable(),
+  createdOn: date().default(() => new Date()),
+}).noUnknown()
 
-  // 2. to fake extended schema methods (or override existing ones):
-  // fakeDedicatedTest(boolean, 'is-value', schema => {
-  //   const isValueTest = schema.tests.find(test => test.OPTIONS.name === 'is-value')!
-  //   return isValueTest.OPTIONS.params?.value === 'true'
-  // })
-}
-```
+// Fake data:
+const fakeUser = fake(userSchema)
 
-And then you can use it:
-
-```typescript
-import * as yup from 'yup'
-import { fake } from 'yup-schema-faker'
-
-// write a schema
-const schema = yup
-  .object()
-  .required()
-  .noUnknown()
-  .shape({
-    name: yup.string().required().min(4).max(20),
-    age: yup.number().required().min(18).max(100).positive().integer(),
-    email: yup.string().email(),
-    website: yup.string().url(),
-    createdOn: yup.date().default(function () {
-      return new Date()
-    }),
-  })
-
-// generate a fake data
-const fakeData = fake(schema)
-
-console.log(fakeData)
-/*
-  {
-    name: ' Assumenda eos volup',
-    age: 53,
-    email: 'Tatyana75@hotmail.com',
-    website: 'https://ike.info',
-    createdOn: '2003-12-22T20:52:08.501Z'
-  }
-*/
+console.log(fakeUser)
+// {
+//   "name": " Assumenda eos volup",
+//   "age": 73684592,
+//   "email": "Frederic.Keebler8@hotmail.com",
+//   "website": "https://well-worn-co-producer.org",
+//   "createdOn": "Fri Jun 09 2006 19:49:16 GMT+0800 (台北標準時間)",
+// }
 ```
 
 ## API
