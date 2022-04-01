@@ -7,6 +7,7 @@ pre(ref="playground")
 import { defineComponent, ref, onMounted } from 'vue'
 import Link from '../components/Link.vue'
 import sdk from '@stackblitz/sdk'
+import { useWindowSize } from '@vueuse/core'
 
 export default defineComponent({
   components: {
@@ -14,6 +15,8 @@ export default defineComponent({
   },
 
   setup() {
+    const windowSize = useWindowSize()
+
     const playground = ref<HTMLPreElement>()
     onMounted(() => {
       if (!playground.value) return
@@ -21,6 +24,8 @@ export default defineComponent({
       sdk.embedProjectId(playground.value, 'yup-schema-faker-playground', {
         forceEmbedLayout: true,
         openFile: 'index.ts',
+        height: windowSize.height.value * 0.66,
+        theme: 'dark',
       })
     })
 
