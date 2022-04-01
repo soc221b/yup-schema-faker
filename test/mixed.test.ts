@@ -180,3 +180,24 @@ it('should works with when (with function)', () => {
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
+
+it('random schema should be independent', () => {
+  let count
+  const defaultValue = {}
+
+  const schemaWithDefault = mixed().default(() => defaultValue)
+  count = 0
+  let resultMaybeDefault
+  do {
+    resultMaybeDefault = fake(schemaWithDefault)
+  } while (resultMaybeDefault !== defaultValue && ++count < SAFE_COUNT)
+  expect(resultMaybeDefault).toBe(defaultValue)
+
+  const schemaWithoutDefault = mixed()
+  count = 0
+  let resultShouldNotBeDefault
+  do {
+    resultShouldNotBeDefault = fake(schemaWithoutDefault)
+  } while (resultShouldNotBeDefault !== defaultValue && ++count < SAFE_COUNT)
+  expect(resultShouldNotBeDefault).not.toBe(defaultValue)
+})

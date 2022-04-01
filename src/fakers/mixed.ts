@@ -5,11 +5,7 @@ import { BaseFaker, addFaker } from './base'
 import type { AnySchema } from 'yup'
 import type { Options } from '../type'
 
-const booleanSchema = boolean()
-const numberSchema = number()
-const stringSchema = string()
-const dateSchema = date()
-const schemas: AnySchema[] = [booleanSchema, numberSchema, stringSchema, dateSchema]
+const schemaConstructors: (() => AnySchema)[] = [boolean, number, string, date]
 
 export class MixedFaker<Schema extends AnySchema> extends BaseFaker<Schema> {
   constructor(schema: Schema) {
@@ -18,7 +14,7 @@ export class MixedFaker<Schema extends AnySchema> extends BaseFaker<Schema> {
   }
 
   doFake(options?: Options) {
-    let randomSchema = schemas[datatype.number({ min: 0, max: schemas.length - 1 })]
+    let randomSchema = schemaConstructors[datatype.number({ min: 0, max: schemaConstructors.length - 1 })]()
 
     if (this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!))) {
       randomSchema = randomSchema.required()
