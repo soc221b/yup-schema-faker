@@ -39,23 +39,23 @@ const schema = object()
   })
 `.trim(),
       },
-      'Yup.mixed': {
-        'Yup.mixed.default': `const schema = mixed()
+      'Yup.Schema': {
+        'Yup.Schema.default': `const schema = mixed()
   .default("A default value")`,
-        'Yup.mixed.nullable': `const schema = mixed()
+        'Yup.Schema.nullable': `const schema = mixed()
   .nullable()`,
-        'Yup.mixed.required': `const schema = mixed()
+        'Yup.Schema.required': `const schema = mixed()
   .required()`,
-        'Yup.mixed.notRequired': `const schema = mixed()
+        'Yup.Schema.notRequired': `const schema = mixed()
   .notRequired()`,
-        'Yup.mixed.defined': `const schema = mixed()
+        'Yup.Schema.defined': `const schema = mixed()
   .defined()`,
-        'Yup.mixed.oneOf': `const schema = mixed()
+        'Yup.Schema.oneOf': `const schema = mixed()
   .oneOf(['foo', 42])`,
-        'Yup.mixed.notOneOf': `const schema = number()
+        'Yup.Schema.notOneOf': `const schema = number()
   .notOneOf([1, 2])
   .integer().min(1).max(5)`,
-        'Yup.mixed.when': `
+        'Yup.Schema.when': `
 const schema = object().defined().strict().noUnknown().shape({
   value: boolean().defined(),
   reverse: boolean().defined().when('value', {
