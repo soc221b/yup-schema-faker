@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.1](https://github.com/iendeavor/yup-schema-faker/compare/v3.0.0...v3.0.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* hide private objects ([20407b4](https://github.com/iendeavor/yup-schema-faker/commit/20407b4bf00544263fbd1363e51a46ff8959d50d))
+* random schema should be independent ([195277a](https://github.com/iendeavor/yup-schema-faker/commit/195277ad3ffedd0c39fd51246713edf9ce9ffa1f))
+
 ## [3.0.0](https://github.com/iendeavor/yup-schema-faker/compare/v2.32.0...v3.0.0) (2022-03-29)
 
 
