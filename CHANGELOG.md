@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.2](https://github.com/iendeavor/yup-schema-faker/compare/v3.0.1...v3.0.2) (2022-04-02)
+
+
+### Bug Fixes
+
+* fakeFn's parameter schema should be same as given schema ([8b53bf2](https://github.com/iendeavor/yup-schema-faker/commit/8b53bf20d68ea17da785284ff06b1a6584c94153))
+* should not override RandExp prototype ([e35dae8](https://github.com/iendeavor/yup-schema-faker/commit/e35dae8baac4b1428a734a4740e785ca45ad49dc))
+* the ReturnType of fakeFn should not be any ([f395403](https://github.com/iendeavor/yup-schema-faker/commit/f3954035fbb40bc6f9a3938e0a7eaf36f6140033))
+
 ### [3.0.1](https://github.com/iendeavor/yup-schema-faker/compare/v3.0.0...v3.0.1) (2022-04-01)
 
 
