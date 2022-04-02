@@ -1,5 +1,6 @@
 import { addMethod, string, mixed, array } from 'yup'
 import { fake, fakeDedicatedTest } from '../../src'
+import { expectType, TypeEqual } from 'ts-expect'
 
 import type { AnySchema } from 'yup'
 
@@ -40,6 +41,13 @@ it('should be a valid schema', () => {
       .json(array().of(mixed().oneOf([42, 'foo'])))
       .isValidSync(JSON.stringify([42, 'bar'])),
   ).toBe(false)
+})
+
+it("fakeFn's parameter schema should be same as given schema", () => {
+  fakeDedicatedTest(string, 'json', schema => {
+    expectType<TypeEqual<typeof schema, ReturnType<typeof string>>>(true)
+    expectType<TypeEqual<typeof schema, AnySchema>>(false)
+  })
 })
 
 it('should be allowed to add dedicated test', () => {

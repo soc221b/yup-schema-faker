@@ -126,10 +126,10 @@ can use `fakeDedicatedTest` to fake extended methods.
 Function signature:
 
 ```typescript
-function fakeDedicatedTest<Schema extends AnySchema>(
-  schemaConstructor: (...arg: any[]) => Schema,
+function fakeDedicatedTest<SchemaConstructor extends (...args: any[]) => AnySchema>(
+  schemaConstructor: SchemaConstructor,
   name: string,
-  fakeFn: (currentSchema: Schema) => any,
+  fakeFn: (schema: ReturnType<SchemaConstructor>) => any,
 )
 ```
 

@@ -101,10 +101,10 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   protected doFake(_options?: Options) {}
 }
 
-export function fakeDedicatedTest<Schema extends AnySchema>(
-  schemaConstructor: (...arg: any[]) => Schema,
+export function fakeDedicatedTest<SchemaConstructor extends (...args: any[]) => AnySchema>(
+  schemaConstructor: SchemaConstructor,
   name: string,
-  fakeFn: (schema: AnySchema) => any,
+  fakeFn: (schema: ReturnType<SchemaConstructor>) => any,
 ) {
   if (schemaConstructor === undefined || isSchema(schemaConstructor) === false)
     throw new TypeError('You must provide a yup schema constructor function')
@@ -113,7 +113,7 @@ export function fakeDedicatedTest<Schema extends AnySchema>(
 
   const schemaType = schemaConstructor().type
   BaseFaker.dedicatedTests[schemaType] = BaseFaker.dedicatedTests[schemaType] ?? {}
-  BaseFaker.dedicatedTests[schemaType][name] = fakeFn
+  BaseFaker.dedicatedTests[schemaType][name] = fakeFn as any
 }
 
 export const typeToFaker = new Map<String, any>()
