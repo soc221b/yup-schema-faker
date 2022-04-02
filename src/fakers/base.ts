@@ -104,7 +104,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
 export function fakeDedicatedTest<SchemaConstructor extends (...args: any[]) => AnySchema>(
   schemaConstructor: SchemaConstructor,
   name: string,
-  fakeFn: (schema: ReturnType<SchemaConstructor>) => any,
+  fakeFn: (schema: ReturnType<SchemaConstructor>) => ReturnType<ReturnType<SchemaConstructor>['cast']>,
 ) {
   if (schemaConstructor === undefined || isSchema(schemaConstructor) === false)
     throw new TypeError('You must provide a yup schema constructor function')

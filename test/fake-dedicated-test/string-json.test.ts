@@ -47,6 +47,7 @@ it("fakeFn's parameter schema should be same as given schema", () => {
   fakeDedicatedTest(string, 'json', schema => {
     expectType<TypeEqual<typeof schema, ReturnType<typeof string>>>(true)
     expectType<TypeEqual<typeof schema, AnySchema>>(false)
+    return JSON.stringify(null)
   })
 })
 

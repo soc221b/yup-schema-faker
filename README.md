@@ -129,7 +129,7 @@ Function signature:
 function fakeDedicatedTest<SchemaConstructor extends (...args: any[]) => AnySchema>(
   schemaConstructor: SchemaConstructor,
   name: string,
-  fakeFn: (schema: ReturnType<SchemaConstructor>) => any,
+  fakeFn: (schema: ReturnType<SchemaConstructor>) => ReturnType<ReturnType<SchemaConstructor>['cast']>,
 )
 ```
 
