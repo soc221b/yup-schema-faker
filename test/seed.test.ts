@@ -1,5 +1,8 @@
 import { seed, fake } from '../src'
+import RandExp from 'randexp'
 import * as yup from 'yup'
+
+const originalRandInt = RandExp.prototype.randInt
 
 const schemas = [
   yup.mixed(),
@@ -24,6 +27,12 @@ const schemas = [
 ]
 
 describe('seed', () => {
+  it('should not have side effects', () => {
+    expect(RandExp.prototype.randInt).toBe(originalRandInt)
+    seed(1)
+    expect(RandExp.prototype.randInt).toBe(originalRandInt)
+  })
+
   it('should produce same results', () => {
     for (const schema of schemas) {
       seed(123)
