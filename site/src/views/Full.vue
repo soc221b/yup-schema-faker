@@ -41,11 +41,14 @@ const schema = object()
 `.trim(),
       },
       'Yup.Schema': {
+        'Yup.Schema.strict': `// The fake data would never be string (which can be casted to number).
+const schema = number().strict()`,
         'Yup.Schema.default': `const schema = mixed().default("A default value")`,
         'Yup.Schema.nullable': `const schema = mixed().nullable()`,
         'Yup.Schema.required': `const schema = mixed().required()`,
         'Yup.Schema.notRequired': `const schema = mixed().notRequired()`,
         'Yup.Schema.defined': `const schema = mixed().defined()`,
+        'Yup.Schema.optional': `const schema = mixed().optional()`,
         'Yup.Schema.oneOf': `const schema = mixed().oneOf(['foo', 42])`,
         'Yup.Schema.notOneOf': `const schema = number().notOneOf([1, 2])
   .integer().min(1).max(5)`,

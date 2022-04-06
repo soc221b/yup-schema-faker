@@ -27,7 +27,7 @@ export default defineComponent({
       try {
         schema.value = new Function(
           'yup, mixed, bool, boolean, string, number, date, array, object, ref, lazy',
-          '"use strict"; ' + props.snippet + '; return schema;',
+          '"use strict";\n' + props.snippet + '\nreturn schema;',
         )(yup, mixed, bool, boolean, string, number, date, array, object, ref, lazy)
         data.value = fake(schema.value, { context: props.context })
       } catch (error) {
