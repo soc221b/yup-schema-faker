@@ -5,24 +5,36 @@ import { addFaker, globalOptions } from './base'
 
 import type { NumberSchema } from 'yup'
 
+const exponents = Array(54)
+  .fill(null)
+  .map((_, i) => i)
+
+const precisions = Array(16)
+  .fill(null)
+  .map((_, i) => i + 1)
+
 export class NumberFaker extends MixedFaker<NumberSchema> {
   doFake() {
     let min =
       (this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.min as number | undefined) ??
-      Number.MIN_SAFE_INTEGER
+      -1 * (Math.pow(2, exponents[datatype.number({ min: 0, max: exponents.length - 1 })]) - 1)
     let max =
       (this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.max as number | undefined) ??
-      Number.MAX_SAFE_INTEGER
+      Math.pow(2, exponents[datatype.number({ min: 0, max: exponents.length - 1 })]) - 1
 
     const more = this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.more as number | undefined
     if (more !== undefined && Number.isFinite(more) && Number.MIN_SAFE_INTEGER <= more) {
       const precision = findMinimumOffsetPrecision(more)
-      min = Math.max(min, more + precision)
+      const _min = more + precision
+      min = Math.max(min, _min)
+      max = Math.max(max, _min)
     }
     const less = this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.less as number | undefined
     if (less !== undefined && Number.isFinite(less) && less <= Number.MAX_SAFE_INTEGER) {
       const precision = findMinimumOffsetPrecision(less)
-      max = Math.min(max, less - precision)
+      const _max = less - precision
+      max = Math.min(max, _max)
+      min = Math.min(min, _max)
     }
 
     const result = this.schema.tests.find(test => test.OPTIONS.name === 'integer')
@@ -33,7 +45,9 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
       : datatype.float({
           min,
           max,
-          precision: 1 / 1e16,
+          precision:
+            1 /
+            (max - min < 1 ? 1e16 : Math.pow(10, precisions[datatype.number({ min: 0, max: precisions.length - 1 })])),
         })
 
     if ((this.schema.spec.strict || globalOptions.strict) !== true && datatype.float({ min: 0, max: 1 }) > 0.8) {
