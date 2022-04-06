@@ -18,6 +18,12 @@ it('should works with defined', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
+it('should works with optional', () => {
+  const schema = mixed().optional()
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
 it('should works with required', () => {
   const schema = mixed().required()
   const actual = fake(schema)
