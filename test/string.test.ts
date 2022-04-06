@@ -24,7 +24,7 @@ it('should fake data for string schema', () => {
 it('should works with required', () => {
   const schema = string().required().max(1)
   let count = 0
-  let actual: string = 's'
+  let actual: string
   do {
     actual = fake(schema) as string
   } while (actual.length !== 0 && ++count < SAFE_COUNT)
@@ -80,7 +80,7 @@ it('should works with min, max', () => {
 it('can be empty string', () => {
   const schema = string().max(1)
   let count = 0
-  let actual: string = 's'
+  let actual: string
   do {
     actual = fake(schema) as string
   } while ((typeof actual !== 'string' || actual.length !== 0) && ++count < SAFE_COUNT)
