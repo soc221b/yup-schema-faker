@@ -1,7 +1,7 @@
-import Faker from '@faker-js/faker'
+import { faker } from '@faker-js/faker'
 
-export const datatype = Faker.datatype ?? Faker.random
-export const lorem = Faker.lorem
-export const internet = Faker.internet
-export const random = Faker.random
-export default Faker
+export const datatype = faker.datatype ?? faker.random
+export const lorem = faker.lorem
+export const internet = faker.internet
+export const random = faker.random
+export default faker

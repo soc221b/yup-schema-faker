@@ -8,5 +8,5 @@ export const randexp = (pattern: string | RegExp, flags?: string) => {
 }
 
 export const seed = (value: number) => {
-  Faker.seed.call(Faker, value)
+  Faker.seed.call(Faker, [value])
 }

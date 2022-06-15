@@ -1,6 +1,6 @@
 {
   "name": "yup-schema-faker",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "sideEffects": false,
   "description": "Yup-schema-faker will generate you a fake data based on your yup schema.",
   "keywords": [
@@ -40,7 +40,7 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@faker-js/faker": "^6.0.0",
+    "@faker-js/faker": "^7.2.0",
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.0.1",

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.0](https://github.com/iendeavor/yup-schema-faker/compare/v3.0.2...v4.0.0) (2022-06-10)
+
+
+### Bug Fixes
+
+* Support @faker-js/faker 7.2.0 https://github.com/iendeavor/yup-schema-faker/issues/179
+
 ### [3.0.2](https://github.com/iendeavor/yup-schema-faker/compare/v3.0.1...v3.0.2) (2022-04-02)
 
 

@@ -27,8 +27,8 @@ Install `yup-schema-faker` and its peer dependencies with your favorite package 
 
 ```sh
 pnpm add yup@^0.32.11
-pnpm add -D yup-schema-faker@^3.0.0
-pnpm add -D @faker-js/faker@^6.0.0
+pnpm add -D yup-schema-faker@^4.0.0
+pnpm add -D @faker-js/faker@^7.2.0
 pnpm add -D randexp@^0.5.3
 ```
 
