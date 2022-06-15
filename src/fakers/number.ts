@@ -21,6 +21,7 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
     let max =
       (this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.max as number | undefined) ??
       Math.pow(2, exponents[datatype.number({ min: 0, max: exponents.length - 1 })]) - 1
+    max = Math.max(min, max)
 
     const more = this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.more as number | undefined
     if (more !== undefined && Number.isFinite(more) && Number.MIN_SAFE_INTEGER <= more) {

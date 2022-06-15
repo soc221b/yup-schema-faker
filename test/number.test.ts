@@ -43,9 +43,12 @@ it('should not fake string type number when set strict option to true', () => {
 })
 
 it('should works with number.min', () => {
-  const schema = number().defined().min(42)
-  const actual = fake(schema)
-  expect(schema.isValidSync(actual)).toBe(true)
+  let i = 0
+  while (i++ < 100) {
+    const schema = number().defined().min(42)
+    const actual = fake(schema)
+    expect(schema.isValidSync(actual)).toBe(true)
+  }
 })
 
 it('should works with number.max', () => {
