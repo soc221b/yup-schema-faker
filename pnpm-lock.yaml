@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@commitlint/cli': ^11.0.0
   '@commitlint/config-conventional': ^11.0.0
-  '@faker-js/faker': ^6.0.0
+  '@faker-js/faker': ^7.2.0
   '@rollup/plugin-commonjs': ^17.0.0
   '@rollup/plugin-json': ^4.1.0
   '@rollup/plugin-node-resolve': ^11.0.1
@@ -31,7 +31,7 @@ specifiers:
 devDependencies:
   '@commitlint/cli': 11.0.0
   '@commitlint/config-conventional': 11.0.0
-  '@faker-js/faker': 6.0.0
+  '@faker-js/faker': 7.2.0
   '@rollup/plugin-commonjs': 17.1.0_rollup@2.56.3
   '@rollup/plugin-json': 4.1.0_rollup@2.56.3
   '@rollup/plugin-node-resolve': 11.2.1_rollup@2.56.3
@@ -503,9 +503,9 @@ packages:
     engines: {node: '>=v10.22.0'}
     dev: true
 
-  /@faker-js/faker/6.0.0:
-    resolution: {integrity: sha512-10zLCKhp3YEmBuko71ivcMoIZcCLXgQVck6aNswX+AWwaek/L8S3yz9i8m3tHigRkcF6F2vI+qtdtyySHK+bGA==}
-    engines: {node: '>=14.0.0', npm: '>=7.0.0'}
+  /@faker-js/faker/7.2.0:
+    resolution: {integrity: sha512-dzjQ0LFT+bPLWg0yyV3MpxaLJp/+VW4a0SnjNSWJ4YpJ928LXDOZAN+kB2/JPPisI3Ra0w2BxbD4M9J7o0jcpw==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     dev: true
 
   /@istanbuljs/load-nyc-config/1.1.0:
