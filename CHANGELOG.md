@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.1](https://github.com/iendeavor/yup-schema-faker/compare/v4.0.0...v4.0.1) (2022-06-15)
+
+
+### Bug Fixes
+
+* **number:** max must larger than or equal to min ([970930b](https://github.com/iendeavor/yup-schema-faker/commit/970930b31eb78e323b3c2881d26de7e9c7d581e7))
+
 ### [4.0.0](https://github.com/iendeavor/yup-schema-faker/compare/v3.0.2...v4.0.0) (2022-06-10)
 
 
