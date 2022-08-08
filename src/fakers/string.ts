@@ -1,5 +1,5 @@
 import { string } from 'yup'
-import { random, datatype, internet, lorem } from '../faker'
+import { random, datatype, internet, lorem } from '../install'
 import { randexp } from '../random'
 import { MixedFaker } from './mixed'
 import { fakeDedicatedTest, addFaker, globalOptions } from './base'

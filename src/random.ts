@@ -1,4 +1,4 @@
-import Faker, { datatype } from './faker'
+import { datatype, faker } from './install'
 import RandExp from 'randexp'
 
 export const randexp = (pattern: string | RegExp, flags?: string) => {
@@ -8,5 +8,5 @@ export const randexp = (pattern: string | RegExp, flags?: string) => {
 }
 
 export const seed = (value: number) => {
-  Faker.seed.call(Faker, [value])
+  faker.seed.call(faker, [value])
 }

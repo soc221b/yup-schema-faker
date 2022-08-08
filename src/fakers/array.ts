@@ -1,5 +1,5 @@
 import { mixed, array } from 'yup'
-import { datatype } from '../faker'
+import { datatype } from '../install'
 import { MixedFaker } from './mixed'
 import { addFaker, globalOptions } from './base'
 
