@@ -8,7 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@faker-js/faker": "^6.1.1",
+    "@faker-js/faker": "^7.4.0",
     "@stackblitz/sdk": "^1.6.0",
     "@vueuse/core": "^8.2.0",
     "highlight.js": "^10.7.3",

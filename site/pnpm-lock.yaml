@@ -1,7 +1,7 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
-  '@faker-js/faker': ^6.1.1
+  '@faker-js/faker': ^7.4.0
   '@stackblitz/sdk': ^1.6.0
   '@vitejs/plugin-vue': ^1.10.2
   '@vue/compiler-sfc': ^3.2.31
@@ -20,7 +20,7 @@ specifiers:
   yup-schema-faker: link:..
 
 dependencies:
-  '@faker-js/faker': 6.1.1
+  '@faker-js/faker': 7.4.0
   '@stackblitz/sdk': 1.6.0
   '@vueuse/core': 8.2.0_vue@3.2.31
   highlight.js: 10.7.3
@@ -52,7 +52,6 @@ packages:
   /@babel/helper-validator-identifier/7.16.7:
     resolution: {integrity: sha512-hsEnFemeiW4D08A5gUAZxLBTXpZ39P+a+DGDsHw1yxqyQ/jzFEnxf5uTEGp+3bzAbNOxU1paTgYS4ECU/IgfDw==}
     engines: {node: '>=6.9.0'}
-    dev: true
 
   /@babel/highlight/7.16.10:
     resolution: {integrity: sha512-5FnTQLSLswEj6IkgVw5KusNUUFY9ZGqe/TRFnP/BKYHYgfh7tc+C7mwiy95/yNP7Dh9x580Vv8r7u7ZfTBFxdw==}
@@ -67,6 +66,8 @@ packages:
     resolution: {integrity: sha512-BoHhDJrJXqcg+ZL16Xv39H9n+AqJ4pcDrQBGZN+wHxIysrLZ3/ECwCBUch/1zUNhnsXULcONU3Ei5Hmkfk6kiQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
+    dependencies:
+      '@babel/types': 7.17.0
 
   /@babel/runtime/7.17.8:
     resolution: {integrity: sha512-dQpEpK0O9o6lj6oPu0gRDbbnk+4LeHlNcBpspf6Olzt3GIX4P1lWF1gS+pHLDFlaJvbR6q7jCfQ08zA4QJBnmA==}
@@ -81,11 +82,10 @@ packages:
     dependencies:
       '@babel/helper-validator-identifier': 7.16.7
       to-fast-properties: 2.0.0
-    dev: true
 
-  /@faker-js/faker/6.1.1:
-    resolution: {integrity: sha512-8yq1LJVGn4GY06riLddIU1LbJm15yjt46hjfkpWNpH/mqdciPOBVzicKOJxzQNrGgVHVBxcdm7sgwjI/Y19MYw==}
-    engines: {node: '>=14.0.0', npm: '>=7.0.0'}
+  /@faker-js/faker/7.4.0:
+    resolution: {integrity: sha512-xDd3Tvkt2jgkx1LkuwwxpNBy/Oe+LkZBTwkgEFTiWpVSZgQ5sc/LenbHKRHbFl0dq/KFeeq/szyyPtpJRKY0fg==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     dev: false
 
   /@nodelib/fs.scandir/2.1.5:
@@ -1340,9 +1340,8 @@ packages:
     dev: true
 
   /to-fast-properties/2.0.0:
-    resolution: {integrity: sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=}
+    resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
     engines: {node: '>=4'}
-    dev: true
 
   /to-regex-range/5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
