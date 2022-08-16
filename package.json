@@ -30,7 +30,7 @@
   ],
   "scripts": {
     "build": "rimraf dist && rollup -c",
-    "release": "standard-version && pnpm run build",
+    "release": "git fetch && standard-version",
     "test": "pnpm exec tsc --noEmit && jest",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",
