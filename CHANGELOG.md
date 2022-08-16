@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.0](https://github.com/iendeavor/yup-schema-faker/compare/v4.0.1...v5.0.0) (2022-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* `faker` must now be passed to the `install` function
+
+### Features
+
+* add passing of Faker instance ([#182](https://github.com/iendeavor/yup-schema-faker/issues/182)) ([6cd4d29](https://github.com/iendeavor/yup-schema-faker/commit/6cd4d29b551d3817e7e6f1837c966448720354c6))
+
+
+### Bug Fixes
+
+* wrong peer deps ([23ab795](https://github.com/iendeavor/yup-schema-faker/commit/23ab795df3467ea2359bb54970c4abc43b48b7c9))
+
 ### [4.0.1](https://github.com/iendeavor/yup-schema-faker/compare/v4.0.0...v4.0.1) (2022-06-15)
 
 
