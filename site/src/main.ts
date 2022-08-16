@@ -4,10 +4,12 @@ import Preview from './components/Preview.vue'
 import DemoGenerator from './components/DemoGenerator.vue'
 import Link from './components/Link.vue'
 import './index.css'
-import { isInit } from './install'
+import { isInit } from './faker'
 import { install } from 'yup-schema-faker'
+import { faker } from '@faker-js/faker'
+// import { faker } from '@faker-js/faker/locale/ja'
 
-install()
+install(faker)
 
 const app = createApp(App)
 app.component('Preview', Preview)

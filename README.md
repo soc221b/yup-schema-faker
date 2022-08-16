@@ -27,8 +27,8 @@ Install `yup-schema-faker` and its peer dependencies with your favorite package 
 
 ```sh
 pnpm add yup@^0.32.11
-pnpm add -D yup-schema-faker@^4.0.0
-pnpm add -D @faker-js/faker@^7.2.0
+pnpm add -D yup-schema-faker@^5.0.0
+pnpm add -D @faker-js/faker@^7.4.0
 pnpm add -D randexp@^0.5.3
 ```
 
@@ -37,9 +37,11 @@ Usage:
 ```typescript
 import { object, string, number, date } from 'yup'
 import { install, fake } from 'yup-schema-faker'
+import { faker } from '@faker-js/faker'
+// import { faker } from '@faker-js/faker/locale/ja'
 
 // Before using it, you need to install all built-in fakers:
-install()
+install(faker)
 
 // If you have extended fakers, you need to install them here, too:
 //
