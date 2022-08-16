@@ -1,4 +1,4 @@
-import { datatype } from '../faker'
+import { datatype } from '../install'
 import { isSchema } from 'yup'
 
 import type { AnySchema } from 'yup'

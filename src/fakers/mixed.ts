@@ -1,4 +1,4 @@
-import { datatype } from '../faker'
+import { datatype } from '../install'
 import { boolean, number, string, date, mixed } from 'yup'
 import { BaseFaker, addFaker } from './base'
 

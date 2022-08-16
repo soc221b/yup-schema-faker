@@ -1,4 +1,4 @@
-import { datatype } from './faker'
+import { datatype } from './install'
 import { AnySchema } from 'yup'
 import { globalOptions, typeToFaker } from './fakers/base'
 import { MixedFaker } from './fakers/mixed'

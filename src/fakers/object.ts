@@ -1,5 +1,5 @@
 import { mixed, object } from 'yup'
-import { datatype, lorem } from '../faker'
+import { datatype, lorem } from '../install'
 import { MixedFaker } from './mixed'
 import { isReference } from '../util'
 import { addFaker, globalOptions } from './base'
