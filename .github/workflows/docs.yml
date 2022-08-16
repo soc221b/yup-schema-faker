@@ -1,9 +1,6 @@
 name: DOCS
 
-on:
-  push:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
   docs:
@@ -43,6 +40,7 @@ jobs:
           git commit -m"docs: update"
 
       - name: Push changes
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
