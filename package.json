@@ -57,7 +57,7 @@
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.29.0",
+    "rollup-plugin-typescript2": "^0.34.0",
     "standard-version": "^9.1.0",
     "ts-expect": "^1.1.0",
     "ts-jest": "^26.4.4",
