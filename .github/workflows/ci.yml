@@ -52,7 +52,7 @@ jobs:
         run: pnpm test -- --no-cache --collect-coverage
 
       - name: Coverage
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
         with:
           directory: ./coverage/
           fail_ci_if_error: true
