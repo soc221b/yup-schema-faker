@@ -85,8 +85,10 @@ jobs:
 
       - name: Build docs
         run: |
+          pnpm pack
           cd site
           pnpm install
+          pnpm add ../yup-schema-faker-*.tgz
           pnpm build
           sed -i 's/assets/yup-schema-faker\/assets/' ./dist/index.html
           cd ..
