@@ -7,7 +7,7 @@ specifiers:
   '@vue/compiler-sfc': ^3.2.31
   '@vueuse/core': ^8.2.0
   autoprefixer: ^10.4.4
-  highlight.js: ^10.7.3
+  highlight.js: ^11.0.0
   postcss: ^8.4.12
   pug: ^3.0.2
   randexp: ^0.5.3
@@ -23,7 +23,7 @@ dependencies:
   '@faker-js/faker': 7.4.0
   '@stackblitz/sdk': 1.6.0
   '@vueuse/core': 8.2.0_vue@3.2.31
-  highlight.js: 10.7.3
+  highlight.js: 11.7.0
   randexp: 0.5.3
   vue: 3.2.31
   yup: 0.32.11
@@ -938,8 +938,9 @@ packages:
     hasBin: true
     dev: true
 
-  /highlight.js/10.7.3:
-    resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
+  /highlight.js/11.7.0:
+    resolution: {integrity: sha512-1rRqesRFhMO/PRF+G86evnyJkCgaZFOI+Z6kdj15TA18funfoqJXvgPCLSf0SWq3SRfg1j3HlDs8o4s3EGq1oQ==}
+    engines: {node: '>=12.0.0'}
     dev: false
 
   /import-fresh/3.3.0:
