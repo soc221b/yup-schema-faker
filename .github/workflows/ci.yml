@@ -97,6 +97,8 @@ jobs:
           git config --global user.name "Action"
           git add docs --force
           git commit -m"docs: update"
+          rm ../yup-schema-faker-*.tgz
+          git restore ..
 
       - name: Push changes
         if: ${{ github.ref == 'refs/heads/main' }}
