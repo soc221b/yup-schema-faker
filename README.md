@@ -19,7 +19,7 @@ Key features:
 | [~0.28.x](https://github.com/jquense/yup/tree/v0.28.5)               | [~0.28.x](https://www.npmjs.com/package/@types/yup) | [~2.28.x](https://github.com/iendeavor/yup-schema-faker/tree/v2.28.x) |
 | [~0.29.x](https://github.com/jquense/yup/tree/v0.29.3)               | [~0.29.x](https://www.npmjs.com/package/@types/yup) | [~2.29.x](https://github.com/iendeavor/yup-schema-faker/tree/v2.29.x) |
 | [>= 0.32.0, <= 0.32.10](https://github.com/jquense/yup/tree/v0.32.9) | N/A                                                 | [~2.32.x](https://github.com/iendeavor/yup-schema-faker/tree/v2.32.x) |
-| [>= 0.32.11](https://github.com/jquense/yup/tree/v0.32.11)           | N/A                                                 | main                                                                  |
+| [>= 0.32.11, < 1.0.0](https://github.com/jquense/yup/tree/v0.32.11)  | N/A                                                 | [^5.x.x](https://github.com/iendeavor/yup-schema-faker/tree/v5.x.x)   |
 
 ## Getting Started
 
