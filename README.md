@@ -146,13 +146,10 @@ yup. Similarly, you can use addFaker to create corresponding fakers for these sc
 Function signature:
 
 ```typescript
-function addFaker<Schema extends AnySchema, Faker>(
-  schemaConstructor: (...arg: any[]) => Schema,
-  fakerConstructor: Faker,
-)
+function addFaker<S extends Schema, Faker>(schemaConstructor: (...arg: any[]) => S, fakerConstructor: Faker)
 ```
 
-Example: [customMixed example](./site/src/views/Custom/custom-mixed.ts)
+Example: [customDate example](./site/src/views/Custom/custom-date.ts)
 
 ### `seed`
 
