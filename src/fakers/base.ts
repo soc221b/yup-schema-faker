@@ -46,11 +46,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   }
 
   protected fakeUndefined(): [boolean, any?] {
-    if (
-      this.schema.spec.default === undefined &&
-      datatype.float({ min: 0, max: 1 }) > 0.9 &&
-      this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!)) === false
-    )
+    if (this.schema.spec.default === undefined && this.schema.spec.optional && datatype.float({ min: 0, max: 1 }) > 0.9)
       return [true, undefined]
 
     return [false]
