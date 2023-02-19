@@ -68,14 +68,16 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   }
 
   protected fakeOneOf(): [boolean, any?] {
-    const oneOf = this.schema.describe().oneOf
+    const next = this.schema.clone()
+    const oneOf = (next as any)._whitelist.describe()
     if (oneOf.length) return [true, oneOf[datatype.number({ min: 0, max: oneOf.length - 1 })]]
 
     return [false]
   }
 
   protected fakeNotOneOf(options?: Options): [boolean, any?] {
-    const notOneOf = this.schema.describe().notOneOf
+    const next = this.schema.clone()
+    const notOneOf = (next as any)._blacklist.describe()
     if (notOneOf.length) {
       let safeCount = 0
       let data
