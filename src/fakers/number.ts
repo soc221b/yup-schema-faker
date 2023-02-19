@@ -1,9 +1,7 @@
-import { number } from 'yup'
+import { AnyObject, Flags, Maybe, number } from 'yup'
 import { datatype } from '../install'
-import { MixedFaker } from './mixed'
+import { BaseFaker } from './base'
 import { addFaker, globalOptions } from './base'
-
-import type { NumberSchema } from 'yup'
 
 const exponents = Array(54)
   .fill(null)
@@ -13,7 +11,12 @@ const precisions = Array(16)
   .fill(null)
   .map((_, i) => i + 1)
 
-export class NumberFaker extends MixedFaker<NumberSchema> {
+export class NumberFaker<
+  TType extends Maybe<number> = number | undefined,
+  TContext = AnyObject,
+  TDefault = undefined,
+  TFlags extends Flags = '',
+> extends BaseFaker<TType, TContext, TDefault, TFlags> {
   doFake() {
     let min =
       (this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.min as number | undefined) ??

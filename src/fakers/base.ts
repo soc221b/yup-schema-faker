@@ -1,20 +1,19 @@
 import { datatype } from '../install'
-import { isSchema } from 'yup'
-
+import { Flags, isSchema, Schema } from 'yup'
 import type { AnySchema } from 'yup'
 import type { Fake, Options } from '../type'
 
 export const globalOptions = { strict: false }
 
 const SAFE_COUNT = 99999
-export abstract class BaseFaker<Schema extends AnySchema> {
+export abstract class BaseFaker<TType = any, C = any, D = any, F extends Flags = Flags> {
   static rootFake: Fake<AnySchema>
 
   static dedicatedTests: { [schema: string]: { [name: string]: (schema: AnySchema) => any } } = {}
 
-  protected schema: Schema
+  protected schema: Schema<TType, C, D, F>
 
-  constructor(schema: Schema) {
+  constructor(schema: Schema<TType, C, D, F>) {
     this.schema = schema
   }
 
@@ -94,7 +93,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   protected doFake(_options?: Options) {}
 }
 
-export function fakeDedicatedTest<SchemaConstructor extends (...args: any[]) => AnySchema>(
+export function fakeDedicatedTest<SchemaConstructor extends (...args: any[]) => Schema>(
   schemaConstructor: SchemaConstructor,
   name: string,
   fakeFn: (schema: ReturnType<SchemaConstructor>) => ReturnType<ReturnType<SchemaConstructor>['cast']>,
@@ -110,10 +109,7 @@ export function fakeDedicatedTest<SchemaConstructor extends (...args: any[]) => 
 }
 
 export const typeToFaker = new Map<String, any>()
-export function addFaker<Schema extends AnySchema, Faker>(
-  schemaConstructor: (...arg: any[]) => Schema,
-  fakerConstructor: Faker,
-) {
+export function addFaker<S extends Schema, Faker>(schemaConstructor: (...arg: any[]) => S, fakerConstructor: Faker) {
   if (schemaConstructor === undefined || isSchema(schemaConstructor) === false)
     throw new TypeError('You must provide a yup schema constructor function')
 

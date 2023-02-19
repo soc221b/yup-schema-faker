@@ -1,12 +1,15 @@
-import { string } from 'yup'
+import { AnyObject, Flags, Maybe, string } from 'yup'
 import { random, datatype, internet, lorem } from '../install'
 import { randexp } from '../random'
-import { MixedFaker } from './mixed'
+import { BaseFaker } from './base'
 import { fakeDedicatedTest, addFaker, globalOptions } from './base'
 
-import type { StringSchema } from 'yup'
-
-export class StringFaker extends MixedFaker<StringSchema> {
+export class StringFaker<
+  TType extends Maybe<string> = string | undefined,
+  TContext = AnyObject,
+  TDefault = undefined,
+  TFlags extends Flags = '',
+> extends BaseFaker<TType, TContext, TDefault, TFlags> {
   doFake() {
     const min =
       (this.schema.tests.find(test => test.OPTIONS.name === 'length')?.OPTIONS.params?.length as number) ??

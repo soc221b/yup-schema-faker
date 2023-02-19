@@ -1,11 +1,14 @@
-import { boolean } from 'yup'
+import { AnyObject, boolean, Flags, Maybe } from 'yup'
 import { datatype } from '../install'
-import { MixedFaker } from './mixed'
+import { BaseFaker } from './base'
 import { fakeDedicatedTest, addFaker } from './base'
 
-import type { BooleanSchema } from 'yup'
-
-export class BooleanFaker extends MixedFaker<BooleanSchema> {
+export class BooleanFaker<
+  TType extends Maybe<boolean> = boolean | undefined,
+  TContext = AnyObject,
+  TDefault = undefined,
+  TFlags extends Flags = '',
+> extends BaseFaker<TType, TContext, TDefault, TFlags> {
   doFake() {
     return datatype.boolean()
   }
