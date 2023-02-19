@@ -53,12 +53,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   }
 
   protected fakeNullable(): [boolean, any?] {
-    if (
-      datatype.float({ min: 0, max: 1 }) > 0.9 &&
-      this.schema.spec.nullable &&
-      this.schema.tests.some(test => test.OPTIONS.name === 'required') === false
-    )
-      return [true, null]
+    if (datatype.float({ min: 0, max: 1 }) > 0.9 && this.schema.spec.nullable) return [true, null]
 
     return [false]
   }
