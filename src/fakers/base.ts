@@ -82,10 +82,10 @@ export abstract class BaseFaker<TType = any, C = any, D = any, F extends Flags =
 
   protected fakeDedicatedTest(): [boolean, any?] {
     const dedicatedTest = this.schema.tests.find(
-      test => BaseFaker.dedicatedTests[this.schema.type]?.[test.OPTIONS.name!] !== undefined,
+      test => BaseFaker.dedicatedTests[this.schema.type]?.[test.OPTIONS?.name!] !== undefined,
     )
     if (dedicatedTest)
-      return [true, BaseFaker.dedicatedTests[this.schema.type][dedicatedTest.OPTIONS.name!](this.schema)]
+      return [true, BaseFaker.dedicatedTests[this.schema.type][dedicatedTest.OPTIONS?.name!](this.schema)]
 
     return [false]
   }

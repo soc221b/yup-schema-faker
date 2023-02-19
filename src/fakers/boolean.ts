@@ -18,7 +18,7 @@ export const installBooleanFaker = () => {
   addFaker(boolean, BooleanFaker)
 
   fakeDedicatedTest(boolean, 'is-value', schema => {
-    const isValueTest = schema.tests.find(test => test.OPTIONS.name === 'is-value')!
-    return isValueTest.OPTIONS.params?.value === 'true'
+    const isValueTest = schema.tests.find(test => test.OPTIONS?.name === 'is-value')!
+    return isValueTest.OPTIONS?.params?.value === 'true'
   })
 }

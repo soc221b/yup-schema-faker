@@ -14,9 +14,9 @@ export class DateFaker<
 > extends BaseFaker<TType, TContext, TDefault, TFlags> {
   doFake() {
     const min =
-      (this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.min as string | undefined) ?? MIN
+      (this.schema.tests.find(test => test.OPTIONS?.name === 'min')?.OPTIONS?.params?.min as string | undefined) ?? MIN
     const max =
-      (this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.max as string | undefined) ?? MAX
+      (this.schema.tests.find(test => test.OPTIONS?.name === 'max')?.OPTIONS?.params?.max as string | undefined) ?? MAX
 
     const result = faker.date.between(min, max)
 
