@@ -4,10 +4,6 @@
 
 [Showcase & Playground](https://iendeavor.github.io/yup-schema-faker/)
 
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/iendeavor/yup-schema-faker/CI/main)](https://github.com/iendeavor/yup-schema-faker/actions?query=workflow%3ACI+branch%3Amain+)
-[![codecov](https://codecov.io/gh/iendeavor/yup-schema-faker/branch/develop/graph/badge.svg?token=OP3HU6QW90)](https://codecov.io/gh/iendeavor/yup-schema-faker)
-![last commit](https://img.shields.io/github/last-commit/iendeavor/yup-schema-faker/main)
-
 Key features:
 
 - Extensible: you can fake for your own schemas, methods or override existing ones.
@@ -225,35 +221,10 @@ console.log(first === second) // true
   - ✅ object.shape(fields: object, noSortEdges?: Array<[string, string]>): Schema
   - ✅ object.noUnknown(onlyKnownKeys: boolean = true, message?: string | function): Schema
 
-## Contributing
+## About
 
-We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
+<a href="https://www.buymeacoffee.com/iendeavor" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
-- Reporting a bug
-- Discussing the current state of the code
-- Submitting a fix
-- Proposing new features
-- Becoming a maintainer
+Distributed under the MIT license. See LICENSE for more information.
 
-People _love_ thorough bug reports. I'm not even kidding.
-
-### Report bugs using Github's [issues](../../issues)
-
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](../../issues/new); it's that easy!
-
-### Write bug reports with detail, background, and sample code
-
-**Great Bug Reports** tend to have:
-
-- A quick summary and/or background
-- Steps to reproduce
-  - Be specific!
-  - Give sample code if you can.
-- What you expected would happen
-- What actually happens
-- Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
-
-## Support Me
-
-[![paypal](https://img.shields.io/badge/donate-paypal-blue)](https://www.paypal.com/paypalme/iendeavor)
-[![buymeacoffee](https://img.shields.io/badge/donate-buymeacoffee-blue)](https://www.buymeacoffee.com/iendeavor)
+https://github.com/iendeavor
