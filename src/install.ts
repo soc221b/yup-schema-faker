@@ -14,12 +14,14 @@ export let datatype: any
 export let lorem: any
 export let internet: any
 export let random: any
+export let fakerNumber: any
 
 export const install = (fakerInstance: Faker) => {
   BaseFaker.rootFake = rootFake
   faker = fakerInstance
   datatype = faker.datatype ?? faker.random
   lorem = faker.lorem
+  fakerNumber = faker.number
   internet = faker.internet
   random = faker.random
 

@@ -1,5 +1,5 @@
 import { number } from 'yup'
-import { datatype } from '../install'
+import { fakerNumber } from '../install'
 import { MixedFaker } from './mixed'
 import { addFaker, globalOptions } from './base'
 
@@ -17,10 +17,10 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
   doFake() {
     let min =
       (this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.min as number | undefined) ??
-      -1 * (Math.pow(2, exponents[datatype.number({ min: 0, max: exponents.length - 1 })]) - 1)
+      -1 * (Math.pow(2, exponents[fakerNumber({ min: 0, max: exponents.length - 1 })]) - 1)
     let max =
       (this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.max as number | undefined) ??
-      Math.pow(2, exponents[datatype.number({ min: 0, max: exponents.length - 1 })]) - 1
+      Math.pow(2, exponents[fakerNumber({ min: 0, max: exponents.length - 1 })]) - 1
     max = Math.max(min, max)
 
     const more = this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.more as number | undefined
@@ -39,19 +39,18 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
     }
 
     const result = this.schema.tests.find(test => test.OPTIONS.name === 'integer')
-      ? datatype.number({
+      ? fakerNumber({
           min: Math.ceil(min),
           max: Math.floor(max),
         })
-      : datatype.float({
+      : fakerNumber({
           min,
           max,
           precision:
-            1 /
-            (max - min < 1 ? 1e16 : Math.pow(10, precisions[datatype.number({ min: 0, max: precisions.length - 1 })])),
+            1 / (max - min < 1 ? 1e16 : Math.pow(10, precisions[fakerNumber({ min: 0, max: precisions.length - 1 })])),
         })
 
-    if ((this.schema.spec.strict || globalOptions.strict) !== true && datatype.float({ min: 0, max: 1 }) > 0.8) {
+    if ((this.schema.spec.strict || globalOptions.strict) !== true && fakerNumber({ min: 0, max: 1 }) > 0.8) {
       return result + ''
     }
 
