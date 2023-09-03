@@ -9,7 +9,7 @@ const schemas = [
 
   yup.boolean(),
 
-  yup.number(),
+  yup.int(),
 
   yup.date(),
 

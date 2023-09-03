@@ -1,4 +1,4 @@
-import { datatype } from './install'
+import { fakerNumber } from './install'
 import { AnySchema } from 'yup'
 import { globalOptions, typeToFaker } from './fakers/base'
 import { MixedFaker } from './fakers/mixed'
@@ -14,7 +14,7 @@ export function rootFake<Schema extends AnySchema>(schema: Schema, options: Opti
   if (isReference(schema)) {
     result = (schema as any).getValue(undefined, options?.parent, options.context)
   } else if (isLazy(schema)) {
-    if (datatype.float({ min: 0, max: 1 }) > 0.1) result = undefined as any
+    if (fakerNumber.float({ min: 0, max: 1 }) > 0.1) result = undefined as any
     else result = rootFake(schema.resolve({}), options)
   } else if ((schema as any).conditions.length) {
     result = rootFake(schema.resolve(options))

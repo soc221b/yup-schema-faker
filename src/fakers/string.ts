@@ -1,5 +1,5 @@
 import { string } from 'yup'
-import { random, datatype, internet, lorem } from '../install'
+import { random, datatype, fakerNumber, internet, lorem } from '../install'
 import { randexp } from '../random'
 import { MixedFaker } from './mixed'
 import { fakeDedicatedTest, addFaker, globalOptions } from './base'
@@ -20,16 +20,16 @@ export class StringFaker extends MixedFaker<StringSchema> {
     if (
       min === undefined &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false &&
-      datatype.float({ min: 0, max: 1 }) > 0.9
+      fakerNumber.float({ min: 0, max: 1 }) > 0.9
     ) {
       return ''
     }
 
     // sentence and other function sometimes return undefined!
     let result = lorem.paragraph(max ?? min)
-    if (datatype.float({ min: 0, max: 1 }) > 0.9) {
+    if (fakerNumber.float({ min: 0, max: 1 }) > 0.9) {
       result = lorem.paragraph(max ?? min) ?? result
-    } else if (datatype.float({ min: 0, max: 1 }) > 0.9) {
+    } else if (fakerNumber.float({ min: 0, max: 1 }) > 0.9) {
       result = lorem.word(max ?? min) ?? result
     } else {
       result = lorem.sentence(max ?? min) ?? result
@@ -41,7 +41,7 @@ export class StringFaker extends MixedFaker<StringSchema> {
     if (shouldTrim) {
       result = result.trim() + random.alpha({ count: result.length })
     } else {
-      result = ' '.repeat(datatype.number(max ?? min ?? 3)) + result + ' '.repeat(datatype.number(max ?? min ?? 3))
+      result = ' '.repeat(fakerNumber.int(max ?? min ?? 3)) + result + ' '.repeat(fakerNumber.int(max ?? min ?? 3))
     }
 
     result = result.slice(0, max)
