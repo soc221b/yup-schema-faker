@@ -19,7 +19,6 @@ export let fakerNumber: any
 export const install = (fakerInstance: Faker) => {
   BaseFaker.rootFake = rootFake
 
-  console.log('installing')
   faker = fakerInstance
   datatype = faker.datatype ?? faker.random
   lorem = faker.lorem
