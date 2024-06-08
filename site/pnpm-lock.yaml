@@ -8,6 +8,7 @@ specifiers:
   '@vueuse/core': ^8.2.0
   autoprefixer: ^10.4.4
   highlight.js: ^11.0.0
+  husky: ^9.0.11
   postcss: ^8.4.12
   pug: ^3.0.2
   randexp: ^0.5.3
@@ -31,6 +32,7 @@ devDependencies:
   '@vitejs/plugin-vue': 4.0.0_vite@4.0.0+vue@3.2.31
   '@vue/compiler-sfc': 3.2.31
   autoprefixer: 10.4.4_postcss@8.4.12
+  husky: 9.0.11
   postcss: 8.4.12
   pug: 3.0.2
   tailwindcss: 3.0.23_balfb4xu3orvwfzgle32wkroya
@@ -940,6 +942,12 @@ packages:
     resolution: {integrity: sha512-1rRqesRFhMO/PRF+G86evnyJkCgaZFOI+Z6kdj15TA18funfoqJXvgPCLSf0SWq3SRfg1j3HlDs8o4s3EGq1oQ==}
     engines: {node: '>=12.0.0'}
     dev: false
+
+  /husky/9.0.11:
+    resolution: {integrity: sha512-AB6lFlbwwyIqMdHYhwPe+kjOC3Oc5P3nThEoW/AaO2BX3vJDjWPFxYLxokUZOo6RNX20He3AaT8sESs9NJcmEw==}
+    engines: {node: '>=18'}
+    hasBin: true
+    dev: true
 
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
