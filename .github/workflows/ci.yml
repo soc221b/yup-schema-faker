@@ -7,49 +7,33 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: ^7
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version-file: .nvmrc
-          cache: 'pnpm'
 
       - name: Install
-        run: pnpm install
+        run: npm ci
 
       - name: Lint
-        run: pnpm lint
+        run: npm run lint
 
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: ^7
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version-file: .nvmrc
-          cache: 'pnpm'
 
       - name: Install
-        run: pnpm install
+        run: npm ci
 
       - name: Test
-        run: pnpm test -- --no-cache
+        run: npm run test
 
   build:
     runs-on: ubuntu-latest
@@ -57,33 +41,25 @@ jobs:
     needs: [lint, test]
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: ^7
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version-file: .nvmrc
-          cache: 'pnpm'
 
       - name: Install
-        run: pnpm install
+        run: npm ci
 
       - name: Build
-        run: pnpm build
+        run: npm run build
 
       - name: Build docs
         run: |
-          pnpm pack
+          npm pack
           cd site
-          pnpm install
-          pnpm add ../yup-schema-faker-*.tgz
-          pnpm build
+          npm ci
+          npm add ../yup-schema-faker-*.tgz
+          npm run build
           sed -i 's/assets/yup-schema-faker\/assets/' ./dist/index.html
           cd ..
           mv site/dist docs
@@ -94,9 +70,8 @@ jobs:
           rm ./yup-schema-faker-*.tgz
           git restore .
 
-      - name: Push changes
+      - uses: ad-m/github-push-action@master
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: 'docs'
@@ -114,16 +89,14 @@ jobs:
           check-version: true
           greater-version-only: true
 
-      - name: Tag
+      - uses: anothrNick/github-tag-action@v1
         if: github.ref_name == 'main' && steps.publish.outputs.type != 'none'
-        uses: anothrNick/github-tag-action@v1
         env:
           CUSTOM_TAG: ${{ steps.publish.outputs.version }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Release
+      - uses: softprops/action-gh-release@v1
         if: github.ref_name == 'main' && steps.publish.outputs.type != 'none'
-        uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.publish.outputs.version }}
           body:
