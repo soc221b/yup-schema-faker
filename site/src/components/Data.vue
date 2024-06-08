@@ -26,7 +26,7 @@ export default defineComponent({
   setup(props, { emit }) {
     const snippet = ref()
     const highlight = () => {
-      // @ts-ignore
+      delete snippet.value.dataset['highlighted']
       hljs.highlightElement(snippet.value)
     }
     onMounted(highlight)

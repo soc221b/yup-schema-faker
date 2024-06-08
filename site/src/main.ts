@@ -1,3 +1,4 @@
+import 'highlight.js/styles/atom-one-dark.css'
 import { createApp, nextTick } from 'vue'
 import App from './App.vue'
 import Preview from './components/Preview.vue'

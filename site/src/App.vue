@@ -19,15 +19,12 @@ BackToTop
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { usePreferredColorScheme, useStyleTag } from '@vueuse/core'
+import { defineComponent } from 'vue'
 import Header from './views/Header.vue'
 import Playground from './views/Playground.vue'
 import Full from './views/Full.vue'
 import Custom from './views/Custom/index.vue'
 import BackToTop from './views/BackToTop.vue'
-import lightCss from 'highlight.js/styles/github.css'
-import darkCss from 'highlight.js/styles/atom-one-dark.css'
 
 export default defineComponent({
   components: {
@@ -36,12 +33,6 @@ export default defineComponent({
     Full,
     Custom,
     BackToTop,
-  },
-
-  setup() {
-    const preferredColorScheme = usePreferredColorScheme()
-    const css = computed(() => (preferredColorScheme.value === 'dark' ? darkCss : lightCss))
-    useStyleTag(css)
   },
 })
 </script>
