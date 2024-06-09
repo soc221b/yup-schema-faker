@@ -8,20 +8,12 @@ import { installNumberFaker } from './fakers/number'
 import { installObjectFaker } from './fakers/object'
 import { installStringFaker } from './fakers/string'
 import type { Faker } from '@faker-js/faker'
+import { setFaker } from './faker'
 
-export let faker: Faker
-export let datatype: any
-export let lorem: any
-export let internet: any
-export let random: any
-
-export const install = (fakerInstance: Faker) => {
+export const install = (faker: Faker) => {
   BaseFaker.rootFake = rootFake
-  faker = fakerInstance
-  datatype = faker.datatype ?? faker.random
-  lorem = faker.lorem
-  internet = faker.internet
-  random = faker.random
+
+  setFaker(faker)
 
   installMixedFaker()
   installArrayFaker()

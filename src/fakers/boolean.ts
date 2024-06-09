@@ -1,5 +1,5 @@
 import { boolean } from 'yup'
-import { datatype } from '../install'
+import { getDatatype } from '../faker'
 import { MixedFaker } from './mixed'
 import { fakeDedicatedTest, addFaker } from './base'
 
@@ -7,7 +7,7 @@ import type { BooleanSchema } from 'yup'
 
 export class BooleanFaker extends MixedFaker<BooleanSchema> {
   doFake() {
-    return datatype.boolean()
+    return getDatatype().boolean()
   }
 }
 
