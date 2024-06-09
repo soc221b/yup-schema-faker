@@ -93,6 +93,7 @@ jobs:
         env:
           CUSTOM_TAG: ${{ steps.publish.outputs.version }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
 
       - uses: softprops/action-gh-release@v2
         if: github.ref_name == 'main' && steps.publish.outputs.type
