@@ -95,7 +95,7 @@ jobs:
           CUSTOM_TAG: ${{ steps.publish.outputs.version }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: softprops/action-gh-release@v1
+      - uses: softprops/action-gh-release@v2
         if: github.ref_name == 'main' && steps.publish.outputs.type != 'none'
         with:
           tag_name: ${{ steps.publish.outputs.version }}
