@@ -1,4 +1,4 @@
-import { seed, fake } from '../src'
+import { seed, fake, overrideFaker } from '../src'
 import RandExp from 'randexp'
 import * as yup from 'yup'
 
@@ -50,5 +50,14 @@ describe('seed', () => {
         throw error
       }
     }
+  })
+})
+
+describe('overrideFaker', () => {
+  it('should works', () => {
+    overrideFaker((faker, _, path) => (path?.includes('firstName') ? faker.name.firstName() : undefined))
+    const schema = yup.object().shape({ firstName: yup.string().required() }).required().strict()
+    const actual = fake(schema)
+    expect(schema.isValidSync(actual)).toBe(true)
   })
 })

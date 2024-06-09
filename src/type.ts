@@ -11,4 +11,5 @@ export interface Options {
   parent?: any
   value?: any
   strict?: boolean
+  path?: PropertyKey[]
 }

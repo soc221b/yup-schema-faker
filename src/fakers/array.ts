@@ -22,9 +22,13 @@ export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
     let array = Array(getDatatype().number({ min, max })).fill(null)
     const innerSchema = this.schema.innerType
     if (innerSchema) {
-      array = array.map(() => ArrayFaker.rootFake(this.schema.innerType!, options))
+      array = array.map((_, index) =>
+        ArrayFaker.rootFake(this.schema.innerType!, { ...options, path: options?.path?.concat(index) ?? [index] }),
+      )
     } else {
-      array = array.map(() => ArrayFaker.rootFake(mixed(), options))
+      array = array.map((_, index) =>
+        ArrayFaker.rootFake(mixed(), { ...options, path: options?.path?.concat(index) ?? [index] }),
+      )
     }
 
     if ((this.schema.spec.strict || globalOptions.strict) !== true && getDatatype().float({ min: 0, max: 1 }) > 0.9) {
