@@ -33,7 +33,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           pnpm run release
 
-      - uses: peter-evans/create-pull-request@v4
+      - uses: peter-evans/create-pull-request@v6
         with:
           delete-branch: true
           reviewers: 'soc221b'
