@@ -77,7 +77,7 @@ jobs:
           branch: 'docs'
           force: true
 
-      - uses: JS-DevTools/npm-publish@v1
+      - uses: JS-DevTools/npm-publish@v3
         id: publish
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
