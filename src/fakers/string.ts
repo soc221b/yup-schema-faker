@@ -1,5 +1,5 @@
 import { string } from 'yup'
-import { random, datatype, internet, lorem } from '../install'
+import { getDatatype, getFaker } from '../faker'
 import { randexp } from '../random'
 import { MixedFaker } from './mixed'
 import { fakeDedicatedTest, addFaker, globalOptions } from './base'
@@ -20,28 +20,29 @@ export class StringFaker extends MixedFaker<StringSchema> {
     if (
       min === undefined &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false &&
-      datatype.float({ min: 0, max: 1 }) > 0.9
+      getDatatype().float({ min: 0, max: 1 }) > 0.9
     ) {
       return ''
     }
 
     // sentence and other function sometimes return undefined!
-    let result = lorem.paragraph(max ?? min)
-    if (datatype.float({ min: 0, max: 1 }) > 0.9) {
-      result = lorem.paragraph(max ?? min) ?? result
-    } else if (datatype.float({ min: 0, max: 1 }) > 0.9) {
-      result = lorem.word(max ?? min) ?? result
+    let result = getFaker().lorem.paragraph(max ?? min)
+    if (getDatatype().float({ min: 0, max: 1 }) > 0.9) {
+      result = getFaker().lorem.paragraph(max ?? min) ?? result
+    } else if (getDatatype().float({ min: 0, max: 1 }) > 0.9) {
+      result = getFaker().lorem.word(max ?? min) ?? result
     } else {
-      result = lorem.sentence(max ?? min) ?? result
+      result = getFaker().lorem.sentence(max ?? min) ?? result
     }
     result = result.slice(0, max).trim()
 
     const shouldTrim =
       (this.schema.spec.strict || globalOptions.strict) && this.schema.tests.find(test => test.OPTIONS.name === 'trim')
     if (shouldTrim) {
-      result = result.trim() + random.alpha({ count: result.length })
+      result = result.trim() + getFaker().random.alpha({ count: result.length })
     } else {
-      result = ' '.repeat(datatype.number(max ?? min ?? 3)) + result + ' '.repeat(datatype.number(max ?? min ?? 3))
+      result =
+        ' '.repeat(getDatatype().number(max ?? min ?? 3)) + result + ' '.repeat(getDatatype().number(max ?? min ?? 3))
     }
 
     result = result.slice(0, max)
@@ -64,15 +65,15 @@ export const installStringFaker = () => {
   addFaker(string, StringFaker)
 
   fakeDedicatedTest(string, 'uuid', () => {
-    return datatype.uuid()
+    return getDatatype().uuid()
   })
 
   fakeDedicatedTest(string, 'email', () => {
-    return internet.email()
+    return getFaker().internet.email()
   })
 
   fakeDedicatedTest(string, 'url', () => {
-    return internet.url()
+    return getFaker().internet.url()
   })
 
   fakeDedicatedTest(string, 'matches', schema => {
