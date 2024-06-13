@@ -1,39 +1,18 @@
-name: Release
-
 on:
-  schedule:
-    - cron: '0 0 * * 3'
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+name: release-please
 
 jobs:
-  release:
+  release-please:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - uses: googleapis/release-please-action@v4
         with:
-          node-version-file: .nvmrc
-
-      - name: Install
-        run: npm ci
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Test
-        run: npm run test
-
-      - name: Build
-        run: npm run build
-
-      - name: Release
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          pnpm run release
-
-      - uses: peter-evans/create-pull-request@v6
-        with:
-          delete-branch: true
-          reviewers: 'soc221b'
+          release-type: simple
