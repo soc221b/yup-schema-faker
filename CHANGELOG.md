@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.1](https://github.com/soc221b/yup-schema-faker/compare/v5.0.0...v5.0.1) (2024-06-16)
+
+
+### Bug Fixes
+
+* circular dependency ([#252](https://github.com/soc221b/yup-schema-faker/issues/252)) ([9ffd0a1](https://github.com/soc221b/yup-schema-faker/commit/9ffd0a117ce7cdec2e730b702b53a81c504b8012))
+* **deps:** update dependency highlight.js to v11 ([c641f3d](https://github.com/soc221b/yup-schema-faker/commit/c641f3d98767a86ddc72bbe86a2fd7bd229b517d))
+
 ## [5.0.0](https://github.com/iendeavor/yup-schema-faker/compare/v4.0.1...v5.0.0) (2022-08-16)
 
 
