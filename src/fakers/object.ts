@@ -16,14 +16,22 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
         .filter(key => isReference(this.schema.fields[key]) === false)
         .reduce((object, key) => {
           return Object.assign(object, {
-            [key]: ObjectFaker.rootFake(this.schema.fields[key] as AnySchema, { ...options, parent: result }),
+            [key]: ObjectFaker.rootFake(this.schema.fields[key] as AnySchema, {
+              ...options,
+              parent: result,
+              path: options?.path?.concat(key) ?? [key],
+            }),
           })
         }, result),
       ...fields
         .filter(key => isReference(this.schema.fields[key]))
         .reduce((object, key) => {
           return Object.assign(object, {
-            [key]: ObjectFaker.rootFake(this.schema.fields[key] as AnySchema, { ...options, parent: result }),
+            [key]: ObjectFaker.rootFake(this.schema.fields[key] as AnySchema, {
+              ...options,
+              parent: result,
+              path: options?.path?.concat(key) ?? [key],
+            }),
           })
         }, result),
     }
@@ -39,7 +47,13 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
         .filter(field => fields.includes(field) === false)
 
       unknownFields.forEach(field => {
-        Object.assign(result, { [field]: ObjectFaker.rootFake(mixed(), options) })
+        Object.assign(result, {
+          [field]: ObjectFaker.rootFake(mixed(), {
+            ...options,
+            parent: result,
+            path: options?.path?.concat(field) ?? [field],
+          }),
+        })
       })
 
       if (unknownFields.every(field => (result as any)[field] === undefined)) {

@@ -1,13 +1,14 @@
 import { string } from 'yup'
 import { getDatatype, getFaker } from '../faker'
-import { randexp } from '../random'
+import { _fake, randexp } from '../random'
 import { MixedFaker } from './mixed'
 import { fakeDedicatedTest, addFaker, globalOptions } from './base'
 
 import type { StringSchema } from 'yup'
+import { Options } from '../type'
 
 export class StringFaker extends MixedFaker<StringSchema> {
-  doFake() {
+  doFake(options?: Options) {
     const min =
       (this.schema.tests.find(test => test.OPTIONS.name === 'length')?.OPTIONS.params?.length as number) ??
       (this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.min as number) ??
@@ -26,14 +27,7 @@ export class StringFaker extends MixedFaker<StringSchema> {
     }
 
     // sentence and other function sometimes return undefined!
-    let result = getFaker().lorem.paragraph(max ?? min)
-    if (getDatatype().float({ min: 0, max: 1 }) > 0.9) {
-      result = getFaker().lorem.paragraph(max ?? min) ?? result
-    } else if (getDatatype().float({ min: 0, max: 1 }) > 0.9) {
-      result = getFaker().lorem.word(max ?? min) ?? result
-    } else {
-      result = getFaker().lorem.sentence(max ?? min) ?? result
-    }
+    let result = _fake?.(getFaker(), this.schema, options?.path) ?? getFaker().lorem.paragraph(max ?? min)
     result = result.slice(0, max).trim()
 
     const shouldTrim =

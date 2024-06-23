@@ -166,6 +166,28 @@ const second = fake(string())
 console.log(first === second) // true
 ```
 
+### `overrideFaker`
+
+> This feature currently only supports the string schema.
+
+If you want to produce more realistic data, you can provide a callback to fake your own data:
+
+```javascript
+import { overrideFaker } from 'yup-schema-faker'
+
+overrideFaker((faker, schema, path) => {
+  if (path?.includes('firstName')) {
+    return faker.name.firstName()
+  }
+
+  // you can still return `undefined` to instruct yup-schema-faker to generate random data
+  return undefined
+})
+
+const schema = object().shape({ firstName: string().required() }).required().strict()
+console.log(fake(schema).firstName) // "Lindsey"
+```
+
 ## Supported yup API
 
 - yup
