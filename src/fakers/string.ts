@@ -45,6 +45,9 @@ export class StringFaker extends MixedFaker<StringSchema> {
         ' '.repeat(getDatatype().number(max ?? min ?? 3)) + result + ' '.repeat(getDatatype().number(max ?? min ?? 3))
     }
 
+    if (result.length < min) {
+      result = result + getFaker().random.alpha({ count: min - result.length })
+    }
     result = result.slice(0, max)
 
     const lowercase =
