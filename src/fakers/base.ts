@@ -1,4 +1,4 @@
-import { getDatatype } from '../faker'
+import { getDatatype, getFaker } from '../faker'
 import { isSchema } from 'yup'
 
 import type { AnySchema } from 'yup'
@@ -69,7 +69,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
 
   protected fakeOneOf(): [boolean, any?] {
     const oneOf = this.schema.describe().oneOf
-    if (oneOf.length) return [true, oneOf[getDatatype().number({ min: 0, max: oneOf.length - 1 })]]
+    if (oneOf.length) return [true, oneOf[getFaker().number.int({ min: 0, max: oneOf.length - 1 })]]
 
     return [false]
   }

@@ -42,7 +42,7 @@ export class StringFaker extends MixedFaker<StringSchema> {
       result = result.trim() + getFaker().random.alpha({ count: result.length })
     } else {
       result =
-        ' '.repeat(getDatatype().number(max ?? min ?? 3)) + result + ' '.repeat(getDatatype().number(max ?? min ?? 3))
+        ' '.repeat(getFaker().number.int(max ?? min ?? 3)) + result + ' '.repeat(getFaker().number.int(max ?? min ?? 3))
     }
 
     if (result.length < min) {
