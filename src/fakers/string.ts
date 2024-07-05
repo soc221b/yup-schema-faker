@@ -1,5 +1,5 @@
 import { string } from 'yup'
-import { getDatatype, getFaker } from '../faker'
+import { getFaker } from '../faker'
 import { randexp } from '../random'
 import { MixedFaker } from './mixed'
 import { fakeDedicatedTest, addFaker, globalOptions } from './base'
@@ -20,16 +20,16 @@ export class StringFaker extends MixedFaker<StringSchema> {
     if (
       min === undefined &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false &&
-      getDatatype().float({ min: 0, max: 1 }) > 0.9
+      getFaker().number.float({ min: 0, max: 1 }) > 0.9
     ) {
       return ''
     }
 
     // sentence and other function sometimes return undefined!
     let result = getFaker().lorem.paragraph(max ?? min)
-    if (getDatatype().float({ min: 0, max: 1 }) > 0.9) {
+    if (getFaker().number.float({ min: 0, max: 1 }) > 0.9) {
       result = getFaker().lorem.paragraph(max ?? min) ?? result
-    } else if (getDatatype().float({ min: 0, max: 1 }) > 0.9) {
+    } else if (getFaker().number.float({ min: 0, max: 1 }) > 0.9) {
       result = getFaker().lorem.word(max ?? min) ?? result
     } else {
       result = getFaker().lorem.sentence(max ?? min) ?? result
@@ -39,14 +39,14 @@ export class StringFaker extends MixedFaker<StringSchema> {
     const shouldTrim =
       (this.schema.spec.strict || globalOptions.strict) && this.schema.tests.find(test => test.OPTIONS.name === 'trim')
     if (shouldTrim) {
-      result = result.trim() + getFaker().random.alpha({ count: result.length })
+      result = result.trim() + getFaker().string.alpha({ length: result.length })
     } else {
       result =
-        ' '.repeat(getDatatype().number(max ?? min ?? 3)) + result + ' '.repeat(getDatatype().number(max ?? min ?? 3))
+        ' '.repeat(getFaker().number.int(max ?? min ?? 3)) + result + ' '.repeat(getFaker().number.int(max ?? min ?? 3))
     }
 
     if (result.length < min) {
-      result = result + getFaker().random.alpha({ count: min - result.length })
+      result = result + getFaker().string.alpha({ length: min - result.length })
     }
     result = result.slice(0, max)
 
@@ -68,7 +68,7 @@ export const installStringFaker = () => {
   addFaker(string, StringFaker)
 
   fakeDedicatedTest(string, 'uuid', () => {
-    return getDatatype().uuid()
+    return getFaker().string.uuid()
   })
 
   fakeDedicatedTest(string, 'email', () => {

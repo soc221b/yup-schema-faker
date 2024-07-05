@@ -1,5 +1,5 @@
 import { mixed, object } from 'yup'
-import { getDatatype, getFaker } from '../faker'
+import { getFaker } from '../faker'
 import { MixedFaker } from './mixed'
 import { isReference } from '../util'
 import { addFaker, globalOptions } from './base'
@@ -33,7 +33,7 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
       globalOptions.strict ||
       this.schema.tests.some(test => test.OPTIONS.name === 'noUnknown')
     if (noUnknown === false) {
-      const unknownFields = Array(getDatatype().number({ min: 0, max: 5 }))
+      const unknownFields = Array(getFaker().number.int({ min: 0, max: 5 }))
         .fill(null)
         .map(() => getFaker().lorem.word())
         .filter(field => fields.includes(field) === false)
@@ -47,7 +47,10 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
       }
     }
 
-    if ((this.schema.spec.strict || globalOptions.strict) !== true && getDatatype().float({ min: 0, max: 1 }) > 0.9) {
+    if (
+      (this.schema.spec.strict || globalOptions.strict) !== true &&
+      getFaker().number.float({ min: 0, max: 1 }) > 0.9
+    ) {
       result = JSON.stringify(result)
     }
 

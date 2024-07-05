@@ -1,4 +1,4 @@
-import { getDatatype } from '../faker'
+import { getFaker } from '../faker'
 import { isSchema } from 'yup'
 
 import type { AnySchema } from 'yup'
@@ -36,7 +36,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   }
 
   protected fakeDefault(): [boolean, any?] {
-    if (getDatatype().float({ min: 0, max: 1 }) > 0.9 && this.schema.spec.default !== undefined)
+    if (getFaker().number.float({ min: 0, max: 1 }) > 0.9 && this.schema.spec.default !== undefined)
       return [
         true,
         typeof this.schema.spec.default === 'function' ? this.schema.spec.default() : this.schema.spec.default,
@@ -48,7 +48,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   protected fakeUndefined(): [boolean, any?] {
     if (
       this.schema.spec.default === undefined &&
-      getDatatype().float({ min: 0, max: 1 }) > 0.9 &&
+      getFaker().number.float({ min: 0, max: 1 }) > 0.9 &&
       this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!)) === false
     )
       return [true, undefined]
@@ -58,7 +58,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
 
   protected fakeNullable(): [boolean, any?] {
     if (
-      getDatatype().float({ min: 0, max: 1 }) > 0.9 &&
+      getFaker().number.float({ min: 0, max: 1 }) > 0.9 &&
       this.schema.spec.nullable &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false
     )
@@ -69,7 +69,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
 
   protected fakeOneOf(): [boolean, any?] {
     const oneOf = this.schema.describe().oneOf
-    if (oneOf.length) return [true, oneOf[getDatatype().number({ min: 0, max: oneOf.length - 1 })]]
+    if (oneOf.length) return [true, oneOf[getFaker().number.int({ min: 0, max: oneOf.length - 1 })]]
 
     return [false]
   }
