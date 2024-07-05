@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.0.3](https://github.com/soc221b/yup-schema-faker/compare/v5.0.2...v5.0.3) (2024-07-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @stackblitz/sdk to v1.11.0 ([#284](https://github.com/soc221b/yup-schema-faker/issues/284)) ([70a763a](https://github.com/soc221b/yup-schema-faker/commit/70a763a8b093749155759581120807099dc99623))
+
 ## [5.0.2](https://github.com/soc221b/yup-schema-faker/compare/v5.0.1...v5.0.2) (2024-06-30)
 
 
