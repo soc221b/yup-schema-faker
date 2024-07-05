@@ -39,14 +39,14 @@ export class StringFaker extends MixedFaker<StringSchema> {
     const shouldTrim =
       (this.schema.spec.strict || globalOptions.strict) && this.schema.tests.find(test => test.OPTIONS.name === 'trim')
     if (shouldTrim) {
-      result = result.trim() + getFaker().random.alpha({ count: result.length })
+      result = result.trim() + getFaker().string.alpha({ length: result.length })
     } else {
       result =
         ' '.repeat(getFaker().number.int(max ?? min ?? 3)) + result + ' '.repeat(getFaker().number.int(max ?? min ?? 3))
     }
 
     if (result.length < min) {
-      result = result + getFaker().random.alpha({ count: min - result.length })
+      result = result + getFaker().string.alpha({ length: min - result.length })
     }
     result = result.slice(0, max)
 
