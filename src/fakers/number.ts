@@ -9,10 +9,6 @@ const exponents = Array(54)
   .fill(null)
   .map((_, i) => i)
 
-const precisions = Array(16)
-  .fill(null)
-  .map((_, i) => i + 1)
-
 export class NumberFaker extends MixedFaker<NumberSchema> {
   doFake() {
     let min =
@@ -46,11 +42,6 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
       : getFaker().number.float({
           min,
           max,
-          precision:
-            1 /
-            (max - min < 1
-              ? 1e16
-              : Math.pow(10, precisions[getFaker().number.int({ min: 0, max: precisions.length - 1 })])),
         })
 
     if (
