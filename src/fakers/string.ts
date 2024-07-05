@@ -20,16 +20,16 @@ export class StringFaker extends MixedFaker<StringSchema> {
     if (
       min === undefined &&
       this.schema.tests.some(test => test.OPTIONS.name === 'required') === false &&
-      getDatatype().float({ min: 0, max: 1 }) > 0.9
+      getFaker().number.float({ min: 0, max: 1 }) > 0.9
     ) {
       return ''
     }
 
     // sentence and other function sometimes return undefined!
     let result = getFaker().lorem.paragraph(max ?? min)
-    if (getDatatype().float({ min: 0, max: 1 }) > 0.9) {
+    if (getFaker().number.float({ min: 0, max: 1 }) > 0.9) {
       result = getFaker().lorem.paragraph(max ?? min) ?? result
-    } else if (getDatatype().float({ min: 0, max: 1 }) > 0.9) {
+    } else if (getFaker().number.float({ min: 0, max: 1 }) > 0.9) {
       result = getFaker().lorem.word(max ?? min) ?? result
     } else {
       result = getFaker().lorem.sentence(max ?? min) ?? result

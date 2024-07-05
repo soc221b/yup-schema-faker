@@ -1,5 +1,5 @@
 import { mixed, array } from 'yup'
-import { getDatatype, getFaker } from '../faker'
+import { getFaker } from '../faker'
 import { MixedFaker } from './mixed'
 import { addFaker, globalOptions } from './base'
 
@@ -27,7 +27,10 @@ export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
       array = array.map(() => ArrayFaker.rootFake(mixed(), options))
     }
 
-    if ((this.schema.spec.strict || globalOptions.strict) !== true && getDatatype().float({ min: 0, max: 1 }) > 0.9) {
+    if (
+      (this.schema.spec.strict || globalOptions.strict) !== true &&
+      getFaker().number.float({ min: 0, max: 1 }) > 0.9
+    ) {
       return JSON.stringify(array)
     }
 

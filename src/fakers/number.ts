@@ -1,5 +1,5 @@
 import { number } from 'yup'
-import { getDatatype, getFaker } from '../faker'
+import { getFaker } from '../faker'
 import { MixedFaker } from './mixed'
 import { addFaker, globalOptions } from './base'
 
@@ -43,7 +43,7 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
           min: Math.ceil(min),
           max: Math.floor(max),
         })
-      : getDatatype().float({
+      : getFaker().number.float({
           min,
           max,
           precision:
@@ -53,7 +53,10 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
               : Math.pow(10, precisions[getFaker().number.int({ min: 0, max: precisions.length - 1 })])),
         })
 
-    if ((this.schema.spec.strict || globalOptions.strict) !== true && getDatatype().float({ min: 0, max: 1 }) > 0.8) {
+    if (
+      (this.schema.spec.strict || globalOptions.strict) !== true &&
+      getFaker().number.float({ min: 0, max: 1 }) > 0.8
+    ) {
       return result + ''
     }
 
