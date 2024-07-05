@@ -1,5 +1,5 @@
 import { string } from 'yup'
-import { getDatatype, getFaker } from '../faker'
+import { getFaker } from '../faker'
 import { randexp } from '../random'
 import { MixedFaker } from './mixed'
 import { fakeDedicatedTest, addFaker, globalOptions } from './base'
@@ -68,7 +68,7 @@ export const installStringFaker = () => {
   addFaker(string, StringFaker)
 
   fakeDedicatedTest(string, 'uuid', () => {
-    return getDatatype().uuid()
+    return getFaker().string.uuid()
   })
 
   fakeDedicatedTest(string, 'email', () => {
