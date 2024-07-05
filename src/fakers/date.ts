@@ -15,7 +15,7 @@ export class DateFaker extends MixedFaker<DateSchema> {
     const max =
       (this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.max as string | undefined) ?? MAX
 
-    const result = getFaker().date.between(min, max)
+    const result = getFaker().date.between({ from: min, to: max })
 
     if (
       (this.schema.spec.strict || globalOptions.strict) !== true &&
