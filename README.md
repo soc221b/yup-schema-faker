@@ -24,10 +24,10 @@ Key features:
 Install `yup-schema-faker` and its peer dependencies with your favorite package manager:
 
 ```sh
-pnpm add yup@^1.4.0
-pnpm add -D yup-schema-faker@^7.0.0
-pnpm add -D @faker-js/faker@^8.4.1
-pnpm add -D randexp@^0.5.3
+npm install yup@^1.4.0
+npm install --save-dev yup-schema-faker@^7.0.0
+npm install --save-dev @faker-js/faker@^8.4.1 # peer dependencies
+npm install --save-dev randexp@^0.5.3 # peer dependencies
 ```
 
 Usage:
