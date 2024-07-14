@@ -23,7 +23,7 @@ addMethod(string, 'json', function (schema: AnySchema) {
 // When the json test occurs, this faker will be run.
 fakeDedicatedTest(string, 'json', schema => {
   // Find the test and extract its schema
-  const innerSchema = schema.tests.find(test => test.OPTIONS.name === 'json')?.OPTIONS.params?.schema as AnySchema
+  const innerSchema = schema.tests.find(test => test.OPTIONS?.name === 'json')?.OPTIONS?.params?.schema as AnySchema
   // Generate a fake data by given schema and stringify it.
   return JSON.stringify(fake(innerSchema))
 })

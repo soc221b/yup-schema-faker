@@ -12,21 +12,25 @@ const exponents = Array(54)
 export class NumberFaker extends MixedFaker<NumberSchema> {
   doFake() {
     let min =
-      (this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.min as number | undefined) ??
+      (this.schema.tests.find(test => test.OPTIONS?.name === 'min')?.OPTIONS?.params?.min as number | undefined) ??
       -1 * (Math.pow(2, exponents[getFaker().number.int({ min: 0, max: exponents.length - 1 })]) - 1)
     let max =
-      (this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.max as number | undefined) ??
+      (this.schema.tests.find(test => test.OPTIONS?.name === 'max')?.OPTIONS?.params?.max as number | undefined) ??
       Math.pow(2, exponents[getFaker().number.int({ min: 0, max: exponents.length - 1 })]) - 1
     max = Math.max(min, max)
 
-    const more = this.schema.tests.find(test => test.OPTIONS.name === 'min')?.OPTIONS.params?.more as number | undefined
+    const more = this.schema.tests.find(test => test.OPTIONS?.name === 'min')?.OPTIONS?.params?.more as
+      | number
+      | undefined
     if (more !== undefined && Number.isFinite(more) && Number.MIN_SAFE_INTEGER <= more) {
       const precision = findMinimumOffsetPrecision(more)
       const _min = more + precision
       min = Math.max(min, _min)
       max = Math.max(max, _min)
     }
-    const less = this.schema.tests.find(test => test.OPTIONS.name === 'max')?.OPTIONS.params?.less as number | undefined
+    const less = this.schema.tests.find(test => test.OPTIONS?.name === 'max')?.OPTIONS?.params?.less as
+      | number
+      | undefined
     if (less !== undefined && Number.isFinite(less) && less <= Number.MAX_SAFE_INTEGER) {
       const precision = findMinimumOffsetPrecision(less)
       const _max = less - precision
@@ -34,7 +38,7 @@ export class NumberFaker extends MixedFaker<NumberSchema> {
       min = Math.min(min, _max)
     }
 
-    const result = this.schema.tests.find(test => test.OPTIONS.name === 'integer')
+    const result = this.schema.tests.find(test => test.OPTIONS?.name === 'integer')
       ? getFaker().number.int({
           min: Math.ceil(min),
           max: Math.floor(max),

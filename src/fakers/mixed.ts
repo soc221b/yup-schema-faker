@@ -16,7 +16,7 @@ export class MixedFaker<Schema extends AnySchema> extends BaseFaker<Schema> {
   doFake(options?: Options) {
     let randomSchema = schemaConstructors[getFaker().number.int({ min: 0, max: schemaConstructors.length - 1 })]()
 
-    if (this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!))) {
+    if (this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS?.name!))) {
       randomSchema = randomSchema.required()
     }
 

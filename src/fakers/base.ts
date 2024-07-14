@@ -49,7 +49,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
     if (
       this.schema.spec.default === undefined &&
       getFaker().number.float({ min: 0, max: 1 }) > 0.9 &&
-      this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!)) === false
+      this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS?.name!)) === false
     )
       return [true, undefined]
 
@@ -60,7 +60,7 @@ export abstract class BaseFaker<Schema extends AnySchema> {
     if (
       getFaker().number.float({ min: 0, max: 1 }) > 0.9 &&
       this.schema.spec.nullable &&
-      this.schema.tests.some(test => test.OPTIONS.name === 'required') === false
+      this.schema.tests.some(test => test.OPTIONS?.name === 'required') === false
     )
       return [true, null]
 
@@ -90,10 +90,10 @@ export abstract class BaseFaker<Schema extends AnySchema> {
 
   protected fakeDedicatedTest(): [boolean, any?] {
     const dedicatedTest = this.schema.tests.find(
-      test => BaseFaker.dedicatedTests[this.schema.type]?.[test.OPTIONS.name!] !== undefined,
+      test => BaseFaker.dedicatedTests[this.schema.type]?.[test.OPTIONS?.name!] !== undefined,
     )
     if (dedicatedTest)
-      return [true, BaseFaker.dedicatedTests[this.schema.type][dedicatedTest.OPTIONS.name!](this.schema)]
+      return [true, BaseFaker.dedicatedTests[this.schema.type][dedicatedTest.OPTIONS?.name!](this.schema)]
 
     return [false]
   }
