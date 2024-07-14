@@ -2,10 +2,15 @@ import { mixed, array } from 'yup'
 import { getFaker } from '../faker'
 import { addFaker, globalOptions, SchemaFaker } from './schema'
 
-import type { AnySchema, ArraySchema } from 'yup'
+import type { ArraySchema, Flags } from 'yup'
 import type { Options } from '../type'
 
-export class ArrayFaker extends SchemaFaker<ArraySchema<AnySchema>> {
+export class ArrayFaker<
+  TIn extends any[] | null | undefined,
+  TContext,
+  TDefault = undefined,
+  TFlags extends Flags = '',
+> extends SchemaFaker<ArraySchema<TIn, TContext, TDefault, TFlags>> {
   doFake(options?: Options) {
     const min =
       ((this.schema.tests.find(test => test.OPTIONS?.name === 'length')?.OPTIONS?.params?.length as number) ||
@@ -21,7 +26,7 @@ export class ArrayFaker extends SchemaFaker<ArraySchema<AnySchema>> {
     let array = Array(getFaker().number.int({ min, max })).fill(null)
     const innerSchema = this.schema.innerType
     if (innerSchema) {
-      array = array.map(() => ArrayFaker.rootFake(this.schema.innerType!, options))
+      array = array.map(() => ArrayFaker.rootFake(this.schema.innerType! as any, options))
     } else {
       array = array.map(() => ArrayFaker.rootFake(mixed(), options))
     }
