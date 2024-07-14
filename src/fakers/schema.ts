@@ -21,7 +21,7 @@ export abstract class SchemaFaker<Schema extends AnySchema> {
   fake(options?: Options) {
     const fns = [
       this.fakeDefault,
-      this.fakeUndefined,
+      this.fakeOptional,
       this.fakeNullable,
       this.fakeOneOf,
       this.fakeNotOneOf,
@@ -45,7 +45,7 @@ export abstract class SchemaFaker<Schema extends AnySchema> {
     return [false]
   }
 
-  protected fakeUndefined(): [boolean, any?] {
+  protected fakeOptional(): [boolean, any?] {
     if (getFaker().number.float({ min: 0, max: 1 }) > 0.9 && this.schema.spec.optional) return [true, undefined]
 
     return [false]
