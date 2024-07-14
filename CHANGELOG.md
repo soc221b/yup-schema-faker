@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.0](https://github.com/soc221b/yup-schema-faker/compare/v6.0.0...v7.0.0) (2024-07-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* update dependency yup to v1.4.0
+
+### Features
+
+* new methods ([#303](https://github.com/soc221b/yup-schema-faker/issues/303)) ([4b254c2](https://github.com/soc221b/yup-schema-faker/commit/4b254c202f6e146293fe17ad0cfe0c2248e384bd))
+
+
+### Bug Fixes
+
+* update dependency yup to v1.4.0 ([1bacb90](https://github.com/soc221b/yup-schema-faker/commit/1bacb90ca76f854151489f9d05df9481bd54bfc4))
+
 ## [6.0.0](https://github.com/soc221b/yup-schema-faker/compare/v5.0.2...v6.0.0) (2024-07-05)
 
 
