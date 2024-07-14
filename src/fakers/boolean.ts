@@ -1,12 +1,12 @@
 import { boolean } from 'yup'
-import { getDatatype } from '../faker'
+import { getFaker } from '../faker'
 import { fakeDedicatedTest, addFaker, SchemaFaker } from './schema'
 
 import type { BooleanSchema } from 'yup'
 
 export class BooleanFaker extends SchemaFaker<BooleanSchema> {
   doFake() {
-    return getDatatype().boolean()
+    return getFaker().datatype.boolean()
   }
 }
 
