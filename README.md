@@ -17,14 +17,15 @@ Key features:
 | [>= 0.32.0, <= 0.32.10](https://github.com/jquense/yup/tree/v0.32.9) | N/A                                                 | [^5.1.0](https://www.npmjs.com/package/@faker-js/faker) | [~2.32.x](https://github.com/iendeavor/yup-schema-faker/tree/v2.32.x) |
 | [>= 0.32.11, < 1.0.0](https://github.com/jquense/yup/tree/v0.32.11)  | N/A                                                 | [^7.4.0](https://www.npmjs.com/package/@faker-js/faker) | [^5.x.x](https://github.com/iendeavor/yup-schema-faker/tree/v5.x.x)   |
 | [>= 0.32.11, < 1.0.0](https://github.com/jquense/yup/tree/v0.32.11)  | N/A                                                 | [^8.4.1](https://www.npmjs.com/package/@faker-js/faker) | [^6.x.x](https://github.com/iendeavor/yup-schema-faker/tree/v6.x.x)   |
+| [^1.4.0](https://github.com/jquense/yup/tree/master)                 | N/A                                                 | [^8.4.1](https://www.npmjs.com/package/@faker-js/faker) | [^7.x.x](https://github.com/iendeavor/yup-schema-faker/tree/v7.x.x)   |
 
 ## Getting Started
 
 Install `yup-schema-faker` and its peer dependencies with your favorite package manager:
 
 ```sh
-pnpm add yup@^0.32.11
-pnpm add -D yup-schema-faker@^6.0.0
+pnpm add yup@^1.4.0
+pnpm add -D yup-schema-faker@^7.0.0
 pnpm add -D @faker-js/faker@^8.4.1
 pnpm add -D randexp@^0.5.3
 ```
@@ -170,18 +171,22 @@ console.log(first === second) // true
 ## Supported yup API
 
 - yup
+  - ✅ addMethod(schemaType: Schema, name: string, method: ()=> Schema): void
   - ✅ yup.ref(path: string, options: { contextPrefix: string }): Ref
   - ✅ yup.lazy((value: any) => Schema): Lazy
-- mixed
-  - ✅ mixed.strict(isStrict: boolean = false): Schema
-  - ✅ mixed.default(value: any): Schema
-  - ✅ mixed.nullable(isNullable: boolean = true): Schema
-  - ✅ mixed.required(message?: string | function): Schema
-  - ✅ mixed.notRequired(): Schema Alias: optional()
-  - ✅ mixed.defined(): Schema
-  - ✅ mixed.oneOf(arrayOfValues: Array<any>, message?: string | function): Schema Alias: equals
-  - ✅ mixed.notOneOf(arrayOfValues: Array<any>, message?: string | function)
-  - ✅ mixed.when(keys: string | Array<string>, builder: object | (value, schema)=> Schema): Schema
+- Schema
+  - ✅ Schema.strict(enabled: boolean = false): Schema
+  - ✅ Schema.default(value: any): Schema
+  - ✅ Schema.nullable(message?: string | function): Schema
+  - ✅ Schema.nonNullable(message?: string | function): Schema
+  - ✅ Schema.defined(): Schema
+  - ✅ Schema.optional(): Schema
+  - ✅ Schema.required(message?: string | function): Schema
+  - ✅ Schema.notRequired(): Schema
+  - ✅ Schema.oneOf(arrayOfValues: Array<any>, message?: string | function): Schema Alias: equals
+  - ✅ Schema.notOneOf(arrayOfValues: Array<any>, message?: string | function)
+  - ✅ Schema.when(keys: string | string[], builder: object | (values: any[], schema) => Schema): Schema
+- ✅ mixed
 - string
   - ✅ string.required(message?: string | function): Schema
   - ✅ string.length(limit: number | Ref, message?: string | function): Schema
@@ -193,6 +198,7 @@ console.log(first === second) // true
   - ✅ string.email(message?: string | function): Schema
   - ✅ string.url(message?: string | function): Schema
   - ✅ string.uuid(message?: string | function): Schema
+  - ✅ string.datetime(options?: {message?: string | function, allowOffset?: boolean, precision?: number})
   - ✅ string.trim(message?: string | function): Schema
     > generate trimmed string iff in strict mode
   - ✅ string.lowercase(message?: string | function): Schema
@@ -214,12 +220,16 @@ console.log(first === second) // true
   - ✅ date.min(limit: Date | string | Ref, message?: string | function): Schema
   - ✅ date.max(limit: Date | string | Ref, message?: string | function): Schema
 - array
-  - ✅ array.of(type: Schema): Schema
-  - ✅ array.length(length: number | Ref, message?: string | function): Schema
-  - ✅ array.min(limit: number | Ref, message?: string | function): Schema
-  - ✅ array.max(limit: number | Ref, message?: string | function): Schema
+  - ✅ array.of(type: Schema): this
+  - ✅ array.length(length: number | Ref, message?: string | function): this
+  - ✅ array.min(limit: number | Ref, message?: string | function): this
+  - ✅ array.max(limit: number | Ref, message?: string | function): this
+- ✅ tuple
 - object
   - ✅ object.shape(fields: object, noSortEdges?: Array<[string, string]>): Schema
+  - ✅ object.concat(schemaB: ObjectSchema): ObjectSchema
+  - ✅ object.pick(keys: string[]): Schema
+  - ✅ object.omit(keys: string[]): Schema
   - ✅ object.noUnknown(onlyKnownKeys: boolean = true, message?: string | function): Schema
 
 ## About

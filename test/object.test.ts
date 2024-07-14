@@ -1,4 +1,4 @@
-import { object, array, number } from 'yup'
+import { object, array, number, boolean } from 'yup'
 import { fake } from '../src'
 import { SAFE_COUNT } from './constant'
 
@@ -49,5 +49,43 @@ it('should inherit strict mode', () => {
     .defined()
   const actual = fake(schema)
   actual.key!.every((s: unknown) => expect(typeof s).not.toBe('string'))
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
+it('should works with pick', () => {
+  const schema = object().defined().shape({ a: boolean().defined(), b: boolean().defined() }).pick(['a']).noUnknown()
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
+it('should works with omit', () => {
+  const schema = object().defined().shape({ a: boolean().defined(), b: boolean().defined() }).omit(['a']).noUnknown()
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
+it('should works with partial', () => {
+  const schema = object().defined().shape({ a: boolean().defined() }).partial().noUnknown()
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
+it('should works with deepPartial', () => {
+  const schema = object()
+    .defined()
+    .shape({ deep: object().defined().shape({ a: boolean().defined() }).noUnknown() })
+    .deepPartial()
+    .noUnknown()
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})
+
+it('should works with concat', () => {
+  const schema = object()
+    .defined()
+    .shape({ a: boolean().defined(), b: boolean().defined() })
+    .concat(object().defined().shape({ a: number().defined(), c: number().defined() }))
+    .noUnknown()
+  const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
