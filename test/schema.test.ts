@@ -122,10 +122,10 @@ it('should works with when', () => {
     .noUnknown()
     .shape({
       isTrue: boolean().defined(),
-      when: mixed().when('isTrue', {
+      when: boolean().when('isTrue', {
         is: (value: boolean) => value,
-        then: boolean().defined().isTrue(),
-        otherwise: boolean().defined().isFalse(),
+        then: schema => schema.defined().isTrue(),
+        otherwise: schema => schema.defined().isFalse(),
       }),
     })
   const actual = fake(schema)
@@ -137,10 +137,10 @@ it('should works with when (with context)', () => {
     .defined()
     .noUnknown()
     .shape({
-      when: mixed().when('$isTrue', {
+      when: boolean().when('$isTrue', {
         is: (value: boolean) => value,
-        then: boolean().defined().isTrue(),
-        otherwise: boolean().defined().isFalse(),
+        then: schema => schema.defined().isTrue(),
+        otherwise: schema => schema.defined().isFalse(),
       }),
     })
   const context = {
@@ -159,8 +159,8 @@ it('should works with when (with multiple dependencies)', () => {
       sibling: boolean().defined(),
       count: boolean().when(['$sibling', '$context'], {
         is: (sibling: boolean, context: boolean) => sibling && context,
-        then: boolean().defined().isTrue(),
-        otherwise: boolean().defined().isFalse(),
+        then: schema => schema.defined().isTrue(),
+        otherwise: schema => schema.defined().isFalse(),
       }),
     })
   const context = {
