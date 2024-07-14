@@ -58,20 +58,20 @@ export abstract class SchemaFaker<Schema extends AnySchema> {
   }
 
   protected fakeOneOf(): [boolean, any?] {
-    const oneOf = this.schema.describe().oneOf
-    if (oneOf.length) return [true, oneOf[getFaker().number.int({ min: 0, max: oneOf.length - 1 })]]
+    const whitelist = this.schema['_whitelist']
+    if (whitelist.size) return [true, Array.from(whitelist)[getFaker().number.int({ min: 0, max: whitelist.size - 1 })]]
 
     return [false]
   }
 
   protected fakeNotOneOf(options?: Options): [boolean, any?] {
-    const notOneOf = this.schema.describe().notOneOf
-    if (notOneOf.length) {
+    const blacklistReferenceSet = this.schema['_blacklist']
+    if (blacklistReferenceSet.size) {
       let safeCount = 0
       let data
       do {
         data = this.doFake(options)
-      } while (++safeCount < SAFE_COUNT && notOneOf.includes(data))
+      } while (++safeCount < SAFE_COUNT && blacklistReferenceSet.has(data))
       return [true, data]
     }
 
