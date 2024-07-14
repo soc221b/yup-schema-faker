@@ -234,8 +234,4 @@ console.log(first === second) // true
 
 ## About
 
-<a href="https://www.buymeacoffee.com/iendeavor" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
-
 Distributed under the MIT license. See LICENSE for more information.
-
-https://github.com/iendeavor
