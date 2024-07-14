@@ -53,14 +53,14 @@ it("fakeFn's parameter schema should be same as given schema", () => {
 
 it('should be allowed to add dedicated test', () => {
   fakeDedicatedTest(string, 'json', schema => {
-    const innerSchema = schema.tests.find(test => test.OPTIONS.name === 'json')?.OPTIONS.params?.schema as AnySchema
+    const innerSchema = schema.tests.find(test => test.OPTIONS?.name === 'json')?.OPTIONS?.params?.schema as AnySchema
     return fake(innerSchema)
   })
 })
 
 it('should run dedicated test', () => {
   fakeDedicatedTest(string, 'json', schema => {
-    const innerSchema = schema.tests.find(test => test.OPTIONS.name === 'json')?.OPTIONS.params?.schema as AnySchema
+    const innerSchema = schema.tests.find(test => test.OPTIONS?.name === 'json')?.OPTIONS?.params?.schema as AnySchema
     return JSON.stringify(fake(innerSchema))
   })
 

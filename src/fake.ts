@@ -1,11 +1,18 @@
 import { AnySchema } from 'yup'
-import { globalOptions, typeToFaker } from './fakers/base'
+import { globalOptions, typeToFaker } from './fakers/schema'
 import { MixedFaker } from './fakers/mixed'
-import { Fake, Options } from './type'
+import { Options } from './type'
 import { isLazy, isReference } from './util'
 import { getFaker } from './faker'
 
-export function rootFake<Schema extends AnySchema>(schema: Schema, options: Options = {}): ReturnType<Fake<Schema>> {
+export function rootFake<Schema extends AnySchema>(
+  schema: Schema,
+  options: Options = {},
+): Schema extends AnySchema<NonNullable<infer TType>>
+  ? Exclude<TType, undefined | null>
+  : Schema extends AnySchema<infer TType>
+    ? TType
+    : never {
   const originalStrict = globalOptions.strict
   globalOptions.strict = options.strict || schema.spec?.strict || originalStrict
 

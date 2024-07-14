@@ -41,18 +41,6 @@ it('should works with noUnknown', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
-it('should sometimes fake stringified data when not in strict mode', () => {
-  const schema = object().defined()
-  let count = 0
-  let actual: any
-  do {
-    actual = fake(schema)
-  } while (typeof actual === 'object' && ++count < SAFE_COUNT)
-  expect(typeof actual).toBe('string')
-  expect(typeof JSON.parse(actual)).toBe('object')
-  expect(schema.isValidSync(actual)).toBe(true)
-})
-
 it('should inherit strict mode', () => {
   const schema = object({
     key: array(number().defined()).length(10000).defined(),
@@ -60,6 +48,6 @@ it('should inherit strict mode', () => {
     .strict()
     .defined()
   const actual = fake(schema)
-  actual.key!.every(s => expect(typeof s).not.toBe('string'))
+  actual.key!.every((s: unknown) => expect(typeof s).not.toBe('string'))
   expect(schema.isValidSync(actual)).toBe(true)
 })

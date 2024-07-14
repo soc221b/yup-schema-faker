@@ -9,7 +9,3 @@ export const setFaker = (faker: Faker) => {
 export const getFaker = () => {
   return _faker
 }
-
-export const getDatatype = () => {
-  return _faker.datatype ?? _faker.random
-}

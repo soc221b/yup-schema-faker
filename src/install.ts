@@ -1,5 +1,5 @@
 import { rootFake } from './fake'
-import { BaseFaker } from './fakers/base'
+import { SchemaFaker } from './fakers/schema'
 import { installArrayFaker } from './fakers/array'
 import { installBooleanFaker } from './fakers/boolean'
 import { installDateFaker } from './fakers/date'
@@ -11,7 +11,7 @@ import type { Faker } from '@faker-js/faker'
 import { setFaker } from './faker'
 
 export const install = (faker: Faker) => {
-  BaseFaker.rootFake = rootFake
+  SchemaFaker.rootFake = rootFake
 
   setFaker(faker)
 

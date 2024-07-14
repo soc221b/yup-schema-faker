@@ -7,12 +7,12 @@ it('should works with default', () => {
   const defaultCb = jest.fn(() => defaultData)
   const schema = date().default(defaultCb)
   let count = 0
-  let actual
-  do {
+  let actual = fake(schema)
+  while (defaultCb.mock.calls.length === 0 && ++count < SAFE_COUNT) {
     actual = fake(schema)
-  } while (defaultCb.mock.calls.length === 0 && ++count < SAFE_COUNT)
+  }
   expect(actual).toBeInstanceOf(Date)
-  expect(actual.toISOString()).toBe(defaultData.toISOString())
+  expect(actual?.toISOString()).toBe(defaultData.toISOString())
 })
 
 it('should works with date', () => {
