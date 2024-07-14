@@ -1,4 +1,4 @@
-import { mixed, object, boolean, BooleanSchema } from 'yup'
+import { mixed, object, boolean, BooleanSchema, date } from 'yup'
 import { fake } from '../src'
 import { SAFE_COUNT } from './constant'
 import { expectType, TypeEqual } from 'ts-expect'
@@ -103,14 +103,14 @@ it('defined allows null values', () => {
 it('should works with default (return default)', () => {
   const defaultData = new Date()
   const defaultCb = jest.fn(() => defaultData)
-  const schema = mixed().default(defaultCb)
+  const schema = date().default(defaultCb)
   let count = 0
-  let actual
-  do {
+  let actual = fake(schema)
+  while (defaultCb.mock.calls.length === 0 && ++count < SAFE_COUNT) {
     actual = fake(schema)
-  } while (defaultCb.mock.calls.length === 0 && ++count < SAFE_COUNT)
+  }
   expect(actual).toBeInstanceOf(Date)
-  expect(actual.toISOString()).toBe(defaultData.toISOString())
+  expect(actual?.toISOString()).toBe(defaultData.toISOString())
 })
 
 it('should works with default (return random value)', () => {
