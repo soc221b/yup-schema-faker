@@ -129,3 +129,9 @@ it('should works with trim', () => {
   const actual = fake(schema)
   expect(schema.isValidSync(actual)).toBe(true)
 })
+
+it('should works with datetime', () => {
+  const schema = string().defined().strict().datetime()
+  const actual = fake(schema)
+  expect(schema.isValidSync(actual)).toBe(true)
+})

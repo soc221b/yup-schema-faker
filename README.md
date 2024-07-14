@@ -198,7 +198,7 @@ console.log(first === second) // true
   - ✅ string.email(message?: string | function): Schema
   - ✅ string.url(message?: string | function): Schema
   - ✅ string.uuid(message?: string | function): Schema
-  - string.datetime(options?: {message?: string | function, allowOffset?: boolean, precision?: number})
+  - ✅ string.datetime(options?: {message?: string | function, allowOffset?: boolean, precision?: number})
   - ✅ string.trim(message?: string | function): Schema
     > generate trimmed string iff in strict mode
   - ✅ string.lowercase(message?: string | function): Schema
