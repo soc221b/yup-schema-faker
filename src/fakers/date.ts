@@ -1,4 +1,4 @@
-import { date as yupDate } from 'yup'
+import { date } from 'yup'
 import { getFaker } from '../faker'
 import { addFaker, globalOptions, SchemaFaker } from './schema'
 
@@ -28,5 +28,5 @@ export class DateFaker extends SchemaFaker<DateSchema> {
 }
 
 export const installDateFaker = () => {
-  addFaker(yupDate, DateFaker)
+  addFaker(date, DateFaker)
 }
