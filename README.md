@@ -10,14 +10,14 @@ Key features:
 
 ## Version Compatibiility
 
-| yup                                                                  | @types/yup                                          | @faker-js/faker                                         | yup-schema-faker                                                      |
-| -------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------- | --------------------------------------------------------------------- |
-| [~0.28.x](https://github.com/jquense/yup/tree/v0.28.5)               | [~0.28.x](https://www.npmjs.com/package/@types/yup) | [^5.1.0](https://www.npmjs.com/package/@faker-js/faker) | [~2.28.x](https://github.com/iendeavor/yup-schema-faker/tree/v2.28.x) |
-| [~0.29.x](https://github.com/jquense/yup/tree/v0.29.3)               | [~0.29.x](https://www.npmjs.com/package/@types/yup) | [^5.1.0](https://www.npmjs.com/package/@faker-js/faker) | [~2.29.x](https://github.com/iendeavor/yup-schema-faker/tree/v2.29.x) |
-| [>= 0.32.0, <= 0.32.10](https://github.com/jquense/yup/tree/v0.32.9) | N/A                                                 | [^5.1.0](https://www.npmjs.com/package/@faker-js/faker) | [~2.32.x](https://github.com/iendeavor/yup-schema-faker/tree/v2.32.x) |
-| [>= 0.32.11, < 1.0.0](https://github.com/jquense/yup/tree/v0.32.11)  | N/A                                                 | [^7.4.0](https://www.npmjs.com/package/@faker-js/faker) | [^5.x.x](https://github.com/iendeavor/yup-schema-faker/tree/v5.x.x)   |
-| [>= 0.32.11, < 1.0.0](https://github.com/jquense/yup/tree/v0.32.11)  | N/A                                                 | [^8.4.1](https://www.npmjs.com/package/@faker-js/faker) | [^6.x.x](https://github.com/iendeavor/yup-schema-faker/tree/v6.x.x)   |
-| [^1.4.0](https://github.com/jquense/yup/tree/master)                 | N/A                                                 | [^8.4.1](https://www.npmjs.com/package/@faker-js/faker) | [^7.x.x](https://github.com/iendeavor/yup-schema-faker/tree/v7.x.x)   |
+| yup                                                                  | @types/yup                                          | @faker-js/faker                                         | yup-schema-faker                                                    |
+| -------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------- |
+| [~0.28.x](https://github.com/jquense/yup/tree/v0.28.5)               | [~0.28.x](https://www.npmjs.com/package/@types/yup) | [^5.1.0](https://www.npmjs.com/package/@faker-js/faker) | [~2.28.x](https://github.com/soc221b/yup-schema-faker/tree/v2.28.x) |
+| [~0.29.x](https://github.com/jquense/yup/tree/v0.29.3)               | [~0.29.x](https://www.npmjs.com/package/@types/yup) | [^5.1.0](https://www.npmjs.com/package/@faker-js/faker) | [~2.29.x](https://github.com/soc221b/yup-schema-faker/tree/v2.29.x) |
+| [>= 0.32.0, <= 0.32.10](https://github.com/jquense/yup/tree/v0.32.9) | N/A                                                 | [^5.1.0](https://www.npmjs.com/package/@faker-js/faker) | [~2.32.x](https://github.com/soc221b/yup-schema-faker/tree/v2.32.x) |
+| [>= 0.32.11, < 1.0.0](https://github.com/jquense/yup/tree/v0.32.11)  | N/A                                                 | [^7.4.0](https://www.npmjs.com/package/@faker-js/faker) | [^5.x.x](https://github.com/soc221b/yup-schema-faker/tree/v5.x.x)   |
+| [>= 0.32.11, < 1.0.0](https://github.com/jquense/yup/tree/v0.32.11)  | N/A                                                 | [^8.4.1](https://www.npmjs.com/package/@faker-js/faker) | [^6.x.x](https://github.com/soc221b/yup-schema-faker/tree/v6.x.x)   |
+| [^1.4.0](https://github.com/jquense/yup/tree/master)                 | N/A                                                 | [^8.4.1](https://www.npmjs.com/package/@faker-js/faker) | [^7.x.x](https://github.com/soc221b/yup-schema-faker/tree/v7.x.x)   |
 
 ## Getting Started
 

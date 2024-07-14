@@ -102,5 +102,5 @@ jobs:
         with:
           tag_name: ${{ steps.publish.outputs.version }}
           body:
-            'Changelog: https://github.com/iendeavor/yup-schema-faker/blob/${{ steps.publish.outputs.version
+            'Changelog: https://github.com/soc221b/yup-schema-faker/blob/${{ steps.publish.outputs.version
             }}/CHANGELOG.md'
