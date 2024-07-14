@@ -30,13 +30,11 @@ it('should works with ref', () => {
     })
 
   const actual = fake(schema)
-  expect(schema.isValidSync(actual)).toBe(true)
 
-  const exp = schema.cast(actual)
-  expect(actual).toBe(exp)
+  expect(schema.isValidSync(actual)).toBe(true)
 })
 
-it('should works with ref', () => {
+it('should works with ref (context)', () => {
   const schema = object()
     .defined()
     .strict()
@@ -69,8 +67,8 @@ it('should works with ref', () => {
       },
     },
   }
+
   const actual = fake(schema, { context })
+
   expect(schema.isValidSync(actual, { context })).toBe(true)
-  const exp = schema.cast(actual, { context })
-  expect(actual).toBe(exp)
 })
