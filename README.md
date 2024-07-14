@@ -224,7 +224,7 @@ console.log(first === second) // true
   - ✅ array.length(length: number | Ref, message?: string | function): this
   - ✅ array.min(limit: number | Ref, message?: string | function): this
   - ✅ array.max(limit: number | Ref, message?: string | function): this
-- tuple
+- ✅ tuple
 - object
   - ✅ object.shape(fields: object, noSortEdges?: Array<[string, string]>): Schema
   - ✅ object.concat(schemaB: ObjectSchema): ObjectSchema

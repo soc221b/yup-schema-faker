@@ -7,6 +7,7 @@ import { installMixedFaker } from './fakers/mixed'
 import { installNumberFaker } from './fakers/number'
 import { installObjectFaker } from './fakers/object'
 import { installStringFaker } from './fakers/string'
+import { installTupleFaker } from './fakers/tuple'
 import type { Faker } from '@faker-js/faker'
 import { setFaker } from './faker'
 
@@ -22,4 +23,5 @@ export const install = (faker: Faker) => {
   installNumberFaker()
   installObjectFaker()
   installStringFaker()
+  installTupleFaker()
 }
