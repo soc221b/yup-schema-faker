@@ -179,7 +179,7 @@ it('should works with when (with function)', () => {
       isTrue: boolean().defined(),
       when: boolean()
         .defined()
-        .when('isTrue', (isTrue: number, schema: BooleanSchema) => {
+        .when('isTrue', ([isTrue], schema: BooleanSchema) => {
           return isTrue ? schema.isTrue() : schema.isFalse()
         }),
     })
