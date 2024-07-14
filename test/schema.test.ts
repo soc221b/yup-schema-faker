@@ -67,7 +67,7 @@ it('should works with required', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
-it('required not allows null values', () => {
+it('required allows null values', () => {
   const schema = mixed().required().nullable()
   let count = 0
   let actual
@@ -75,7 +75,7 @@ it('required not allows null values', () => {
     actual = fake(schema)
   } while (actual !== null && ++count < SAFE_COUNT)
   expect(schema.isValidSync(actual)).toBe(true)
-  expect(actual).not.toBe(null)
+  expect(actual).toBe(null)
 })
 
 it('should works with nullable', async () => {
