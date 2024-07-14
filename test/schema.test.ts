@@ -1,6 +1,43 @@
-import { mixed, object, boolean, BooleanSchema } from 'yup'
+import { mixed, object, boolean, BooleanSchema, date } from 'yup'
 import { fake } from '../src'
 import { SAFE_COUNT } from './constant'
+import { expectType, TypeEqual } from 'ts-expect'
+
+it('should infer correct type', () => {
+  const schema = boolean()
+  const actual = fake(schema)
+  expectType<TypeEqual<typeof actual, boolean | undefined>>(true)
+})
+
+it('should infer correct type with defined', () => {
+  const schema = boolean().defined()
+  const actual = fake(schema)
+  expectType<TypeEqual<typeof actual, boolean>>(true)
+})
+
+it('should infer correct type with optional', () => {
+  const schema = boolean().defined().optional()
+  const actual = fake(schema)
+  expectType<TypeEqual<typeof actual, boolean | undefined>>(true)
+})
+
+it('should infer correct type with nullable', () => {
+  const schema = boolean().nullable()
+  const actual = fake(schema)
+  expectType<TypeEqual<typeof actual, boolean | null | undefined>>(true)
+})
+
+it('should infer correct type with nonNullable', () => {
+  const schema = boolean().nullable().nonNullable()
+  const actual = fake(schema)
+  expectType<TypeEqual<typeof actual, boolean | undefined>>(true)
+})
+
+it('should infer correct type with required', () => {
+  const schema = boolean().optional().nullable().required()
+  const actual = fake(schema)
+  expectType<TypeEqual<typeof actual, boolean>>(true)
+})
 
 it('should works without required', () => {
   const schema = mixed()
@@ -30,7 +67,7 @@ it('should works with required', () => {
   expect(schema.isValidSync(actual)).toBe(true)
 })
 
-it('required not allows null values', () => {
+it('required allows null values', () => {
   const schema = mixed().required().nullable()
   let count = 0
   let actual
@@ -38,7 +75,7 @@ it('required not allows null values', () => {
     actual = fake(schema)
   } while (actual !== null && ++count < SAFE_COUNT)
   expect(schema.isValidSync(actual)).toBe(true)
-  expect(actual).not.toBe(null)
+  expect(actual).toBe(null)
 })
 
 it('should works with nullable', async () => {
@@ -66,14 +103,14 @@ it('defined allows null values', () => {
 it('should works with default (return default)', () => {
   const defaultData = new Date()
   const defaultCb = jest.fn(() => defaultData)
-  const schema = mixed().default(defaultCb)
+  const schema = date().default(defaultCb)
   let count = 0
-  let actual
-  do {
+  let actual = fake(schema)
+  while (defaultCb.mock.calls.length === 0 && ++count < SAFE_COUNT) {
     actual = fake(schema)
-  } while (defaultCb.mock.calls.length === 0 && ++count < SAFE_COUNT)
+  }
   expect(actual).toBeInstanceOf(Date)
-  expect(actual.toISOString()).toBe(defaultData.toISOString())
+  expect(actual?.toISOString()).toBe(defaultData.toISOString())
 })
 
 it('should works with default (return random value)', () => {
@@ -122,10 +159,10 @@ it('should works with when', () => {
     .noUnknown()
     .shape({
       isTrue: boolean().defined(),
-      when: mixed().when('isTrue', {
+      when: boolean().when('isTrue', {
         is: (value: boolean) => value,
-        then: boolean().defined().isTrue(),
-        otherwise: boolean().defined().isFalse(),
+        then: schema => schema.defined().isTrue(),
+        otherwise: schema => schema.defined().isFalse(),
       }),
     })
   const actual = fake(schema)
@@ -137,10 +174,10 @@ it('should works with when (with context)', () => {
     .defined()
     .noUnknown()
     .shape({
-      when: mixed().when('$isTrue', {
+      when: boolean().when('$isTrue', {
         is: (value: boolean) => value,
-        then: boolean().defined().isTrue(),
-        otherwise: boolean().defined().isFalse(),
+        then: schema => schema.defined().isTrue(),
+        otherwise: schema => schema.defined().isFalse(),
       }),
     })
   const context = {
@@ -159,8 +196,8 @@ it('should works with when (with multiple dependencies)', () => {
       sibling: boolean().defined(),
       count: boolean().when(['$sibling', '$context'], {
         is: (sibling: boolean, context: boolean) => sibling && context,
-        then: boolean().defined().isTrue(),
-        otherwise: boolean().defined().isFalse(),
+        then: schema => schema.defined().isTrue(),
+        otherwise: schema => schema.defined().isFalse(),
       }),
     })
   const context = {
@@ -179,7 +216,7 @@ it('should works with when (with function)', () => {
       isTrue: boolean().defined(),
       when: boolean()
         .defined()
-        .when('isTrue', (isTrue: number, schema: BooleanSchema) => {
+        .when('isTrue', ([isTrue], schema: BooleanSchema) => {
           return isTrue ? schema.isTrue() : schema.isFalse()
         }),
     })

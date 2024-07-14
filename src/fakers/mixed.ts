@@ -1,13 +1,13 @@
 import { getFaker } from '../faker'
 import { boolean, number, string, date, mixed } from 'yup'
-import { BaseFaker, addFaker } from './base'
+import { SchemaFaker, addFaker } from './schema'
 
 import type { AnySchema } from 'yup'
 import type { Options } from '../type'
 
 const schemaConstructors: (() => AnySchema)[] = [boolean, number, string, date]
 
-export class MixedFaker<Schema extends AnySchema> extends BaseFaker<Schema> {
+export class MixedFaker<Schema extends AnySchema> extends SchemaFaker<Schema> {
   constructor(schema: Schema) {
     super(schema)
     this.schema = schema
@@ -16,8 +16,8 @@ export class MixedFaker<Schema extends AnySchema> extends BaseFaker<Schema> {
   doFake(options?: Options) {
     let randomSchema = schemaConstructors[getFaker().number.int({ min: 0, max: schemaConstructors.length - 1 })]()
 
-    if (this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS.name!))) {
-      randomSchema = randomSchema.required()
+    if (this.schema.spec.optional === false) {
+      randomSchema = randomSchema.defined()
     }
 
     if (this.schema.spec.nullable) {

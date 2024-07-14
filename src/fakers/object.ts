@@ -1,13 +1,12 @@
 import { mixed, object } from 'yup'
 import { getFaker } from '../faker'
-import { MixedFaker } from './mixed'
 import { isReference } from '../util'
-import { addFaker, globalOptions } from './base'
+import { addFaker, globalOptions, SchemaFaker } from './schema'
 
 import type { AnySchema, ObjectSchema } from 'yup'
 import type { Options } from '../type'
 
-export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
+export class ObjectFaker extends SchemaFaker<ObjectSchema<any>> {
   doFake(options?: Options) {
     const fields = Object.keys(this.schema.fields)
     let result = {}
@@ -31,7 +30,7 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
     const noUnknown =
       this.schema.spec.strict ||
       globalOptions.strict ||
-      this.schema.tests.some(test => test.OPTIONS.name === 'noUnknown')
+      this.schema.tests.some(test => test.OPTIONS?.name === 'noUnknown')
     if (noUnknown === false) {
       const unknownFields = Array(getFaker().number.int({ min: 0, max: 5 }))
         .fill(null)
@@ -45,13 +44,6 @@ export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
       if (unknownFields.every(field => (result as any)[field] === undefined)) {
         unknownFields.forEach(field => delete (result as any)[field])
       }
-    }
-
-    if (
-      (this.schema.spec.strict || globalOptions.strict) !== true &&
-      getFaker().number.float({ min: 0, max: 1 }) > 0.9
-    ) {
-      result = JSON.stringify(result)
     }
 
     return result

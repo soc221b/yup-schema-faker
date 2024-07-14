@@ -5,7 +5,7 @@ import { expectType, TypeEqual } from 'ts-expect'
 import type { AnySchema } from 'yup'
 
 declare module 'yup' {
-  interface BaseSchema {
+  interface Schema {
     oneOfSchema<Schema extends AnySchema>(this: Schema, schemas: AnySchema[]): Schema
   }
 }
@@ -52,7 +52,7 @@ it("fakeFn's parameter schema should be same as given schema", () => {
 
 it('should be allowed to add dedicated test', () => {
   fakeDedicatedTest(mixed, 'oneOfSchema', schema => {
-    const innerSchema = schema.tests.find(test => test.OPTIONS.name === 'oneOfSchema')?.OPTIONS.params
+    const innerSchema = schema.tests.find(test => test.OPTIONS?.name === 'oneOfSchema')?.OPTIONS?.params
       ?.schema as AnySchema
     return fake(innerSchema)
   })
@@ -60,7 +60,7 @@ it('should be allowed to add dedicated test', () => {
 
 it('should run dedicated test', () => {
   fakeDedicatedTest(mixed, 'oneOfSchema', schema => {
-    const innerSchemas = schema.tests.find(test => test.OPTIONS.name === 'oneOfSchema')?.OPTIONS.params
+    const innerSchemas = schema.tests.find(test => test.OPTIONS?.name === 'oneOfSchema')?.OPTIONS?.params
       ?.schemas as AnySchema[]
     const pickedSchema = innerSchemas[Math.floor(Math.random() * innerSchemas.length)]
     return fake(pickedSchema)

@@ -1,8 +1,8 @@
 import { getFaker } from './faker'
 import RandExp from 'randexp'
 
-export const randexp = (pattern: string | RegExp, flags?: string) => {
-  const randexp = new RandExp(pattern, flags)
+export const randexp = (regexp: RegExp) => {
+  const randexp = new RandExp(regexp)
   randexp.randInt = (from, to) => getFaker().number.int({ min: from, max: to })
   return randexp.gen()
 }

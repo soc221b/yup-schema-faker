@@ -1,6 +1,6 @@
 export { fake } from './fake'
 export * from './type'
-export { BaseFaker, addFaker, fakeDedicatedTest } from './fakers/base'
+export { SchemaFaker, addFaker, fakeDedicatedTest } from './fakers/schema'
 export * from './fakers/mixed'
 export * from './fakers/array'
 export * from './fakers/boolean'
