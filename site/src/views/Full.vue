@@ -29,13 +29,13 @@ const schema = object()
     value: number().strict().required().min(0).max(100),
     left: mixed().when('value', {
       is: value => value > 60,
-      then: lazy(() => schema),
-      otherwise: mixed().oneOf([undefined]),
+      then: () => lazy(() => schema),
+      otherwise: schema => schema.oneOf([undefined]),
     }),
     right: mixed().when('value', {
       is: value => value > 60,
-      then: lazy(() => schema),
-      otherwise: mixed().oneOf([undefined]),
+      then: () => lazy(() => schema),
+      otherwise: schema => schema.oneOf([undefined]),
     }),
   })
 `.trim(),
@@ -55,8 +55,8 @@ const schema = number().strict()`,
         'Yup.Schema.when': `
 const oppositeSchema = boolean().when('value', {
   is: value => value,
-  then: boolean().isFalse(),
-  otherwise: boolean().isTrue(),
+  then: schema => schema.isFalse(),
+  otherwise: schema => schema.isTrue(),
 })
   .defined()
 const schema = object().defined().strict().noUnknown().shape({

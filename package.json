@@ -12,16 +12,16 @@
     "json",
     "schema"
   ],
-  "homepage": "https://github.com/iendeavor/yup-schema-faker#readme",
+  "homepage": "https://github.com/soc221b/yup-schema-faker#readme",
   "bugs": {
-    "url": "https://github.com/iendeavor/yup-schema-faker/issues"
+    "url": "https://github.com/soc221b/yup-schema-faker/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iendeavor/yup-schema-faker.git"
+    "url": "git+https://github.com/soc221b/yup-schema-faker.git"
   },
   "license": "MIT",
-  "author": "Ernest <iendeavor.github.io@gmail.com>",
+  "author": "Ernest <>",
   "main": "dist/index.cjs.prod.js",
   "module": "dist/index.esm-bundler.js",
   "types": "dist/src/index.d.ts",
