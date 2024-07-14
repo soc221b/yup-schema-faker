@@ -1,6 +1,43 @@
 import { mixed, object, boolean, BooleanSchema } from 'yup'
 import { fake } from '../src'
 import { SAFE_COUNT } from './constant'
+import { expectType, TypeEqual } from 'ts-expect'
+
+it('should infer correct type', () => {
+  const schema = boolean()
+  const actual = fake(schema)
+  expectType<TypeEqual<typeof actual, boolean | undefined>>(true)
+})
+
+it('should infer correct type with defined', () => {
+  const schema = boolean().defined()
+  const actual = fake(schema)
+  expectType<TypeEqual<typeof actual, boolean>>(true)
+})
+
+it('should infer correct type with optional', () => {
+  const schema = boolean().defined().optional()
+  const actual = fake(schema)
+  expectType<TypeEqual<typeof actual, boolean | undefined>>(true)
+})
+
+it('should infer correct type with nullable', () => {
+  const schema = boolean().nullable()
+  const actual = fake(schema)
+  expectType<TypeEqual<typeof actual, boolean | null | undefined>>(true)
+})
+
+it('should infer correct type with nonNullable', () => {
+  const schema = boolean().nullable().nonNullable()
+  const actual = fake(schema)
+  expectType<TypeEqual<typeof actual, boolean | undefined>>(true)
+})
+
+it('should infer correct type with required', () => {
+  const schema = boolean().optional().nullable().required()
+  const actual = fake(schema)
+  expectType<TypeEqual<typeof actual, boolean>>(true)
+})
 
 it('should works without required', () => {
   const schema = mixed()
