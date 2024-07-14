@@ -5,7 +5,7 @@ import { expectType, TypeEqual } from 'ts-expect'
 import type { AnySchema } from 'yup'
 
 declare module 'yup' {
-  interface BaseSchema {
+  interface Schema {
     oneOfSchema<Schema extends AnySchema>(this: Schema, schemas: AnySchema[]): Schema
   }
 }
