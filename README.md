@@ -2,7 +2,7 @@
 
 > Yup-schema-faker will generate you a fake data based on your [yup](https://github.com/jquense/yup) schema.
 
-[Showcase & Playground](https://iendeavor.github.io/yup-schema-faker/)
+[Showcase & Playground](https://soc221b.github.io/yup-schema-faker)
 
 Key features:
 
