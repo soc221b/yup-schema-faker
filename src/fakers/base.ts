@@ -46,23 +46,13 @@ export abstract class BaseFaker<Schema extends AnySchema> {
   }
 
   protected fakeUndefined(): [boolean, any?] {
-    if (
-      this.schema.spec.default === undefined &&
-      getFaker().number.float({ min: 0, max: 1 }) > 0.9 &&
-      this.schema.tests.some(test => ['required', 'defined'].includes(test.OPTIONS?.name!)) === false
-    )
-      return [true, undefined]
+    if (getFaker().number.float({ min: 0, max: 1 }) > 0.9 && this.schema.spec.optional) return [true, undefined]
 
     return [false]
   }
 
   protected fakeNullable(): [boolean, any?] {
-    if (
-      getFaker().number.float({ min: 0, max: 1 }) > 0.9 &&
-      this.schema.spec.nullable &&
-      this.schema.tests.some(test => test.OPTIONS?.name === 'required') === false
-    )
-      return [true, null]
+    if (getFaker().number.float({ min: 0, max: 1 }) > 0.9 && this.schema.spec.nullable) return [true, null]
 
     return [false]
   }
