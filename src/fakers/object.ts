@@ -1,13 +1,12 @@
 import { mixed, object } from 'yup'
 import { getFaker } from '../faker'
-import { MixedFaker } from './mixed'
 import { isReference } from '../util'
-import { addFaker, globalOptions } from './schema'
+import { addFaker, globalOptions, SchemaFaker } from './schema'
 
 import type { AnySchema, ObjectSchema } from 'yup'
 import type { Options } from '../type'
 
-export class ObjectFaker extends MixedFaker<ObjectSchema<any>> {
+export class ObjectFaker extends SchemaFaker<ObjectSchema<any>> {
   doFake(options?: Options) {
     const fields = Object.keys(this.schema.fields)
     let result = {}

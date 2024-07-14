@@ -1,14 +1,13 @@
 import { date as yupDate } from 'yup'
 import { getFaker } from '../faker'
-import { MixedFaker } from './mixed'
-import { addFaker, globalOptions } from './schema'
+import { addFaker, globalOptions, SchemaFaker } from './schema'
 
 import type { DateSchema } from 'yup'
 
 const MIN = new Date(0).toISOString()
 const MAX = new Date((Math.pow(2, 31) - 1) * 1000).toISOString()
 
-export class DateFaker extends MixedFaker<DateSchema> {
+export class DateFaker extends SchemaFaker<DateSchema> {
   doFake() {
     const min =
       (this.schema.tests.find(test => test.OPTIONS?.name === 'min')?.OPTIONS?.params?.min as string | undefined) ?? MIN

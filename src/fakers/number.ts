@@ -1,7 +1,6 @@
 import { number } from 'yup'
 import { getFaker } from '../faker'
-import { MixedFaker } from './mixed'
-import { addFaker, globalOptions } from './schema'
+import { addFaker, globalOptions, SchemaFaker } from './schema'
 
 import type { NumberSchema } from 'yup'
 
@@ -9,7 +8,7 @@ const exponents = Array(54)
   .fill(null)
   .map((_, i) => i)
 
-export class NumberFaker extends MixedFaker<NumberSchema> {
+export class NumberFaker extends SchemaFaker<NumberSchema> {
   doFake() {
     let min =
       (this.schema.tests.find(test => test.OPTIONS?.name === 'min')?.OPTIONS?.params?.min as number | undefined) ??

@@ -1,11 +1,10 @@
 import { boolean } from 'yup'
 import { getDatatype } from '../faker'
-import { MixedFaker } from './mixed'
-import { fakeDedicatedTest, addFaker } from './schema'
+import { fakeDedicatedTest, addFaker, SchemaFaker } from './schema'
 
 import type { BooleanSchema } from 'yup'
 
-export class BooleanFaker extends MixedFaker<BooleanSchema> {
+export class BooleanFaker extends SchemaFaker<BooleanSchema> {
   doFake() {
     return getDatatype().boolean()
   }

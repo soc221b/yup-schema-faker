@@ -1,12 +1,11 @@
 import { mixed, array } from 'yup'
 import { getFaker } from '../faker'
-import { MixedFaker } from './mixed'
-import { addFaker, globalOptions } from './schema'
+import { addFaker, globalOptions, SchemaFaker } from './schema'
 
 import type { AnySchema, ArraySchema } from 'yup'
 import type { Options } from '../type'
 
-export class ArrayFaker extends MixedFaker<ArraySchema<AnySchema>> {
+export class ArrayFaker extends SchemaFaker<ArraySchema<AnySchema>> {
   doFake(options?: Options) {
     const min =
       ((this.schema.tests.find(test => test.OPTIONS?.name === 'length')?.OPTIONS?.params?.length as number) ||

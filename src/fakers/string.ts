@@ -1,12 +1,11 @@
 import { string } from 'yup'
 import { getFaker } from '../faker'
 import { randexp } from '../random'
-import { MixedFaker } from './mixed'
-import { fakeDedicatedTest, addFaker, globalOptions } from './schema'
+import { fakeDedicatedTest, addFaker, globalOptions, SchemaFaker } from './schema'
 
 import type { StringSchema } from 'yup'
 
-export class StringFaker extends MixedFaker<StringSchema> {
+export class StringFaker extends SchemaFaker<StringSchema> {
   doFake() {
     const min =
       (this.schema.tests.find(test => test.OPTIONS?.name === 'length')?.OPTIONS?.params?.length as number) ??
