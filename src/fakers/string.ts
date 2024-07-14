@@ -82,4 +82,8 @@ export const installStringFaker = () => {
     const regexTest = schema.tests.find(test => test.OPTIONS?.name === 'matches')
     return randexp(regexTest?.OPTIONS?.params!.regex as RegExp)
   })
+
+  fakeDedicatedTest(string, 'datetime', () => {
+    return getFaker().date.anytime().toISOString()
+  })
 }
