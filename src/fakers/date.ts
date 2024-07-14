@@ -1,7 +1,7 @@
 import { date as yupDate } from 'yup'
 import { getFaker } from '../faker'
 import { MixedFaker } from './mixed'
-import { addFaker, globalOptions } from './base'
+import { addFaker, globalOptions } from './schema'
 
 import type { DateSchema } from 'yup'
 

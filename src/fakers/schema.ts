@@ -7,7 +7,7 @@ import type { Fake, Options } from '../type'
 export const globalOptions = { strict: false }
 
 const SAFE_COUNT = 99999
-export abstract class BaseFaker<Schema extends AnySchema> {
+export abstract class SchemaFaker<Schema extends AnySchema> {
   static rootFake: Fake<AnySchema>
 
   static dedicatedTests: { [schema: string]: { [name: string]: (schema: AnySchema) => any } } = {}
@@ -80,10 +80,10 @@ export abstract class BaseFaker<Schema extends AnySchema> {
 
   protected fakeDedicatedTest(): [boolean, any?] {
     const dedicatedTest = this.schema.tests.find(
-      test => BaseFaker.dedicatedTests[this.schema.type]?.[test.OPTIONS?.name!] !== undefined,
+      test => SchemaFaker.dedicatedTests[this.schema.type]?.[test.OPTIONS?.name!] !== undefined,
     )
     if (dedicatedTest)
-      return [true, BaseFaker.dedicatedTests[this.schema.type][dedicatedTest.OPTIONS?.name!](this.schema)]
+      return [true, SchemaFaker.dedicatedTests[this.schema.type][dedicatedTest.OPTIONS?.name!](this.schema)]
 
     return [false]
   }
@@ -102,8 +102,8 @@ export function fakeDedicatedTest<SchemaConstructor extends (...args: any[]) => 
   if (typeof fakeFn !== 'function') throw new TypeError('Method function must be provided')
 
   const schemaType = schemaConstructor().type
-  BaseFaker.dedicatedTests[schemaType] = BaseFaker.dedicatedTests[schemaType] ?? {}
-  BaseFaker.dedicatedTests[schemaType][name] = fakeFn as any
+  SchemaFaker.dedicatedTests[schemaType] = SchemaFaker.dedicatedTests[schemaType] ?? {}
+  SchemaFaker.dedicatedTests[schemaType][name] = fakeFn as any
 }
 
 export const typeToFaker = new Map<String, any>()

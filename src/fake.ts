@@ -1,5 +1,5 @@
 import { AnySchema } from 'yup'
-import { globalOptions, typeToFaker } from './fakers/base'
+import { globalOptions, typeToFaker } from './fakers/schema'
 import { MixedFaker } from './fakers/mixed'
 import { Fake, Options } from './type'
 import { isLazy, isReference } from './util'

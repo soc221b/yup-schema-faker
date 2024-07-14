@@ -2,7 +2,7 @@ import { mixed, object } from 'yup'
 import { getFaker } from '../faker'
 import { MixedFaker } from './mixed'
 import { isReference } from '../util'
-import { addFaker, globalOptions } from './base'
+import { addFaker, globalOptions } from './schema'
 
 import type { AnySchema, ObjectSchema } from 'yup'
 import type { Options } from '../type'

@@ -2,7 +2,7 @@ import { string } from 'yup'
 import { getFaker } from '../faker'
 import { randexp } from '../random'
 import { MixedFaker } from './mixed'
-import { fakeDedicatedTest, addFaker, globalOptions } from './base'
+import { fakeDedicatedTest, addFaker, globalOptions } from './schema'
 
 import type { StringSchema } from 'yup'
 

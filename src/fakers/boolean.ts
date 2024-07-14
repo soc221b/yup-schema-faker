@@ -1,7 +1,7 @@
 import { boolean } from 'yup'
 import { getDatatype } from '../faker'
 import { MixedFaker } from './mixed'
-import { fakeDedicatedTest, addFaker } from './base'
+import { fakeDedicatedTest, addFaker } from './schema'
 
 import type { BooleanSchema } from 'yup'
 
