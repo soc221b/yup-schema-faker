@@ -1,6 +1,6 @@
 import { mixed, array } from 'yup'
 import { getFaker } from '../faker'
-import { addFaker, globalOptions, SchemaFaker } from './schema'
+import { addFaker, SchemaFaker } from './schema'
 
 import type { ArraySchema, Flags } from 'yup'
 import type { Options } from '../type'
@@ -29,13 +29,6 @@ export class ArrayFaker<
       array = array.map(() => ArrayFaker.rootFake(this.schema.innerType! as any, options))
     } else {
       array = array.map(() => ArrayFaker.rootFake(mixed(), options))
-    }
-
-    if (
-      (this.schema.spec.strict || globalOptions.strict) !== true &&
-      getFaker().number.float({ min: 0, max: 1 }) > 0.9
-    ) {
-      return JSON.stringify(array)
     }
 
     return array

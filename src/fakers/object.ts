@@ -46,13 +46,6 @@ export class ObjectFaker extends SchemaFaker<ObjectSchema<any>> {
       }
     }
 
-    if (
-      (this.schema.spec.strict || globalOptions.strict) !== true &&
-      getFaker().number.float({ min: 0, max: 1 }) > 0.9
-    ) {
-      result = JSON.stringify(result)
-    }
-
     return result
   }
 }
