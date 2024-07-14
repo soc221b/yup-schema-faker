@@ -229,9 +229,9 @@ console.log(first === second) // true
 - object
   - ✅ object.shape(fields: object, noSortEdges?: Array<[string, string]>): Schema
   - object.json(): this
-  - object.concat(schemaB: ObjectSchema): ObjectSchema
-  - object.pick(keys: string[]): Schema
-  - object.omit(keys: string[]): Schema
+  - ✅ object.concat(schemaB: ObjectSchema): ObjectSchema
+  - ✅ object.pick(keys: string[]): Schema
+  - ✅ object.omit(keys: string[]): Schema
   - ✅ object.noUnknown(onlyKnownKeys: boolean = true, message?: string | function): Schema
 
 ## About
