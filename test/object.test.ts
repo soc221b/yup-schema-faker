@@ -48,6 +48,6 @@ it('should inherit strict mode', () => {
     .strict()
     .defined()
   const actual = fake(schema)
-  actual.key!.every(s => expect(typeof s).not.toBe('string'))
+  actual.key!.every((s: unknown) => expect(typeof s).not.toBe('string'))
   expect(schema.isValidSync(actual)).toBe(true)
 })
