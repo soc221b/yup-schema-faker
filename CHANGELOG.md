@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.0.1](https://github.com/soc221b/yup-schema-faker/compare/v7.0.0...v7.0.1) (2024-08-14)
+
+
+### Bug Fixes
+
+* [#352](https://github.com/soc221b/yup-schema-faker/issues/352) ([d7a17bc](https://github.com/soc221b/yup-schema-faker/commit/d7a17bc33e669432c795ef241a20a5382a5f0a0e))
+* sh: husky: command not found ([#353](https://github.com/soc221b/yup-schema-faker/issues/353)) ([d7a17bc](https://github.com/soc221b/yup-schema-faker/commit/d7a17bc33e669432c795ef241a20a5382a5f0a0e)), closes [#352](https://github.com/soc221b/yup-schema-faker/issues/352)
+
 ## [7.0.0](https://github.com/soc221b/yup-schema-faker/compare/v6.0.0...v7.0.0) (2024-07-14)
 
 
