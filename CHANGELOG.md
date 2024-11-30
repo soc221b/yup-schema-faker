@@ -2,6 +2,58 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [8.0.0](https://github.com/soc221b/yup-schema-faker/compare/7.0.1...v8.0.0) (2024-11-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* update dependency yup to v1.4.0
+* **deps:** update dependency @faker-js/faker to v8 ([#223](https://github.com/soc221b/yup-schema-faker/issues/223))
+* `faker` must now be passed to the `install` function
+* need to explicitly call install function to install fakers
+* drop support for Node.js 10 and 12
+
+### Features
+
+* add passing of Faker instance ([#182](https://github.com/soc221b/yup-schema-faker/issues/182)) ([6cd4d29](https://github.com/soc221b/yup-schema-faker/commit/6cd4d29b551d3817e7e6f1837c966448720354c6))
+* add strict option to fake ([4d9e4a9](https://github.com/soc221b/yup-schema-faker/commit/4d9e4a99d1ec7870ce120a2adf40ee7f14a34c8b))
+* expose install function, make it tree-shakeable ([16a72f6](https://github.com/soc221b/yup-schema-faker/commit/16a72f6d7351948f0ffc56d61e45b9eec8880e42))
+* fake small numbers too ([2d13c99](https://github.com/soc221b/yup-schema-faker/commit/2d13c99cb0806210f58947350a5c93bce1ca74de))
+* new methods ([#303](https://github.com/soc221b/yup-schema-faker/issues/303)) ([4b254c2](https://github.com/soc221b/yup-schema-faker/commit/4b254c202f6e146293fe17ad0cfe0c2248e384bd))
+* to simulate cast when not in strict mode ([930b490](https://github.com/soc221b/yup-schema-faker/commit/930b49039c9898b70296c0ac2ef10f1b6d0167d9))
+* to simulate skipping coercion when not in strict mode ([4d53e85](https://github.com/soc221b/yup-schema-faker/commit/4d53e8511a933199701a49a36bda68682af9b57f))
+
+
+### Bug Fixes
+
+* [#352](https://github.com/soc221b/yup-schema-faker/issues/352) ([d7a17bc](https://github.com/soc221b/yup-schema-faker/commit/d7a17bc33e669432c795ef241a20a5382a5f0a0e))
+* backward compatibility for faker ([136f6ff](https://github.com/soc221b/yup-schema-faker/commit/136f6ff846e6dbfeeae82a3b893e79dbe3902d66))
+* circular dependency ([#252](https://github.com/soc221b/yup-schema-faker/issues/252)) ([9ffd0a1](https://github.com/soc221b/yup-schema-faker/commit/9ffd0a117ce7cdec2e730b702b53a81c504b8012))
+* **deps:** update dependency @faker-js/faker to v8 ([#223](https://github.com/soc221b/yup-schema-faker/issues/223)) ([2854539](https://github.com/soc221b/yup-schema-faker/commit/2854539edcb93a67b3b8e7e4594b67a5f790fa9b))
+* enable noUnknown will also enable stripUnknown when not in strict mode ([1759663](https://github.com/soc221b/yup-schema-faker/commit/175966350fe39e7faeae8685fcf42d7a82ac291d))
+* failed to install ([65c5952](https://github.com/soc221b/yup-schema-faker/commit/65c5952d096e4af1edd290df789e248ca7d70931))
+* fakeFn's parameter schema should be same as given schema ([8b53bf2](https://github.com/soc221b/yup-schema-faker/commit/8b53bf20d68ea17da785284ff06b1a6584c94153))
+* hide private objects ([20407b4](https://github.com/soc221b/yup-schema-faker/commit/20407b4bf00544263fbd1363e51a46ff8959d50d))
+* inherit strict mode ([fa3e8db](https://github.com/soc221b/yup-schema-faker/commit/fa3e8db02bf41607ad7134065277884c5f2069f9))
+* **number:** max must larger than or equal to min ([970930b](https://github.com/soc221b/yup-schema-faker/commit/970930b31eb78e323b3c2881d26de7e9c7d581e7))
+* object should not fake unknown fields when in strict mode ([2ac3cd7](https://github.com/soc221b/yup-schema-faker/commit/2ac3cd74ccf99a3493dae7e45a4de0731888ec3d))
+* random schema should be independent ([195277a](https://github.com/soc221b/yup-schema-faker/commit/195277ad3ffedd0c39fd51246713edf9ce9ffa1f))
+* remove unknown fields if they are all undefined ([c85c260](https://github.com/soc221b/yup-schema-faker/commit/c85c260938f2a2b81d12441b15b550e6c01ff72c))
+* sh: husky: command not found ([#353](https://github.com/soc221b/yup-schema-faker/issues/353)) ([d7a17bc](https://github.com/soc221b/yup-schema-faker/commit/d7a17bc33e669432c795ef241a20a5382a5f0a0e)), closes [#352](https://github.com/soc221b/yup-schema-faker/issues/352)
+* should not always generate default value ([1762d48](https://github.com/soc221b/yup-schema-faker/commit/1762d481d5de4876a364d2c36ded47e72e7ed68c))
+* should not override RandExp prototype ([e35dae8](https://github.com/soc221b/yup-schema-faker/commit/e35dae8baac4b1428a734a4740e785ca45ad49dc))
+* should not return undefeind if provide default ([b72e2c8](https://github.com/soc221b/yup-schema-faker/commit/b72e2c8d3876df243105f6f549b0319e5d1f4f58))
+* string min length ([#278](https://github.com/soc221b/yup-schema-faker/issues/278)) ([c86ad65](https://github.com/soc221b/yup-schema-faker/commit/c86ad653ea21252305eefa95719530e59d21e7f5))
+* the ReturnType of fakeFn should not be any ([f395403](https://github.com/soc221b/yup-schema-faker/commit/f3954035fbb40bc6f9a3938e0a7eaf36f6140033))
+* update dependency yup to v1.4.0 ([1bacb90](https://github.com/soc221b/yup-schema-faker/commit/1bacb90ca76f854151489f9d05df9481bd54bfc4))
+* use same Faker instance ([b9c1f79](https://github.com/soc221b/yup-schema-faker/commit/b9c1f792b83896ce98710bf4eb658fb499d0ae63))
+* wrong peer deps ([23ab795](https://github.com/soc221b/yup-schema-faker/commit/23ab795df3467ea2359bb54970c4abc43b48b7c9))
+
+
+### Miscellaneous Chores
+
+* update from faker to @faker-js/faker ([#166](https://github.com/soc221b/yup-schema-faker/issues/166)) ([cb9374a](https://github.com/soc221b/yup-schema-faker/commit/cb9374a498326bc4fa2ef2f387384dcf003f63e6))
+
 ## [7.0.1](https://github.com/soc221b/yup-schema-faker/compare/v7.0.0...v7.0.1) (2024-08-14)
 
 
