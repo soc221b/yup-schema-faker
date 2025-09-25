@@ -34,8 +34,8 @@
     "lint": "prettier --check ."
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.0.0",
-    "@commitlint/config-conventional": "^19.0.0",
+    "@commitlint/cli": "^20.0.0",
+    "@commitlint/config-conventional": "^20.0.0",
     "@faker-js/faker": "^8.4.1",
     "@rollup/plugin-commonjs": "^28.0.0",
     "@rollup/plugin-json": "^6.0.0",
