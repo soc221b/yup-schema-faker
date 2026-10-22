@@ -46,7 +46,7 @@
     "@types/node": "^24.0.0",
     "jest": "^30.0.0",
     "prettier": "^3.0.0",
-    "randexp": "^0.5.3",
+    "randexp": "^0.6.0",
     "rimraf": "^6.0.0",
     "rollup": "^4.0.0",
     "rollup-plugin-auto-external": "^2.0.0",
